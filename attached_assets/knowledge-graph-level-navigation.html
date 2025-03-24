@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Software Engineering Knowledge Graph</title>
+  <script src="https://unpkg.com/cytoscape@3.26.0/dist/cytoscape.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7f9fc;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      color: #7f8c8d;
+      margin-bottom: 20px;
+    }
+
+    .breadcrumb {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+      padding: 10px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .breadcrumb-item {
+      cursor: pointer;
+      padding: 5px 10px;
+      margin-right: 5px;
+      background-color: #e0f7fa;
+      border-radius: 4px;
+      font-size: 14px;
+      transition: background-color 0.2s;
+    }
+
+    .breadcrumb-item:hover {
+      background-color: #b2ebf2;
+    }
+
+    .breadcrumb-item:after {
+      content: "›";
+      margin-left: 10px;
+      color: #999;
+    }
+
+    .breadcrumb-item:last-child:after {
+      content: "";
+    }
+
+    #knowledge-graph-container {
+      width: 100%;
+      height: 70vh;
+      min-height: 500px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: #fff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .level-info {
+      padding: 10px;
+      margin-bottom: 15px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .level-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .level-description {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    button {
+      padding: 8px 16px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .legend-color {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      margin-right: 6px;
+    }
+
+    .core-color { background-color: #e0f7fa; border: 1px solid #006064; }
+    .frontend-color { background-color: #e8f5e9; border: 1px solid #1b5e20; }
+    .backend-color { background-color: #fff3e0; border: 1px solid #e65100; }
+    .data-color { background-color: #f3e5f5; border: 1px solid #4a148c; }
+    .infra-color { background-color: #fbe9e7; border: 1px solid #bf360c; }
+    .security-color { background-color: #ffebee; border: 1px solid #b71c1c; }
+    .practices-color { background-color: #f1f8e9; border: 1px solid #33691e; }
+
+    @media (max-width: 768px) {
+      #knowledge-graph-container {
+        height: 60vh;
+      }
+      
+      .legend {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Software Engineering Knowledge Graph</h1>
+      <p class="description">An interactive visualization of software engineering skills and their relationships</p>
+    </header>
+    
+    <div class="breadcrumb" id="breadcrumb">
+      <div class="breadcrumb-item" data-id="root">Root</div>
+    </div>
+    
+    <div class="level-info" id="level-info">
+      <div class="level-title">Modern Software Engineering</div>
+      <div class="level-description">The root level of software engineering knowledge categories</div>
+    </div>
+    
+    <div id="knowledge-graph-container" aria-label="Interactive knowledge graph of software engineering skills"></div>
+    
+    <div class="controls">
+      <button id="back-button">Go Back</button>
+      <button id="reset-view">Reset View</button>
+    </div>
+    
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-color core-color"></div>
+        <span>Core Development</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color frontend-color"></div>
+        <span>Frontend</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color backend-color"></div>
+        <span>Backend</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color data-color"></div>
+        <span>Data Management</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color infra-color"></div>
+        <span>Infrastructure</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color security-color"></div>
+        <span>Security</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color practices-color"></div>
+        <span>Best Practices</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Define the full graph data structure
+      const allNodes = [
+        // Root node
+        { data: { id: 'root', label: 'Modern Software Engineering', category: 'core', description: 'The root level of software engineering knowledge categories' } },
+        
+        // Main category nodes
+        { data: { id: 'core', label: 'Core Development Skills', category: 'core', parent: 'root', description: 'Fundamental programming skills and principles' } },
+        { data: { id: 'frontend', label: 'Frontend Development', category: 'frontend', parent: 'root', description: 'Skills and technologies for building user interfaces' } },
+        { data: { id: 'backend', label: 'Backend Development', category: 'backend', parent: 'root', description: 'Server-side application development' } },
+        { data: { id: 'data', label: 'Data Management', category: 'data', parent: 'root', description: 'Database and data processing technologies' } },
+        { data: { id: 'infra', label: 'Infrastructure & DevOps', category: 'infra', parent: 'root', description: 'Cloud, containers, and deployment technologies' } },
+        { data: { id: 'arch', label: 'Architecture Patterns', category: 'core', parent: 'root', description: 'Application architecture approaches and patterns' } },
+        { data: { id: 'security', label: 'Security & Compliance', category: 'security', parent: 'root', description: 'Securing applications and infrastructure' } },
+        { data: { id: 'practices', label: 'Best Practices', category: 'practices', parent: 'root', description: 'Quality assurance and development methodologies' } },
+        
+        // Core Development subcategories
+        { data: { id: 'lang', label: 'Languages & Paradigms', parent: 'core', description: 'Programming languages and coding approaches' } },
+        { data: { id: 'principles', label: 'Software Principles', parent: 'core', description: 'Best practices and design principles' } },
+        { data: { id: 'solid', label: 'SOLID', parent: 'principles', description: 'Five design principles for object-oriented programming' } },
+        { data: { id: 'clean', label: 'Clean Code', parent: 'principles', description: 'Practices for writing maintainable code' } },
+        { data: { id: 'patterns', label: 'Design Patterns', parent: 'principles', description: 'Reusable solutions to common problems' } },
+        
+        // Frontend subcategories
+        { data: { id: 'ui', label: 'UI Technologies', parent: 'frontend', description: 'Core web technologies' } },
+        { data: { id: 'html', label: 'HTML5/CSS3', parent: 'ui', description: 'Markup and styling technologies' } },
+        { data: { id: 'js', label: 'JavaScript/TypeScript', parent: 'ui', description: 'Programming languages for the web' } },
+        { data: { id: 'frameworks', label: 'Frontend Frameworks', parent: 'frontend', description: 'Libraries and frameworks for UI development' } },
+        { data: { id: 'react', label: 'React Ecosystem', parent: 'frameworks', description: 'React and related libraries' } },
+        { data: { id: 'vue', label: 'Vue Ecosystem', parent: 'frameworks', description: 'Vue.js and related technologies' } },
+        { data: { id: 'angular', label: 'Angular Ecosystem', parent: 'frameworks', description: 'Angular framework and tools' } },
+        { data: { id: 'state', label: 'State Management', parent: 'frontend', description: 'Managing application state on the client' } },
+        { data: { id: 'redux', label: 'Redux/MobX/Zustand', parent: 'state', description: 'Libraries for state management' } },
+        
+        // Backend subcategories
+        { data: { id: 'services', label: 'Service Development', parent: 'backend', description: 'Creating APIs and services' } },
+        { data: { id: 'rest', label: 'REST APIs', parent: 'services', description: 'RESTful web services' } },
+        { data: { id: 'graphql', label: 'GraphQL', parent: 'services', description: 'Query language for APIs' } },
+        { data: { id: 'rpc', label: 'gRPC', parent: 'services', description: 'High-performance RPC framework' } },
+        { data: { id: 'bframeworks', label: 'Backend Frameworks', parent: 'backend', description: 'Server-side application frameworks' } },
+        { data: { id: 'spring', label: 'Spring Boot', parent: 'bframeworks', description: 'Java-based framework' } },
+        { data: { id: 'express', label: 'Express/NestJS', parent: 'bframeworks', description: 'Node.js frameworks' } },
+        { data: { id: 'django', label: 'Django/FastAPI', parent: 'bframeworks', description: 'Python frameworks' } },
+        
+        // Data Management subcategories
+        { data: { id: 'sql', label: 'SQL Databases', parent: 'data', description: 'Relational database systems' } },
+        { data: { id: 'postgres', label: 'PostgreSQL', parent: 'sql', description: 'Advanced open-source RDBMS' } },
+        { data: { id: 'mysql', label: 'MySQL/MariaDB', parent: 'sql', description: 'Popular open-source databases' } },
+        { data: { id: 'nosql', label: 'NoSQL Solutions', parent: 'data', description: 'Non-relational databases' } },
+        { data: { id: 'document', label: 'Document DBs', parent: 'nosql', description: 'Document-oriented databases' } },
+        { data: { id: 'mongo', label: 'MongoDB', parent: 'document', description: 'Document database' } },
+        { data: { id: 'keyvalue', label: 'Key-Value Stores', parent: 'nosql', description: 'Key-value databases' } },
+        { data: { id: 'redis', label: 'Redis', parent: 'keyvalue', description: 'In-memory data structure store' } },
+        { data: { id: 'cache', label: 'Caching Strategies', parent: 'data', description: 'Techniques for data caching' } },
+        
+        // Infrastructure subcategories
+        { data: { id: 'cloud', label: 'Cloud Platforms', parent: 'infra', description: 'Cloud service providers' } },
+        { data: { id: 'aws', label: 'AWS Services', parent: 'cloud', description: 'Amazon Web Services' } },
+        { data: { id: 'azure', label: 'Azure Services', parent: 'cloud', description: 'Microsoft Azure' } },
+        { data: { id: 'gcp', label: 'Google Cloud', parent: 'cloud', description: 'Google Cloud Platform' } },
+        { data: { id: 'container', label: 'Containerization', parent: 'infra', description: 'Container technologies' } },
+        { data: { id: 'docker', label: 'Docker', parent: 'container', description: 'Container platform' } },
+        { data: { id: 'k8s', label: 'Kubernetes', parent: 'container', description: 'Container orchestration' } },
+        { data: { id: 'cicd', label: 'CI/CD Pipeline', parent: 'infra', description: 'Continuous integration and deployment' } },
+        { data: { id: 'build', label: 'Build Tools', parent: 'cicd', description: 'Tools for building applications' } },
+        { data: { id: 'deploy', label: 'Deployment', parent: 'cicd', description: 'Deployment strategies and tools' } },
+        
+        // Architecture Patterns subcategories
+        { data: { id: 'mono', label: 'Monolithic', parent: 'arch', description: 'Single-tiered software application' } },
+        { data: { id: 'micro', label: 'Microservices', parent: 'arch', description: 'Service-oriented architecture style' } },
+        { data: { id: 'event', label: 'Event-Driven', parent: 'arch', description: 'Architecture pattern promoting events' } },
+        { data: { id: 'serverless', label: 'Serverless', parent: 'arch', description: 'Cloud execution model' } },
+        
+        // Security subcategories
+        { data: { id: 'appsec', label: 'Application Security', parent: 'security', description: 'Securing application code' } },
+        { data: { id: 'netsec', label: 'Network Security', parent: 'security', description: 'Securing network communications' } },
+        { data: { id: 'cloudsec', label: 'Cloud Security', parent: 'security', description: 'Securing cloud resources' } },
+        { data: { id: 'devsec', label: 'DevSecOps', parent: 'security', description: 'Security integration in DevOps' } },
+        
+        // Best Practices subcategories
+        { data: { id: 'testing', label: 'Testing Strategies', parent: 'practices', description: 'Approaches to software testing' } },
+        { data: { id: 'unit', label: 'Unit Testing', parent: 'testing', description: 'Testing individual units of code' } },
+        { data: { id: 'int', label: 'Integration Testing', parent: 'testing', description: 'Testing component interactions' } },
+        { data: { id: 'e2e', label: 'E2E Testing', parent: 'testing', description: 'End-to-end testing' } },
+        { data: { id: 'monitor', label: 'Monitoring & Observability', parent: 'practices', description: 'Tracking application health and performance' } },
+        { data: { id: 'metrics', label: 'Metrics Collection', parent: 'monitor', description: 'Gathering performance metrics' } },
+        { data: { id: 'logs', label: 'Log Management', parent: 'monitor', description: 'Handling application logs' } },
+        { data: { id: 'trace', label: 'Distributed Tracing', parent: 'monitor', description: 'Tracing requests across services' } }
+      ];
+      
+      const allEdges = [
+        // Only add a few important cross-category relationships, most will be inferred by parent-child
+        { data: { id: 'e1', source: 'services', target: 'data', label: 'uses' } },
+        { data: { id: 'e2', source: 'frameworks', target: 'state', label: 'manages' } },
+        { data: { id: 'e3', source: 'micro', target: 'container', label: 'deployed in' } },
+        { data: { id: 'e4', source: 'event', target: 'services', label: 'implements' } },
+        { data: { id: 'e5', source: 'serverless', target: 'cloud', label: 'runs on' } },
+        { data: { id: 'e6', source: 'js', target: 'react', label: 'used by' } },
+        { data: { id: 'e7', source: 'js', target: 'vue', label: 'used by' } },
+        { data: { id: 'e8', source: 'js', target: 'angular', label: 'used by' } }
+      ];
+
+      // Keep track of navigation history
+      let navigationStack = ['root'];
+      let currentLevel = 'root';
+      
+      // Initialize Cytoscape
+      let cy = createCytoscapeInstance();
+      
+      // Show initial level
+      showLevel('root');
+      
+      // Event handler for node clicks
+      cy.on('tap', 'node', function(event) {
+        const node = event.target;
+        const nodeId = node.id();
+        
+        // Only navigate if this node has children
+        const hasChildren = allNodes.some(n => n.data.parent === nodeId);
+        if (hasChildren) {
+          navigateToLevel(nodeId);
+        } else {
+          // For leaf nodes, just highlight them
+          highlightNode(node);
+        }
+      });
+      
+      // Back button handler
+      document.getElementById('back-button').addEventListener('click', function() {
+        goBack();
+      });
+      
+      // Reset view button handler
+      document.getElementById('reset-view').addEventListener('click', function() {
+        cy.fit();
+        cy.elements().removeClass('highlighted');
+      });
+      
+      // Breadcrumb navigation
+      document.getElementById('breadcrumb').addEventListener('click', function(event) {
+        if (event.target.classList.contains('breadcrumb-item')) {
+          const levelId = event.target.getAttribute('data-id');
+          navigateToLevel(levelId, true);
+        }
+      });
+      
+      // Function to create Cytoscape instance
+      function createCytoscapeInstance() {
+        return cytoscape({
+          container: document.getElementById('knowledge-graph-container'),
+          style: [
+            {
+              selector: 'node',
+              style: {
+                'label': 'data(label)',
+                'text-valign': 'center',
+                'text-halign': 'center',
+                'text-wrap': 'wrap',
+                'text-max-width': '120px',
+                'font-size': '12px',
+                'background-color': '#fff',
+                'border-width': '2px',
+                'border-color': '#ccc',
+                'shape': 'roundrectangle',
+                'width': 'label',
+                'height': 'label',
+                'padding': '15px'
+              }
+            },
+            {
+              selector: 'edge',
+              style: {
+                'width': 2,
+                'line-color': '#ccc',
+                'target-arrow-color': '#ccc',
+                'target-arrow-shape': 'triangle',
+                'curve-style': 'bezier',
+                'opacity': 0.7
+              }
+            },
+            {
+              selector: 'node[category="core"]',
+              style: {
+                'background-color': '#e0f7fa',
+                'border-color': '#006064',
+                'border-width': '2px'
+              }
+            },
+            {
+              selector: 'node[category="frontend"]',
+              style: {
+                'background-color': '#e8f5e9',
+                'border-color': '#1b5e20',
+                'border-width': '2px'
+              }
+            },
+            {
+              selector: 'node[category="backend"]',
+              style: {
+                'background-color': '#fff3e0',
+                'border-color': '#e65100',
+                'border-width': '2px'
+              }
+            },
+            {
+              selector: 'node[category="data"]',
+              style: {
+                'background-color': '#f3e5f5',
+                'border-color': '#4a148c',
+                'border-width': '2px'
+              }
+            },
+            {
+              selector: 'node[category="infra"]',
+              style: {
+                'background-color': '#fbe9e7',
+                'border-color': '#bf360c',
+                'border-width': '2px'
+              }
+            },
+            {
+              selector: 'node[category="security"]',
+              style: {
+                'background-color': '#ffebee',
+                'border-color': '#b71c1c',
+                'border-width': '2px'
+              }
+            },
+            {
+              selector: 'node[category="practices"]',
+              style: {
+                'background-color': '#f1f8e9',
+                'border-color': '#33691e',
+                'border-width': '2px'
+              }
+            },
+            {
+              selector: 'node.highlighted',
+              style: {
+                'border-width': '3px',
+                'border-color': '#3498db'
+              }
+            },
+            {
+              selector: 'edge.highlighted',
+              style: {
+                'width': 3,
+                'line-color': '#3498db',
+                'target-arrow-color': '#3498db'
+              }
+            },
+            {
+              selector: 'edge[label]',
+              style: {
+                'label': 'data(label)',
+                'font-size': '10px',
+                'text-rotation': 'autorotate',
+                'text-background-color': 'white',
+                'text-background-opacity': 0.8,
+                'text-background-padding': '2px'
+              }
+            }
+          ],
+          layout: {
+            name: 'concentric',
+            concentric: function(node) {
+              // Root node in center
+              return node.id() === currentLevel ? 2 : 1;
+            },
+            levelWidth: function() { return 1; },
+            minNodeSpacing: 50,
+            animate: false
+          },
+          wheelSensitivity: 0.3
+        });
+      }
+      
+      // Function to show a specific level
+      function showLevel(levelId) {
+        // Get the current level node
+        const levelNode = allNodes.find(n => n.data.id === levelId);
+        if (!levelNode) return;
+        
+        // Find all immediate children of this level
+        const childNodes = allNodes.filter(n => n.data.parent === levelId);
+        
+        // Find relevant edges
+        const visibleEdges = [];
+        const nodeIds = [levelId, ...childNodes.map(n => n.data.id)];
+        
+        allEdges.forEach(edge => {
+          if (
+            nodeIds.includes(edge.data.source) && 
+            nodeIds.includes(edge.data.target)
+          ) {
+            visibleEdges.push(edge);
+          }
+        });
+        
+        // Update Cytoscape with these nodes
+        cy.elements().remove();
+        cy.add([levelNode, ...childNodes, ...visibleEdges]);
+        
+        // Update layout
+        cy.layout({
+          name: 'concentric',
+          concentric: function(node) {
+            return node.id() === levelId ? 2 : 1;
+          },
+          levelWidth: function() { return 1; },
+          minNodeSpacing: 100,
+          animate: false
+        }).run();
+        
+        // Fit to view all elements
+        setTimeout(() => {
+          cy.fit();
+        }, 50);
+        
+        // Update level info
+        updateLevelInfo(levelNode.data);
+        
+        currentLevel = levelId;
+      }
+      
+      // Function to navigate to a new level
+      function navigateToLevel(levelId, fromBreadcrumb = false) {
+        if (!fromBreadcrumb) {
+          // If not coming from breadcrumb, update navigation stack
+          if (navigationStack[navigationStack.length - 1] !== levelId) {
+            navigationStack.push(levelId);
+          }
+        } else {
+          // If coming from breadcrumb, truncate stack
+          const index = navigationStack.indexOf(levelId);
+          if (index !== -1) {
+            navigationStack = navigationStack.slice(0, index + 1);
+          }
+        }
+        
+        // Update breadcrumb
+        updateBreadcrumb();
+        
+        // Show the new level
+        showLevel(levelId);
+      }
+      
+      // Function to go back to previous level
+      function goBack() {
+        if (navigationStack.length > 1) {
+          navigationStack.pop(); // Remove current level
+          const previousLevel = navigationStack[navigationStack.length - 1];
+          showLevel(previousLevel);
+          updateBreadcrumb();
+        }
+      }
+      
+      // Update breadcrumb display
+      function updateBreadcrumb() {
+        const breadcrumb = document.getElementById('breadcrumb');
+        breadcrumb.innerHTML = '';
+        
+        navigationStack.forEach((levelId) => {
+          const node = allNodes.find(n => n.data.id === levelId);
+          if (node) {
+            const item = document.createElement('div');
+            item.className = 'breadcrumb-item';
+            item.setAttribute('data-id', levelId);
+            item.textContent = node.data.label;
+            breadcrumb.appendChild(item);
+          }
+        });
+      }
+      
+      // Update level info display
+      function updateLevelInfo(levelData) {
+        const levelInfo = document.getElementById('level-info');
+        const title = levelInfo.querySelector('.level-title');
+        const description = levelInfo.querySelector('.level-description');
+        
+        title.textContent = levelData.label;
+        description.textContent = levelData.description || 'No description available';
+      }
+      
+      // Highlight a node and its connections
+      function highlightNode(node) {
+        cy.elements().removeClass('highlighted');
+        node.addClass('highlighted');
+        node.neighborhood().addClass('highlighted');
+      }
+      
+      // Make the graph responsive
+      window.addEventListener('resize', function() {
+        cy.resize();
+        cy.fit();
+      });
+    });
+  </script>
+</body>
+</html>

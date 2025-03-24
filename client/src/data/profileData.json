@@ -1,0 +1,239 @@
+{
+  "personalInfo": {
+    "name": "Alejandro Chang",
+    "title": "Senior Software Engineer",
+    "subtitle": "Senior Software Engineer with 15+ years of experience",
+    "profilePicture": "/ac_profile.jpeg",
+    "location": "Burlington, Canada",
+    "email": "contact@alejandro-chang.com",
+    "linkedin": "https://linkedin.com/in/alejandro-chang",
+    "github": "https://github.com/alejandro-chang"
+  },
+  "about": {
+    "headline": "Senior Software Engineer with 15+ years of experience building scalable applications",
+    "description": "I specialize in developing high-performance, user-friendly applications using modern web technologies. With expertise in both frontend and backend development, I create comprehensive solutions that deliver exceptional user experiences while maintaining clean, maintainable code.",
+    "highlights": [
+      "Full-stack development with React, TypeScript, and Java",
+      "Expertise in cloud architecture and deployment on AWS",
+      "Strong background in data structures and algorithms",
+      "Advocate for clean code and software craftsmanship"
+    ]
+  },
+  "profileSections": [
+    {
+      "id": "experience",
+      "name": "Work Experience",
+      "icon": "briefcase"
+    },
+    {
+      "id": "skills",
+      "name": "Technical Skills",
+      "icon": "code"
+    },
+    {
+      "id": "education",
+      "name": "Education",
+      "icon": "graduation-cap"
+    },
+    {
+      "id": "certifications",
+      "name": "Certifications",
+      "icon": "certificate"
+    },
+    {
+      "id": "projects",
+      "name": "Projects",
+      "icon": "project-diagram"
+    }
+  ],
+  "experience": [
+    {
+      "id": "playdly",
+      "title": "Founder & Lead Software Architect",
+      "company": "Playdly",
+      "location": "Burlington, Canada",
+      "period": "December 2024 - Present",
+      "achievements": [
+        "Founded Playdly, a technology company dedicated to developing innovative AI-driven solutions that enhance productivity, trust, and efficiency in project management and automation.",
+        "Leading development on ATLAS, an advanced AI system that enhances Retrieval-Augmented Generation (RAG) through dynamic embedding model selection and intelligent orchestration.",
+        "Designed an AI system with dynamic LLM model selection, implementing a framework that adaptively chooses among various retrieval-augmented strategies based on the context and requirements of each task."
+      ],
+      "technologies": ["Python", "FastAPI", "TypeScript", "React", "Next.js", "OpenAI API", "LangChain", "Pinecone", "PostgreSQL", "Redis", "Kubernetes", "Terraform", "Docker", "GitHub Actions", "AWS SQS/SNS"]
+    },
+    {
+      "id": "intuit",
+      "title": "Senior Software Engineer",
+      "company": "Intuit",
+      "location": "Toronto, Canada",
+      "period": "September 2020 - September 2024",
+      "achievements": [
+        "Led development of a key service enhancement that cut onboarding time for new document types from one month to three days, enabling TurboTax to deliver real-time feedback on customer edits.",
+        "Led the team's DevOps responsibilities, ensuring 99.9% uptime for CI/CD and streamlining Git branching strategies to boost deployment speed and system stability.",
+        "Coordinated team responsibilities in company-wide effort to allow data imports for major crypto providers, securing +350K customers and increasing revenue by ~7%.",
+        "Mentored junior engineers and interns, providing leadership in troubleshooting, technical development, and best practices."
+      ],
+      "technologies": ["Java", "Spring Boot", "React", "Gatling", "CI/CD", "Jenkins", "AWS", "Snyk", "Kubernetes", "Docker", "macOS", "IntelliJ", "Git", "npm", "AWS", "Splunk"]
+    },
+    {
+      "id": "rbc",
+      "title": "Senior Full-Stack Software Developer",
+      "company": "RBC",
+      "location": "Toronto, Canada",
+      "period": "April 2019 - August 2020",
+      "achievements": [
+        "Played a key role in modernizing RBC's cross-asset single-dealer platform, boosting performance by 30% and elevating code coverage from 25% to 85%.",
+        "Engineered and deployed responsive front-end interfaces for critical trading applications using React and Redux with real-time data streaming via Solace.",
+        "Streamlined CI/CD pipelines using Jenkins and GitHub, reducing deployment times by 30% and minimizing production errors."
+      ],
+      "technologies": ["JavaScript", "TypeScript", "React", "Redux", "Java", "Spring Boot", "Jenkins", "Git", "Solace", "Kafka", "AWS"]
+    }
+  ],
+  "skills": {
+    "technical": [
+      {
+        "category": "Programming Languages",
+        "items": ["Java", "JavaScript", "TypeScript", "Python", "SQL", "HTML", "CSS"]
+      },
+      {
+        "category": "Frontend",
+        "items": ["React", "Next.js", "Redux", "Angular", "HTML5", "CSS3", "Bootstrap", "Tailwind CSS"]
+      },
+      {
+        "category": "Backend",
+        "items": ["Spring Boot", "Node.js", "Express", "FastAPI", "Django", "GraphQL", "REST API Design"]
+      },
+      {
+        "category": "Databases",
+        "items": ["PostgreSQL", "MySQL", "Oracle", "MongoDB", "DynamoDB", "Redis", "Elasticsearch"]
+      },
+      {
+        "category": "DevOps & Cloud",
+        "items": ["AWS", "GCP", "Docker", "Kubernetes", "Terraform", "Jenkins", "GitHub Actions", "CI/CD"]
+      },
+      {
+        "category": "Tools & Methodologies",
+        "items": ["Git", "Jira", "Confluence", "Agile", "Scrum", "TDD", "BDD", "Microservices"]
+      },
+      {
+        "category": "AI & Machine Learning",
+        "items": ["LangChain", "Pinecone", "OpenAI API", "Retrieval-Augmented Generation", "Vector Embeddings", "Prompt Engineering"]
+      }
+    ],
+    "soft": [
+      "Technical Leadership", 
+      "Project Management", 
+      "Mentoring", 
+      "Clear Communication", 
+      "Problem Solving", 
+      "Agile Methodologies",
+      "Team Collaboration",
+      "Critical Thinking",
+      "Client Relationship Management"
+    ]
+  },
+  "projects": [
+    {
+      "title": "ATLAS AI System",
+      "description": "An advanced AI system that enhances Retrieval-Augmented Generation (RAG) through dynamic embedding model selection and intelligent orchestration.",
+      "technologies": ["Python", "FastAPI", "LangChain", "OpenAI API", "Pinecone", "React", "TypeScript"],
+      "highlights": [
+        "Implemented a novel architecture for dynamic model selection",
+        "Created an adaptive orchestration layer for context-aware retrieval strategies",
+        "Built a performance analytics dashboard to optimize token usage and relevance"
+      ],
+      "link": "#"
+    },
+    {
+      "title": "TurboTax Document Processing System",
+      "description": "A system for automated document verification and data extraction that significantly reduced processing time for tax documents.",
+      "technologies": ["Java", "Spring Boot", "OCR", "Machine Learning", "AWS", "S3", "Lambda"],
+      "highlights": [
+        "Reduced onboarding time for new document types from one month to three days",
+        "Implemented real-time validation feedback for customer document uploads",
+        "Created a flexible template system for easy addition of new document types"
+      ],
+      "link": "#"
+    },
+    {
+      "title": "RBC Cross-Asset Trading Platform",
+      "description": "A modernized single-dealer platform for financial trading across multiple asset classes with real-time data streaming.",
+      "technologies": ["React", "Redux", "Java", "Spring Boot", "Solace", "Kafka"],
+      "highlights": [
+        "Improved platform performance by 30%",
+        "Increased code coverage from 25% to 85%",
+        "Implemented responsive design for mobile and tablet access"
+      ],
+      "link": "#"
+    }
+  ],
+  "education": [
+    {
+      "degree": "Master of Science in Computer Science",
+      "institution": "University of Toronto",
+      "location": "Toronto, Canada",
+      "year": "2016",
+      "highlights": ["Specialization in Software Engineering", "GPA: 3.9/4.0"]
+    },
+    {
+      "degree": "Bachelor of Science in Computer Engineering",
+      "institution": "McGill University",
+      "location": "Montreal, Canada",
+      "year": "2014",
+      "highlights": ["Minor in Mathematics", "Graduated with Honors"]
+    }
+  ],
+  "certifications": [
+    {
+      "name": "AWS Certified Solutions Architect - Professional",
+      "issuer": "Amazon Web Services",
+      "year": "2023"
+    },
+    {
+      "name": "Google Cloud Professional Cloud Architect",
+      "issuer": "Google Cloud",
+      "year": "2022"
+    },
+    {
+      "name": "Certified Kubernetes Administrator (CKA)",
+      "issuer": "Cloud Native Computing Foundation",
+      "year": "2021"
+    },
+    {
+      "name": "Professional Scrum Master I (PSM I)",
+      "issuer": "Scrum.org",
+      "year": "2020"
+    }
+  ],
+  "colors": {
+    "primary": "#8BA08F",
+    "secondary": "#233536",
+    "highlight": "#B3C8B7",
+    "lightGray": "#A9A396",
+    "mediumGray": "#59635D",
+    "textColor": "#333",
+    "textLight": "#fff",
+    "backgroundLight": "#f7f9fc"
+  },
+  "socialLinks": [
+    {
+      "name": "LinkedIn",
+      "url": "https://linkedin.com/in/alejandro-chang",
+      "icon": "linkedin"
+    },
+    {
+      "name": "GitHub",
+      "url": "https://github.com/alejandro-chang",
+      "icon": "github"
+    },
+    {
+      "name": "Twitter",
+      "url": "https://twitter.com/alejandro_chang",
+      "icon": "twitter"
+    },
+    {
+      "name": "Email",
+      "url": "mailto:contact@alejandro-chang.com",
+      "icon": "envelope"
+    }
+  ]
+}

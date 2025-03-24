@@ -1,0 +1,420 @@
+{
+  "categories": [
+    {
+      "id": "core",
+      "label": "Core",
+      "color": {
+        "active": "bg-[#233536] hover:bg-[#59635D]",
+        "inactive": "bg-[#B3C8B7] text-[#233536] border-[#233536] hover:bg-[#D1CBC0]"
+      },
+      "styling": {
+        "background": "bg-[#B3C8B7]",
+        "border": "border-l-4 border-[#233536]",
+        "indicator": "bg-[#233536]"
+      }
+    },
+    {
+      "id": "frontend",
+      "label": "Frontend",
+      "color": {
+        "active": "bg-[#59635D] hover:bg-[#233536]",
+        "inactive": "bg-[#D1CBC0] text-[#59635D] border-[#59635D] hover:bg-[#B3C8B7]"
+      },
+      "styling": {
+        "background": "bg-[#D1CBC0]",
+        "border": "border-l-4 border-[#59635D]",
+        "indicator": "bg-[#59635D]"
+      }
+    },
+    {
+      "id": "backend",
+      "label": "Backend",
+      "color": {
+        "active": "bg-[#233536] hover:bg-[#59635D]",
+        "inactive": "bg-[#A9A396] text-[#233536] border-[#233536] hover:bg-[#D1CBC0]"
+      },
+      "styling": {
+        "background": "bg-[#A9A396]",
+        "border": "border-l-4 border-[#233536]",
+        "indicator": "bg-[#233536]"
+      }
+    },
+    {
+      "id": "data",
+      "label": "Data",
+      "color": {
+        "active": "bg-[#8BA08F] hover:bg-[#59635D]",
+        "inactive": "bg-[#B3C8B7] bg-opacity-70 text-[#233536] border-[#8BA08F] hover:bg-[#B3C8B7]"
+      },
+      "styling": {
+        "background": "bg-[#B3C8B7] bg-opacity-70",
+        "border": "border-l-4 border-[#8BA08F]",
+        "indicator": "bg-[#8BA08F]"
+      }
+    },
+    {
+      "id": "infra",
+      "label": "Infrastructure",
+      "color": {
+        "active": "bg-[#59635D] hover:bg-[#233536]",
+        "inactive": "bg-[#D1CBC0] bg-opacity-70 text-[#59635D] border-[#59635D] hover:bg-[#A9A396]"
+      },
+      "styling": {
+        "background": "bg-[#D1CBC0] bg-opacity-70",
+        "border": "border-l-4 border-[#59635D]",
+        "indicator": "bg-[#59635D]"
+      }
+    },
+    {
+      "id": "security",
+      "label": "Security",
+      "color": {
+        "active": "bg-[#233536] hover:bg-[#59635D]",
+        "inactive": "bg-[#A9A396] bg-opacity-70 text-[#233536] border-[#233536] hover:bg-[#D1CBC0]"
+      },
+      "styling": {
+        "background": "bg-[#A9A396] bg-opacity-70",
+        "border": "border-l-4 border-[#233536]",
+        "indicator": "bg-[#233536]"
+      }
+    },
+    {
+      "id": "practices",
+      "label": "Practices",
+      "color": {
+        "active": "bg-[#8BA08F] hover:bg-[#59635D]",
+        "inactive": "bg-[#B3C8B7] bg-opacity-50 text-[#233536] border-[#8BA08F] hover:bg-[#D1CBC0]"
+      },
+      "styling": {
+        "background": "bg-[#B3C8B7] bg-opacity-50",
+        "border": "border-l-4 border-[#8BA08F]",
+        "indicator": "bg-[#8BA08F]"
+      }
+    }
+  ],
+  "emptyStateContent": {
+    "title": "Select a skill from the tree to view details",
+    "description": "Browse through the categories in the sidebar and click on any skill to see detailed information.",
+    "help": {
+      "title": "How to use the Skills Tree",
+      "items": [
+        "Use the <b>left sidebar</b> to browse through skill categories",
+        "Click on any skill to view detailed information",
+        "Filter skills by category using the checkboxes",
+        "Use the search box to find specific skills",
+        "Follow breadcrumbs to navigate back up the tree hierarchy"
+      ]
+    }
+  },
+  "skillTree": {
+    "id": 0,
+    "name": "Software Engineering",
+    "category": "core",
+    "description": "The complete hierarchy of software engineering skills and technologies",
+    "children": [
+      {
+        "id": 1,
+        "name": "Core Development Skills",
+        "category": "core",
+        "description": "Fundamental programming skills and principles that are essential for software engineers",
+        "level": "advanced",
+        "children": [
+          {
+            "id": 2,
+            "name": "Languages & Paradigms",
+            "category": "core",
+            "description": "Programming languages and coding approaches that form the foundation of software development",
+            "level": "advanced",
+            "children": [
+              {
+                "id": 3,
+                "name": "JavaScript/TypeScript",
+                "category": "core",
+                "description": "High-level programming languages used primarily for web development, with TypeScript adding static typing to JavaScript",
+                "level": "expert",
+                "experience": [
+                  "Developed multiple full-stack applications using TypeScript and modern JavaScript features",
+                  "Built custom state management solutions for complex front-end applications",
+                  "Created reusable utility libraries and type definitions"
+                ],
+                "relatedSkills": ["React", "Node.js", "Express", "Web Development"],
+                "resources": [
+                  {
+                    "title": "TypeScript Documentation",
+                    "url": "https://www.typescriptlang.org/docs/",
+                    "type": "documentation"
+                  },
+                  {
+                    "title": "JavaScript MDN Web Docs",
+                    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+                    "type": "documentation"
+                  }
+                ],
+                "children": []
+              },
+              {
+                "id": 4,
+                "name": "Python",
+                "category": "core",
+                "description": "A versatile programming language known for its readability and extensive libraries, widely used in data science, web development, and automation",
+                "level": "advanced",
+                "experience": [
+                  "Built data processing pipelines using pandas and numpy",
+                  "Developed RESTful APIs using Flask and FastAPI",
+                  "Created automation scripts for deployment and testing"
+                ],
+                "relatedSkills": ["Django", "FastAPI", "Data Science", "Automation"],
+                "resources": [
+                  {
+                    "title": "Python Official Documentation",
+                    "url": "https://docs.python.org/3/",
+                    "type": "documentation"
+                  },
+                  {
+                    "title": "Real Python Tutorials",
+                    "url": "https://realpython.com/",
+                    "type": "tutorial"
+                  }
+                ],
+                "children": []
+              },
+              {
+                "id": 5,
+                "name": "Java",
+                "category": "core",
+                "description": "A class-based, object-oriented programming language designed for reliability and platform independence",
+                "level": "intermediate",
+                "experience": [
+                  "Developed enterprise applications using Spring Framework",
+                  "Built microservices with Spring Boot",
+                  "Created RESTful APIs and integrated with databases"
+                ],
+                "relatedSkills": ["Spring", "Hibernate", "Enterprise Development"],
+                "resources": [
+                  {
+                    "title": "Java Documentation",
+                    "url": "https://docs.oracle.com/en/java/",
+                    "type": "documentation"
+                  },
+                  {
+                    "title": "Spring Framework Guides",
+                    "url": "https://spring.io/guides",
+                    "type": "tutorial"
+                  }
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 6,
+            "name": "Software Principles",
+            "category": "core",
+            "description": "Fundamental principles and best practices in software design and development",
+            "level": "advanced",
+            "children": [
+              {
+                "id": 7,
+                "name": "SOLID Principles",
+                "category": "core",
+                "description": "A set of object-oriented design principles aimed at making software designs more understandable, flexible, and maintainable",
+                "level": "advanced",
+                "experience": [
+                  "Applied SOLID principles to refactor legacy codebases",
+                  "Mentored junior developers on clean code practices",
+                  "Conducted code reviews focusing on design principles"
+                ],
+                "relatedSkills": ["Object-Oriented Design", "Clean Code", "Design Patterns"],
+                "resources": [
+                  {
+                    "title": "SOLID Principles Explained",
+                    "url": "https://www.digitalocean.com/community/conceptual-articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design",
+                    "type": "article"
+                  }
+                ],
+                "children": []
+              },
+              {
+                "id": 8,
+                "name": "Clean Code",
+                "category": "core",
+                "description": "A philosophy of writing code that is readable, maintainable, and refactorable",
+                "level": "advanced",
+                "experience": [
+                  "Established code quality standards for team projects",
+                  "Created style guides and linting configurations",
+                  "Refactored complex codebases to improve maintainability"
+                ],
+                "relatedSkills": ["Code Review", "Refactoring", "Technical Debt Management"],
+                "resources": [
+                  {
+                    "title": "Clean Code by Robert C. Martin",
+                    "url": "https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882",
+                    "type": "book"
+                  }
+                ],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "name": "Frontend Development",
+        "category": "frontend",
+        "description": "Skills and technologies related to creating user interfaces and client-side applications",
+        "level": "expert",
+        "children": [
+          {
+            "id": 10,
+            "name": "UI Technologies",
+            "category": "frontend",
+            "description": "Core technologies for building user interfaces on the web",
+            "level": "expert",
+            "children": [
+              {
+                "id": 11,
+                "name": "HTML5/CSS3",
+                "category": "frontend",
+                "description": "Modern markup and styling technologies for creating web pages and applications",
+                "level": "expert",
+                "experience": [
+                  "Created responsive layouts for multiple device sizes",
+                  "Implemented complex animations using CSS transitions and keyframes",
+                  "Built accessible web components following WCAG guidelines"
+                ],
+                "relatedSkills": ["Responsive Design", "Web Accessibility", "CSS Frameworks"],
+                "resources": [
+                  {
+                    "title": "MDN Web Docs - HTML",
+                    "url": "https://developer.mozilla.org/en-US/docs/Web/HTML",
+                    "type": "documentation"
+                  },
+                  {
+                    "title": "MDN Web Docs - CSS",
+                    "url": "https://developer.mozilla.org/en-US/docs/Web/CSS",
+                    "type": "documentation"
+                  }
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 12,
+            "name": "Frontend Frameworks",
+            "category": "frontend",
+            "description": "Libraries and frameworks for building modern user interfaces",
+            "level": "expert",
+            "children": [
+              {
+                "id": 13,
+                "name": "React Ecosystem",
+                "category": "frontend",
+                "description": "React library and its surrounding ecosystem of tools and libraries",
+                "level": "expert",
+                "experience": [
+                  "Built complex single-page applications with React",
+                  "Implemented state management using Redux, Context API, and Recoil",
+                  "Created reusable component libraries with Storybook"
+                ],
+                "relatedSkills": ["Redux", "React Router", "Hooks API", "Next.js"],
+                "resources": [
+                  {
+                    "title": "React Documentation",
+                    "url": "https://reactjs.org/docs/getting-started.html",
+                    "type": "documentation"
+                  },
+                  {
+                    "title": "Redux Documentation",
+                    "url": "https://redux.js.org/introduction/getting-started",
+                    "type": "documentation"
+                  }
+                ],
+                "children": []
+              },
+              {
+                "id": 14,
+                "name": "Vue Ecosystem",
+                "category": "frontend",
+                "description": "Vue.js framework and related tools for building user interfaces",
+                "level": "intermediate",
+                "experience": [
+                  "Developed interactive dashboards with Vue and Vuex",
+                  "Created custom directives and mixins",
+                  "Implemented component-based architecture for large applications"
+                ],
+                "relatedSkills": ["Vuex", "Vue Router", "Nuxt.js"],
+                "resources": [
+                  {
+                    "title": "Vue.js Documentation",
+                    "url": "https://vuejs.org/guide/introduction.html",
+                    "type": "documentation"
+                  }
+                ],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "name": "Backend Development",
+        "category": "backend",
+        "description": "Server-side technologies and approaches for building application backends",
+        "level": "advanced",
+        "children": [
+          {
+            "id": 16,
+            "name": "REST APIs",
+            "category": "backend",
+            "description": "Design and implementation of RESTful application programming interfaces",
+            "level": "expert",
+            "experience": [
+              "Designed and built scalable RESTful APIs for high-traffic applications",
+              "Implemented authentication and authorization systems",
+              "Created comprehensive API documentation with Swagger/OpenAPI"
+            ],
+            "relatedSkills": ["API Design", "HTTP Protocol", "Authentication"],
+            "resources": [
+              {
+                "title": "RESTful API Design Best Practices",
+                "url": "https://restfulapi.net/",
+                "type": "article"
+              }
+            ],
+            "children": []
+          },
+          {
+            "id": 17,
+            "name": "GraphQL",
+            "category": "backend",
+            "description": "Query language and runtime for APIs that allows clients to request exactly what they need",
+            "level": "advanced",
+            "experience": [
+              "Built GraphQL APIs with Apollo Server",
+              "Implemented data loaders for efficient database queries",
+              "Designed complex schemas with nested resolvers"
+            ],
+            "relatedSkills": ["Apollo", "Schema Design", "API Optimization"],
+            "resources": [
+              {
+                "title": "GraphQL Documentation",
+                "url": "https://graphql.org/learn/",
+                "type": "documentation"
+              },
+              {
+                "title": "Apollo Server Documentation",
+                "url": "https://www.apollographql.com/docs/apollo-server/",
+                "type": "documentation"
+              }
+            ],
+            "children": []
+          }
+        ]
+      }
+    ]
+  }
+}

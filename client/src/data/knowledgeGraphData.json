@@ -1,0 +1,611 @@
+{
+  "categories": [
+    {
+      "id": "core",
+      "label": "Core Development",
+      "color": {
+        "background": "#B3C8B7",
+        "border": "#233536"
+      }
+    },
+    {
+      "id": "frontend",
+      "label": "Frontend",
+      "color": {
+        "background": "#D1CBC0",
+        "border": "#59635D"
+      }
+    },
+    {
+      "id": "backend",
+      "label": "Backend",
+      "color": {
+        "background": "#A9A396",
+        "border": "#233536"
+      }
+    },
+    {
+      "id": "data",
+      "label": "Data",
+      "color": {
+        "background": "#B3C8B7",
+        "border": "#8BA08F",
+        "opacity": 70
+      }
+    },
+    {
+      "id": "infra",
+      "label": "Infrastructure",
+      "color": {
+        "background": "#D1CBC0",
+        "border": "#59635D",
+        "opacity": 70
+      }
+    },
+    {
+      "id": "security",
+      "label": "Security",
+      "color": {
+        "background": "#A9A396",
+        "border": "#233536",
+        "opacity": 70
+      }
+    },
+    {
+      "id": "practices",
+      "label": "Practices",
+      "color": {
+        "background": "#B3C8B7",
+        "border": "#8BA08F",
+        "opacity": 50
+      }
+    }
+  ],
+  "nodes": [
+    {
+      "id": "root",
+      "label": "Modern Software Engineering",
+      "category": "core",
+      "description": "The root level of software engineering knowledge categories"
+    },
+    {
+      "id": "core",
+      "label": "Core Development Skills",
+      "category": "core",
+      "parent": "root",
+      "description": "Fundamental programming skills and principles"
+    },
+    {
+      "id": "frontend",
+      "label": "Frontend Development",
+      "category": "frontend",
+      "parent": "root",
+      "description": "Skills and technologies for building user interfaces"
+    },
+    {
+      "id": "backend",
+      "label": "Backend Development",
+      "category": "backend",
+      "parent": "root",
+      "description": "Server-side application development"
+    },
+    {
+      "id": "data",
+      "label": "Data Management",
+      "category": "data",
+      "parent": "root",
+      "description": "Database and data processing technologies"
+    },
+    {
+      "id": "infra",
+      "label": "Infrastructure & DevOps",
+      "category": "infra",
+      "parent": "root",
+      "description": "Cloud, containers, and deployment technologies"
+    },
+    {
+      "id": "arch",
+      "label": "Architecture Patterns",
+      "category": "core",
+      "parent": "root",
+      "description": "Application architecture approaches and patterns"
+    },
+    {
+      "id": "security",
+      "label": "Security & Compliance",
+      "category": "security",
+      "parent": "root",
+      "description": "Securing applications and infrastructure"
+    },
+    {
+      "id": "practices",
+      "label": "Best Practices",
+      "category": "practices",
+      "parent": "root",
+      "description": "Quality assurance and development methodologies"
+    },
+    {
+      "id": "lang",
+      "label": "Languages & Paradigms",
+      "parent": "core",
+      "category": "core",
+      "description": "Programming languages and coding approaches"
+    },
+    {
+      "id": "principles",
+      "label": "Software Principles",
+      "parent": "core",
+      "category": "core",
+      "description": "Best practices and design principles"
+    },
+    {
+      "id": "solid",
+      "label": "SOLID",
+      "parent": "principles",
+      "category": "core",
+      "description": "Five design principles for object-oriented programming"
+    },
+    {
+      "id": "clean",
+      "label": "Clean Code",
+      "parent": "principles",
+      "category": "core",
+      "description": "Practices for writing maintainable code"
+    },
+    {
+      "id": "patterns",
+      "label": "Design Patterns",
+      "parent": "principles",
+      "category": "core",
+      "description": "Reusable solutions to common problems"
+    },
+    {
+      "id": "ui",
+      "label": "UI Technologies",
+      "parent": "frontend",
+      "category": "frontend",
+      "description": "Core web technologies"
+    },
+    {
+      "id": "html",
+      "label": "HTML5/CSS3",
+      "parent": "ui",
+      "category": "frontend",
+      "description": "Markup and styling technologies"
+    },
+    {
+      "id": "js",
+      "label": "JavaScript/TypeScript",
+      "parent": "ui",
+      "category": "frontend",
+      "description": "Programming languages for the web"
+    },
+    {
+      "id": "frameworks",
+      "label": "Frontend Frameworks",
+      "parent": "frontend",
+      "category": "frontend",
+      "description": "Libraries and frameworks for UI development"
+    },
+    {
+      "id": "react",
+      "label": "React Ecosystem",
+      "parent": "frameworks",
+      "category": "frontend",
+      "description": "React and related libraries"
+    },
+    {
+      "id": "vue",
+      "label": "Vue Ecosystem",
+      "parent": "frameworks",
+      "category": "frontend",
+      "description": "Vue.js and related technologies"
+    },
+    {
+      "id": "angular",
+      "label": "Angular Ecosystem",
+      "parent": "frameworks",
+      "category": "frontend",
+      "description": "Angular framework and tools"
+    },
+    {
+      "id": "state",
+      "label": "State Management",
+      "parent": "frontend",
+      "category": "frontend",
+      "description": "Managing application state on the client"
+    },
+    {
+      "id": "redux",
+      "label": "Redux/MobX/Zustand",
+      "parent": "state",
+      "category": "frontend",
+      "description": "Libraries for state management"
+    },
+    {
+      "id": "services",
+      "label": "Service Development",
+      "parent": "backend",
+      "category": "backend",
+      "description": "Creating APIs and services"
+    },
+    {
+      "id": "rest",
+      "label": "REST APIs",
+      "parent": "services",
+      "category": "backend",
+      "description": "RESTful web services"
+    },
+    {
+      "id": "graphql",
+      "label": "GraphQL",
+      "parent": "services",
+      "category": "backend",
+      "description": "Query language for APIs"
+    },
+    {
+      "id": "rpc",
+      "label": "gRPC",
+      "parent": "services",
+      "category": "backend",
+      "description": "High-performance RPC framework"
+    },
+    {
+      "id": "bframeworks",
+      "label": "Backend Frameworks",
+      "parent": "backend",
+      "category": "backend",
+      "description": "Server-side application frameworks"
+    },
+    {
+      "id": "spring",
+      "label": "Spring Boot",
+      "parent": "bframeworks",
+      "category": "backend",
+      "description": "Java-based framework"
+    },
+    {
+      "id": "express",
+      "label": "Express/NestJS",
+      "parent": "bframeworks",
+      "category": "backend",
+      "description": "Node.js frameworks"
+    },
+    {
+      "id": "django",
+      "label": "Django/FastAPI",
+      "parent": "bframeworks",
+      "category": "backend",
+      "description": "Python frameworks"
+    },
+    {
+      "id": "sql",
+      "label": "SQL Databases",
+      "parent": "data",
+      "category": "data",
+      "description": "Relational database systems"
+    },
+    {
+      "id": "postgres",
+      "label": "PostgreSQL",
+      "parent": "sql",
+      "category": "data",
+      "description": "Advanced open-source RDBMS"
+    },
+    {
+      "id": "mysql",
+      "label": "MySQL/MariaDB",
+      "parent": "sql",
+      "category": "data",
+      "description": "Popular open-source databases"
+    },
+    {
+      "id": "nosql",
+      "label": "NoSQL Solutions",
+      "parent": "data",
+      "category": "data",
+      "description": "Non-relational databases"
+    },
+    {
+      "id": "document",
+      "label": "Document DBs",
+      "parent": "nosql",
+      "category": "data",
+      "description": "Document-oriented databases"
+    },
+    {
+      "id": "mongo",
+      "label": "MongoDB",
+      "parent": "document",
+      "category": "data",
+      "description": "Document database"
+    },
+    {
+      "id": "keyvalue",
+      "label": "Key-Value Stores",
+      "parent": "nosql",
+      "category": "data",
+      "description": "Key-value databases"
+    },
+    {
+      "id": "redis",
+      "label": "Redis",
+      "parent": "keyvalue",
+      "category": "data",
+      "description": "In-memory data structure store"
+    },
+    {
+      "id": "cache",
+      "label": "Caching Strategies",
+      "parent": "data",
+      "category": "data",
+      "description": "Techniques for data caching"
+    },
+    {
+      "id": "cloud",
+      "label": "Cloud Platforms",
+      "parent": "infra",
+      "category": "infra",
+      "description": "Cloud service providers"
+    },
+    {
+      "id": "aws",
+      "label": "AWS Services",
+      "parent": "cloud",
+      "category": "infra",
+      "description": "Amazon Web Services"
+    },
+    {
+      "id": "azure",
+      "label": "Azure Services",
+      "parent": "cloud",
+      "category": "infra",
+      "description": "Microsoft Azure"
+    },
+    {
+      "id": "gcp",
+      "label": "Google Cloud",
+      "parent": "cloud",
+      "category": "infra",
+      "description": "Google Cloud Platform"
+    },
+    {
+      "id": "container",
+      "label": "Containerization",
+      "parent": "infra",
+      "category": "infra",
+      "description": "Container technologies"
+    },
+    {
+      "id": "docker",
+      "label": "Docker",
+      "parent": "container",
+      "category": "infra",
+      "description": "Container platform"
+    },
+    {
+      "id": "k8s",
+      "label": "Kubernetes",
+      "parent": "container",
+      "category": "infra",
+      "description": "Container orchestration"
+    },
+    {
+      "id": "cicd",
+      "label": "CI/CD Pipeline",
+      "parent": "infra",
+      "category": "infra",
+      "description": "Continuous integration and deployment"
+    },
+    {
+      "id": "build",
+      "label": "Build Tools",
+      "parent": "cicd",
+      "category": "infra",
+      "description": "Tools for building applications"
+    },
+    {
+      "id": "deploy",
+      "label": "Deployment",
+      "parent": "cicd",
+      "category": "infra",
+      "description": "Deployment strategies and tools"
+    },
+    {
+      "id": "mono",
+      "label": "Monolithic",
+      "parent": "arch",
+      "category": "core",
+      "description": "Single-tiered software application"
+    },
+    {
+      "id": "micro",
+      "label": "Microservices",
+      "parent": "arch",
+      "category": "core",
+      "description": "Service-oriented architecture style"
+    },
+    {
+      "id": "event",
+      "label": "Event-Driven",
+      "parent": "arch",
+      "category": "core",
+      "description": "Architecture pattern promoting events"
+    },
+    {
+      "id": "serverless",
+      "label": "Serverless",
+      "parent": "arch",
+      "category": "core",
+      "description": "Cloud execution model"
+    },
+    {
+      "id": "appsec",
+      "label": "Application Security",
+      "parent": "security",
+      "category": "security",
+      "description": "Securing application code"
+    },
+    {
+      "id": "netsec",
+      "label": "Network Security",
+      "parent": "security",
+      "category": "security",
+      "description": "Securing network communications"
+    },
+    {
+      "id": "cloudsec",
+      "label": "Cloud Security",
+      "parent": "security",
+      "category": "security",
+      "description": "Securing cloud resources"
+    },
+    {
+      "id": "devsec",
+      "label": "DevSecOps",
+      "parent": "security",
+      "category": "security",
+      "description": "Security integration in DevOps"
+    },
+    {
+      "id": "testing",
+      "label": "Testing Strategies",
+      "parent": "practices",
+      "category": "practices",
+      "description": "Approaches to software testing"
+    },
+    {
+      "id": "unit",
+      "label": "Unit Testing",
+      "parent": "testing",
+      "category": "practices",
+      "description": "Testing individual units of code"
+    },
+    {
+      "id": "int",
+      "label": "Integration Testing",
+      "parent": "testing",
+      "category": "practices",
+      "description": "Testing component interactions"
+    },
+    {
+      "id": "e2e",
+      "label": "E2E Testing",
+      "parent": "testing",
+      "category": "practices",
+      "description": "End-to-end testing"
+    },
+    {
+      "id": "monitor",
+      "label": "Monitoring & Observability",
+      "parent": "practices",
+      "category": "practices",
+      "description": "Tracking application health and performance"
+    },
+    {
+      "id": "metrics",
+      "label": "Metrics Collection",
+      "parent": "monitor",
+      "category": "practices",
+      "description": "Gathering performance metrics"
+    },
+    {
+      "id": "logs",
+      "label": "Log Management",
+      "parent": "monitor",
+      "category": "practices",
+      "description": "Handling application logs"
+    },
+    {
+      "id": "trace",
+      "label": "Distributed Tracing",
+      "parent": "monitor",
+      "category": "practices",
+      "description": "Tracing requests across services"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "source": "services",
+      "target": "data",
+      "label": "uses" 
+    },
+    {
+      "id": "e2",
+      "source": "frameworks",
+      "target": "state",
+      "label": "manages"
+    },
+    {
+      "id": "e3",
+      "source": "micro",
+      "target": "container",
+      "label": "deployed in"
+    },
+    {
+      "id": "e4",
+      "source": "event",
+      "target": "services",
+      "label": "implements"
+    },
+    {
+      "id": "e5",
+      "source": "serverless",
+      "target": "cloud",
+      "label": "runs on"
+    },
+    {
+      "id": "e6",
+      "source": "js",
+      "target": "react",
+      "label": "used by"
+    },
+    {
+      "id": "e7",
+      "source": "js",
+      "target": "vue",
+      "label": "used by"
+    },
+    {
+      "id": "e8",
+      "source": "js",
+      "target": "angular",
+      "label": "used by"
+    }
+  ],
+  "categoryColors": {
+    "core": {
+      "background": "#B3C8B7",
+      "border": "#233536"
+    },
+    "frontend": {
+      "background": "#D1CBC0",
+      "border": "#59635D"
+    },
+    "backend": {
+      "background": "#A9A396",
+      "border": "#233536"
+    },
+    "data": {
+      "background": "#B3C8B7",
+      "opacity": 70,
+      "border": "#8BA08F"
+    },
+    "infra": {
+      "background": "#D1CBC0",
+      "opacity": 70,
+      "border": "#59635D"
+    },
+    "security": {
+      "background": "#A9A396",
+      "opacity": 70,
+      "border": "#233536"
+    },
+    "practices": {
+      "background": "#B3C8B7",
+      "opacity": 50,
+      "border": "#8BA08F"
+    }
+  }
+}

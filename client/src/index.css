@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #8BA08F;         /* Dark Teal - Main Green */
+  --secondary-color: #233536;      /* Dark Gray-Green - Dark Accent */
+  --highlight-color: #B3C8B7;        /* Light Mint - Light Green Highlight */
+  --light-gray: #A9A396;           /* Light Gray-Green - Light Grayish Green */
+  --medium-gray: #59635D;          /* Mid Gray-Green - Medium Grayish Green */
+  --dark-gray: #888;               /* Default Dark Gray - General Text Gray */
+  --text-color: #333;              /* Default Text Color - General Text Color */
+  --text-light: #fff;              /* White - Light Text */
+  --background-light: #f7f9fc;     /* Light Background */
+  --shadow: 0 2px 10px rgba(41, 67, 71, 0.1); /* Shadow - Dark Gray Green Tint */
+  --transition: all 0.3s ease;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased;
+    color: var(--text-color);
+    background-color: var(--background-light);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--secondary-color);
+  }
+}

@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Engineering Skills Tree</title>
+    <style>
+        :root {
+            --core-color: #e0f7fa;
+            --core-stroke: #006064;
+            --frontend-color: #e8f5e9;
+            --frontend-stroke: #1b5e20;
+            --backend-color: #fff3e0;
+            --backend-stroke: #e65100;
+            --data-color: #f3e5f5;
+            --data-stroke: #4a148c;
+            --infra-color: #fbe9e7;
+            --infra-stroke: #bf360c;
+            --security-color: #ffebee;
+            --security-stroke: #b71c1c;
+            --practices-color: #f1f8e9;
+            --practices-stroke: #33691e;
+            --text-color: #333;
+            --card-bg: #fff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0d47a1, #2196f3);
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 5px var(--shadow-color);
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .app-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 300px;
+            background-color: #fff;
+            box-shadow: 2px 0 5px var(--shadow-color);
+            display: flex;
+            flex-direction: column;
+            max-height: 100%;
+            transition: transform 0.3s ease;
+            z-index: 10;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                position: absolute;
+                height: 100%;
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .toggle-sidebar {
+                display: block !important;
+            }
+        }
+
+        .search-container {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .filter-container {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .filter-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .filter-option {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            user-select: none;
+            font-size: 0.85rem;
+            border: 1px solid #ddd;
+            transition: all 0.2s ease;
+        }
+
+        .filter-option.active {
+            color: white;
+            border-color: transparent;
+        }
+
+        .filter-option[data-category="core"].active {
+            background-color: var(--core-stroke);
+        }
+
+        .filter-option[data-category="frontend"].active {
+            background-color: var(--frontend-stroke);
+        }
+
+        .filter-option[data-category="backend"].active {
+            background-color: var(--backend-stroke);
+        }
+
+        .filter-option[data-category="data"].active {
+            background-color: var(--data-stroke);
+        }
+
+        .filter-option[data-category="infra"].active {
+            background-color: var(--infra-stroke);
+        }
+
+        .filter-option[data-category="security"].active {
+            background-color: var(--security-stroke);
+        }
+
+        .filter-option[data-category="practices"].active {
+            background-color: var(--practices-stroke);
+        }
+
+        .tree-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .tree {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .tree-item {
+            margin: 0.25rem 0;
+            position: relative;
+        }
+
+        .tree-item.hidden {
+            display: none;
+        }
+
+        .item-content {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0.25rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .item-content:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .item-content.selected {
+            background-color: rgba(33, 150, 243, 0.1);
+        }
+
+        .tree-item[data-level="1"] > .item-content {
+            background-color: var(--core-color);
+            border-left: 4px solid var(--core-stroke);
+            font-weight: bold;
+        }
+
+        .tree-item[data-category="core"] > .item-content {
+            background-color: var(--core-color);
+            border-left: 4px solid var(--core-stroke);
+        }
+
+        .tree-item[data-category="frontend"] > .item-content {
+            background-color: var(--frontend-color);
+            border-left: 4px solid var(--frontend-stroke);
+        }
+
+        .tree-item[data-category="backend"] > .item-content {
+            background-color: var(--backend-color);
+            border-left: 4px solid var(--backend-stroke);
+        }
+
+        .tree-item[data-category="data"] > .item-content {
+            background-color: var(--data-color);
+            border-left: 4px solid var(--data-stroke);
+        }
+
+        .tree-item[data-category="infra"] > .item-content {
+            background-color: var(--infra-color);
+            border-left: 4px solid var(--infra-stroke);
+        }
+
+        .tree-item[data-category="security"] > .item-content {
+            background-color: var(--security-color);
+            border-left: 4px solid var(--security-stroke);
+        }
+
+        .tree-item[data-category="practices"] > .item-content {
+            background-color: var(--practices-color);
+            border-left: 4px solid var(--practices-stroke);
+        }
+
+        .toggle-icon {
+            margin-right: 0.5rem;
+            width: 16px;
+            height: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+            font-size: 0.8rem;
+        }
+
+        .toggle-icon.expanded {
+            transform: rotate(90deg);
+        }
+
+        .tree-children {
+            list-style-type: none;
+            margin-left: 1.5rem;
+            padding: 0;
+            display: none;
+        }
+
+        .tree-children.expanded {
+            display: block;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .note-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            padding: 1.5rem;
+            margin: 1rem auto;
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .note-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .note-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .note-card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .expertise-level {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: white;
+            background-color: #4caf50;
+        }
+
+        .note-card-section {
+            margin-bottom: 1rem;
+        }
+
+        .note-card-section-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .toggle-sidebar {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: #2196f3;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 11;
+        }
+
+        .leaf-marker {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 8px;
+            background-color: var(--core-stroke);
+        }
+
+        .tree-item[data-category="core"] .leaf-marker {
+            background-color: var(--core-stroke);
+        }
+
+        .tree-item[data-category="frontend"] .leaf-marker {
+            background-color: var(--frontend-stroke);
+        }
+
+        .tree-item[data-category="backend"] .leaf-marker {
+            background-color: var(--backend-stroke);
+        }
+
+        .tree-item[data-category="data"] .leaf-marker {
+            background-color: var(--data-stroke);
+        }
+
+        .tree-item[data-category="infra"] .leaf-marker {
+            background-color: var(--infra-stroke);
+        }
+
+        .tree-item[data-category="security"] .leaf-marker {
+            background-color: var(--security-stroke);
+        }
+
+        .tree-item[data-category="practices"] .leaf-marker {
+            background-color: var(--practices-stroke);
+        }
+
+        .breadcrumbs {
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            background-color: rgba(0, 0, 0, 0.03);
+            border-radius: 4px;
+        }
+
+        .breadcrumb-item {
+            display: inline-block;
+        }
+
+        .breadcrumb-item:not(:last-child)::after {
+            content: '>';
+            margin: 0 0.5rem;
+            color: #999;
+        }
+
+        .breadcrumb-link {
+            color: #2196f3;
+            text-decoration: none;
+        }
+
+        .breadcrumb-link:hover {
+            text-decoration: underline;
+        }
+
+        .no-results {
+            padding: 2rem;
+            text-align: center;
+            color: #777;
+        }
+
+        .external-link {
+            color: #2196f3;
+            text-decoration: none;
+        }
+
+        .external-link:hover {
+            text-decoration: underline;
+        }
+
+        .placeholder-text {
+            color: #999;
+            font-style: italic;
+        }
+
+        .category-title, .item-title {
+            margin-left: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Software Engineering Skills Tree</h1>
+        <p>Interactive guide to modern software engineering skills and technologies</p>
+    </header>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search skills..." aria-label="Search skills">
+            </div>
+            <div class="filter-container">
+                <div class="filter-title">Filter by Category</div>
+                <div class="filter-options">
+                    <div class="filter-option active" data-category="core">Core</div>
+                    <div class="filter-option active" data-category="frontend">Frontend</div>
+                    <div class="filter-option active" data-category="backend">Backend</div>
+                    <div class="filter-option active" data-category="data">Data</div>
+                    <div class="filter-option active" data-category="infra">Infrastructure</div>
+                    <div class="filter-option active" data-category="security">Security</div>
+                    <div class="filter-option active" data-category="practices">Practices</div>
+                </div>
+            </div>
+            <div class="tree-container">
+                <ul class="tree" role="tree" aria-label="Software Engineering Skills Tree">
+                    <!-- Tree content will be loaded here dynamically -->
+                    <div class="loading-indicator">Loading...</div>
+                </ul>
+                <div class="no-results hidden">No matching skills found</div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <ul class="breadcrumbs">
+                <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Home</a></li>
+            </ul>
+            <div class="note-card">
+                <div class="note-card-header">
+                    <h2 class="note-card-title">Welcome to the Software Engineering Skills Tree</h2>
+                    <div class="expertise-level">Explore</div>
+                </div>
+                <div class="note-card-section">
+                    <div class="note-card-section-title">Getting Started</div>
+                    <p>Click on any skill in the tree menu to view more information about it. Use the search bar to find specific skills, or filter by category.</p>
+                </div>
+                <div class="note-card-section">
+                    <div class="note-card-section-title">Navigation Tips</div>
+                    <p>You can navigate the tree using keyboard: Arrow keys to move between items, Enter to select, and Tab to move between sections.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <button class="toggle-sidebar" aria-label="Toggle sidebar menu">☰</button>
+
+    <script>
+        // Skill tree data structure
+        // This is a simplified structure - in a real implementation, you'd load this from your Markdown file
+        const sampleData = {
+            name: "Modern Software Engineering",
+            description: "A comprehensive guide to software engineering skills and technologies",
+            children: [
+                {
+                    name: "Core Development Skills",
+                    category: "core",
+                    description: "Fundamental programming skills and principles",
+                    children: [
+                        {
+                            name: "Languages & Paradigms",
+                            description: "Programming languages and coding paradigms",
+                            children: [
+                                {
+                                    name: "Programming Languages",
+                                    description: "Popular programming languages used in modern development",
+                                    children: [
+                                        { name: "JavaScript/TypeScript", isLeaf: true, expertise: "Intermediate", experience: "Used in multiple professional projects", link: "https://www.typescriptlang.org/" },
+                                        { name: "Python", isLeaf: true, expertise: "Advanced", experience: "Primary language for backend development", link: "https://www.python.org/" },
+                                        { name: "Java", isLeaf: true, expertise: "Beginner", experience: "Used in academic projects", link: "https://www.java.com/" },
+                                        { name: "Go", isLeaf: true, expertise: "Beginner", experience: "Learning in progress", link: "https://golang.org/" },
+                                        { name: "Rust", isLeaf: true, expertise: "Exploring", experience: "Reading documentation and tutorials", link: "https://www.rust-lang.org/" }
+                                    ]
+                                },
+                                {
+                                    name: "Programming Paradigms",
+                                    description: "Different approaches to structuring code",
+                                    children: [
+                                        { 
+                                            name: "Object-Oriented Programming (OOP)", 
+                                            description: "Paradigm based on objects and classes",
+                                            children: [
+                                                { name: "Encapsulation", isLeaf: true, expertise: "Advanced", experience: "Implemented in numerous projects" },
+                                                { name: "Inheritance", isLeaf: true, expertise: "Advanced", experience: "Used extensively in class hierarchies" },
+                                                { name: "Polymorphism", isLeaf: true, expertise: "Intermediate", experience: "Applied in interface implementations" },
+                                                { name: "Abstraction", isLeaf: true, expertise: "Advanced", experience: "Core principle in all designs" }
+                                            ]
+                                        },
+                                        { 
+                                            name: "Functional Programming", 
+                                            description: "Paradigm based on functions and immutability",
+                                            children: [
+                                                { name: "Immutability", isLeaf: true, expertise: "Intermediate", experience: "Applied in React state management" },
+                                                { name: "Pure functions", isLeaf: true, expertise: "Intermediate", experience: "Used in data processing workflows" },
+                                                { name: "Higher-order functions", isLeaf: true, expertise: "Advanced", experience: "Regular use in JavaScript projects" }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "Software Principles",
+                            description: "Guidelines and best practices for quality code",
+                            children: [
+                                {
+                                    name: "SOLID Principles",
+                                    description: "Five design principles for maintainable software",
+                                    children: [
+                                        { name: "Single Responsibility", isLeaf: true, expertise: "Advanced", experience: "Core principle in all designs" },
+                                        { name: "Open/Closed", isLeaf: true, expertise: "Intermediate", experience: "Applied in framework design" },
+                                        { name: "Liskov Substitution", isLeaf: true, expertise: "Intermediate", experience: "Used in class hierarchies" },
+                                        { name: "Interface Segregation", isLeaf: true, expertise: "Intermediate", experience: "Applied in API design" },
+                                        { name: "Dependency Inversion", isLeaf: true, expertise: "Advanced", experience: "Implemented with DI containers" }
+                                    ]
+                                },
+                                {
+                                    name: "Clean Code Practices",
+                                    description: "Writing code that is easy to understand and maintain",
+                                    children: [
+                                        { name: "Meaningful naming", isLeaf: true, expertise: "Advanced", experience: "Applied in all projects" },
+                                        { name: "Function design", isLeaf: true, expertise: "Intermediate", experience: "Focus on single purpose functions" },
+                                        { name: "Comments and documentation", isLeaf: true, expertise: "Intermediate", experience: "JSDoc and docstring usage" }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: "Frontend Development",
+                    category: "frontend",
+                    description: "Technologies and skills for building user interfaces",
+                    children: [
+                        {
+                            name: "UI Technologies",
+                            description: "Core technologies for frontend development",
+                            children: [
+                                {
+                                    name: "HTML5",
+                                    description: "Markup language for web content",
+                                    children: [
+                                        { name: "Semantic markup", isLeaf: true, expertise: "Advanced", experience: "Used in all web projects" },
+                                        { name: "Accessibility", isLeaf: true, expertise: "Intermediate", experience: "ARIA implementation in commercial projects" }
+                                    ]
+                                },
+                                {
+                                    name: "CSS3",
+                                    description: "Styling language for web pages",
+                                    children: [
+                                        { name: "Flexbox", isLeaf: true, expertise: "Advanced", experience: "Primary layout method" },
+                                        { name: "Grid", isLeaf: true, expertise: "Intermediate", experience: "Used for complex layouts" },
+                                        { name: "Animations", isLeaf: true, expertise: "Intermediate", experience: "Implemented interactive UI elements" }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "Frontend Frameworks",
+                            description: "Libraries and frameworks for building UI applications",
+                            children: [
+                                {
+                                    name: "React Ecosystem",
+                                    description: "React framework and related libraries",
+                                    children: [
+                                        { name: "Core React", isLeaf: true, expertise: "Advanced", experience: "Primary framework for frontend development" },
+                                        { name: "React Hooks", isLeaf: true, expertise: "Advanced", experience: "Implemented custom hooks for reusable logic" },
+                                        { name: "React Router", isLeaf: true, expertise: "Intermediate", experience: "Used for SPA navigation" }
+                                    ]
+                                },
+                                {
+                                    name: "Vue Ecosystem",
+                                    description: "Vue.js framework and related libraries",
+                                    children: [
+                                        { name: "Vue.js", isLeaf: true, expertise: "Beginner", experience: "Exploratory projects" },
+                                        { name: "Vuex", isLeaf: true, expertise: "Beginner", experience: "Basic state management implementation" }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: "Backend Development",
+                    category: "backend",
+                    description: "Server-side technologies and frameworks",
+                    children: [
+                        // Simplified for brevity
+                    ]
+                },
+                {
+                    name: "Data Management",
+                    category: "data",
+                    description: "Database technologies and data handling",
+                    children: [
+                        // Simplified for brevity
+                    ]
+                },
+                {
+                    name: "Infrastructure & DevOps",
+                    category: "infra",
+                    description: "Cloud platforms and deployment technologies",
+                    children: [
+                        // Simplified for brevity
+                    ]
+                },
+                {
+                    name: "Architecture Patterns",
+                    category: "core",
+                    description: "Architectural approaches to software design",
+                    children: [
+                        // Simplified for brevity
+                    ]
+                },
+                {
+                    name: "Security & Compliance",
+                    category: "security",
+                    description: "Security practices and regulatory compliance",
+                    children: [
+                        // Simplified for brevity
+                    ]
+                },
+                {
+                    name: "Best Practices",
+                    category: "practices",
+                    description: "Testing, monitoring, and methodology",
+                    children: [
+                        // Simplified for brevity
+                    ]
+                }
+            ]
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const treeContainer = document.querySelector('.tree');
+            const searchInput = document.querySelector('.search-input');
+            const noResultsMessage = document.querySelector('.no-results');
+            const filterOptions = document.querySelectorAll('.filter-option');
+            const toggleSidebarButton = document.querySelector('.toggle-sidebar');
+            const sidebar = document.querySelector('.sidebar');
+            const mainContent = document.querySelector('.main-content');
+            const breadcrumbs = document.querySelector('.breadcrumbs');
+            const noteCard = document.querySelector('.note-card');
+            let currentFocusedElement = null;
+            let activeFilters = Array.from(filterOptions).map(opt => opt.dataset.category);
+
+            // Build the tree from data
+            function buildTree(data, parent, level = 0, path = []) {
+                // Remove loading indicator if present
+                const loadingIndicator = parent.querySelector('.loading-indicator');
+                if (loadingIndicator) {
+                    parent.removeChild(loadingIndicator);
+                }
+
+                if (!data.children || data.children.length === 0) return;
+
+                data.children.forEach(item => {
+                    const currentPath = [...path, item.name];
+                    const li = document.createElement('li');
+                    li.className = 'tree-item';
+                    li.setAttribute('role', 'treeitem');
+                    li.setAttribute('aria-expanded', 'false');
+                    li.setAttribute('tabindex', '-1');
+                    li.setAttribute('data-level', level + 1);
+                    if (item.category) {
+                        li.setAttribute('data-category', item.category);
+                    } else if (level === 0) {
+                        // Assign a default category for top-level items without a category
+                        li.setAttribute('data-category', 'core');
+                    } else {
+                        // Inherit category from parent
+                        const parentCategory = parent.closest('.tree-item')?.getAttribute('data-category');
+                        if (parentCategory) {
+                            li.setAttribute('data-category', parentCategory);
+                        }
+                    }
+
+                    const itemContent = document.createElement('div');
+                    itemContent.className = 'item-content';
+                    
+                    // Create the toggle icon or leaf marker
+                    if (item.isLeaf) {
+                        const leafMarker = document.createElement('span');
+                        leafMarker.className = 'leaf-marker';
+                        itemContent.appendChild(leafMarker);
+                    } else {
+                        const toggleIcon = document.createElement('span');
+                        toggleIcon.className = 'toggle-icon';
+                        toggleIcon.textContent = '▶';
+                        itemContent.appendChild(toggleIcon);
+                    }
+
+                    // Create the item label
+                    const titleSpan = document.createElement('span');
+                    titleSpan.className = item.isLeaf ? 'item-title' : 'category-title';
+                    titleSpan.textContent = item.name;
+                    itemContent.appendChild(titleSpan);
+
+                    li.appendChild(itemContent);
+
+                    // Create the children container if not a leaf node
+                    if (!item.isLeaf && item.children && item.children.length > 0) {
+                        const childrenContainer = document.createElement('ul');
+                        childrenContainer.className = 'tree-children';
+                        childrenContainer.setAttribute('role', 'group');
+                        li.appendChild(childrenContainer);
+
+                        // Set up event listener to toggle expansion
+                        itemContent.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            toggleExpansion(li);
+                            updateFocus(li);
+                        });
+
+                        // Recursively build children
+                        buildTree(item, childrenContainer, level + 1, currentPath);
+                    } else if (item.isLeaf) {
+                        // For leaf nodes, set up click to show detailed info
+                        itemContent.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            showItemDetails(item, currentPath);
+                            updateSelectedItem(li);
+                            updateFocus(li);
+                        });
+                    }
+
+                    // Set data attributes for search
+                    li.setAttribute('data-name', item.name.toLowerCase());
+                    li.setAttribute('data-path', currentPath.join(' > ').toLowerCase());
+                    if (item.description) {
+                        li.setAttribute('data-description', item.description.toLowerCase());
+                    }
+
+                    parent.appendChild(li);
+                });
+            }
+
+            // Toggle the expansion of a tree item
+            function toggleExpansion(item) {
+                const isExpanded = item.getAttribute('aria-expanded') === 'true';
+                const toggleIcon = item.querySelector('.toggle-icon');
+                const childrenContainer = item.querySelector('.tree-children');
+                
+                if (isExpanded) {
+                    item.setAttribute('aria-expanded', 'false');
+                    toggleIcon?.classList.remove('expanded');
+                    childrenContainer?.classList.remove('expanded');
+                } else {
+                    item.setAttribute('aria-expanded', 'true');
+                    toggleIcon?.classList.add('expanded');
+                    childrenContainer?.classList.add('expanded');
+                }
+            }
+
+            // Update the focus to a specific tree item
+            function updateFocus(item) {
+                if (currentFocusedElement) {
+                    currentFocusedElement.setAttribute('tabindex', '-1');
+                }
+                item.setAttribute('tabindex', '0');
+                item.focus();
+                currentFocusedElement = item;
+            }
+
+            // Update the selected state of tree items
+            function updateSelectedItem(item) {
+                const allItems = document.querySelectorAll('.tree-item .item-content');
+                allItems.forEach(i => i.classList.remove('selected'));
+                item.querySelector('.item-content').classList.add('selected');
+            }
+
+            // Show item details in the note card
+            function showItemDetails(item, path) {
+                // Update breadcrumbs
+                updateBreadcrumbs(path);
+                
+                // Create the note card content
+                const noteCardTitle = noteCard.querySelector('.note-card-title');
+                const expertiseLevel = noteCard.querySelector('.expertise-level');
+                const sections = noteCard.querySelectorAll('.note-card-section');
+                
+                // Set title
+                noteCardTitle.textContent = item.name;
+                
+                // Set expertise level if available
+                if (item.expertise) {
+                    expertiseLevel.textContent = item.expertise;
+                    expertiseLevel.style.display = 'inline-block';
+                    
+                    // Color coding for expertise level
+                    switch (item.expertise.toLowerCase()) {
+                        case 'beginner':
+                            expertiseLevel.style.backgroundColor = '#2196f3';
+                            break;
+                        case 'intermediate':
+                            expertiseLevel.style.backgroundColor = '#ff9800';
+                            break;
+                        case 'advanced':
+                            expertiseLevel.style.backgroundColor = '#4caf50';
+                            break;
+                        case 'exploring':
+                            expertiseLevel.style.backgroundColor = '#9c27b0';
+                            break;
+                        default:
+                            expertiseLevel.style.backgroundColor = '#757575';
+                    }
+                } else {
+                    expertiseLevel.style.display = 'none';
+                }
+                
+                // Clear existing sections
+                while (sections.length > 0 && sections[0].parentNode) {
+                    sections[0].parentNode.removeChild(sections[0]);
+                }
+                
+                // Create description section
+                if (item.description) {
+                    createNoteCardSection('Description', item.description);
+                }
+                
+                // Create experience section if available
+                if (item.experience) {
+                    createNoteCardSection('Experience', item.experience);
+                } else {
+                    createNoteCardSection('Experience', '<span class="placeholder-text">No specific experience recorded</span>');
+                }
+                
+                // Create resources section with external link if available
+                if (item.link) {
+                    createNoteCardSection('Resources', `<a href="${item.link}" class="external-link" target="_blank">Official Documentation</a>`);
+                } else {
+                    createNoteCardSection('Resources', '<span class="placeholder-text">No external resources available</span>');
+                }
+                
+                // Make the note card visible with animation
+                noteCard.classList.add('visible');
+            }
+            
+            // Create a section in the note card
+            function createNoteCardSection(title, content) {
+                const section = document.createElement('div');
+                section.className = 'note-card-section';
+                
+                const sectionTitle = document.createElement('div');
+                sectionTitle.className = 'note-card-section-title';
+                sectionTitle.textContent = title;
+                
+                const sectionContent = document.createElement('div');
+                sectionContent.innerHTML = content;
+                
+                section.appendChild(sectionTitle);
+                section.appendChild(sectionContent);
+                
+                noteCard.appendChild(section);
+                return section;
+            }
+            
+            // Update breadcrumbs based on the current path
+            function updateBreadcrumbs(path) {
+                // Clear existing breadcrumbs except Home
+                while (breadcrumbs.children.length > 1) {
+                    breadcrumbs.removeChild(breadcrumbs.lastChild);
+                }
+                
+                // Add new breadcrumb items
+                let currentPath = [];
+                path.forEach((item, index) => {
+                    currentPath.push(item);
+                    
+                    const li = document.createElement('li');
+                    li.className = 'breadcrumb-item';
+                    
+                    const link = document.createElement('a');
+                    link.className = 'breadcrumb-link';
+                    link.textContent = item;
+                    link.href = '#';
+                    
+                    // Store the path for click handling
+                    const pathCopy = [...currentPath];
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        navigateToBreadcrumb(pathCopy);
+                    });
+                    
+                    li.appendChild(link);
+                    breadcrumbs.appendChild(li);
+                });
+            }
+            
+            // Navigate to a specific breadcrumb path
+            function navigateToBreadcrumb(path) {
+                // This is a simplified implementation
+                // In a real app, you'd navigate to the specific item
+                console.log('Navigate to:', path);
+                
+                // Find the corresponding item in the tree
+                const pathString = path.join(' > ').toLowerCase();
+                const items = document.querySelectorAll('.tree-item');
+                let matchingItem = null;
+                
+                items.forEach(item => {
+                    if (item.getAttribute('data-path') === pathString) {
+                        matchingItem = item;
+                    }
+                });
+                
+                if (matchingItem) {
+                    // Expand all parent items
+                    let parent = matchingItem.parentElement.closest('.tree-item');
+                    while (parent) {
+                        if (parent.getAttribute('aria-expanded') !== 'true') {
+                            toggleExpansion(parent);
+                        }
+                        parent = parent.parentElement.closest('.tree-item');
+                    }
+                    
+                    // Scroll to the item
+                    matchingItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                    // Select it
+                    const clickEvent = new Event('click');
+                    matchingItem.querySelector('.item-content').dispatchEvent(clickEvent);
+                }
+            }
+            
+            // Filter the tree based on search term
+            function filterTree(searchTerm) {
+                const items = document.querySelectorAll('.tree-item');
+                let hasResults = false;
+                
+                if (!searchTerm.trim()) {
+                    // Show all items (respecting category filters)
+                    items.forEach(item => {
+                        const category = item.getAttribute('data-category');
+                        if (activeFilters.includes(category)) {
+                            item.classList.remove('hidden');
+                            hasResults = true;
+                        } else {
+                            item.classList.add('hidden');
+                        }
+                    });
+                } else {
+                    // Split search term by spaces or commas for multi-keyword search
+                    const keywords = searchTerm.toLowerCase().split(/[\s,]+/);
+                    
+                    // Hide all items initially
+                    items.forEach(item => item.classList.add('hidden'));
+                    
+                    // For each keyword, show matching items and their ancestors
+                    keywords.forEach(keyword => {
+                        if (!keyword.trim()) return;
+                        
+                        items.forEach(item => {
+                            const category = item.getAttribute('data-category');
+                            const name = item.getAttribute('data-name');
+                            const description = item.getAttribute('data-description') || '';
+                            const path = item.getAttribute('data-path');
+                            
+                            if ((name.includes(keyword) || description.includes(keyword) || path.includes(keyword)) 
+                                && activeFilters.includes(category)) {
+                                
+                                // Show this item
+                                item.classList.remove('hidden');
+                                hasResults = true;
+                                
+                                // Show all ancestor items
+                                let parent = item.parentElement.closest('.tree-item');
+                                while (parent) {
+                                    parent.classList.remove('hidden');
+                                    
+                                    // Expand parent to show matching child
+                                    if (parent.getAttribute('aria-expanded') !== 'true') {
+                                        toggleExpansion(parent);
+                                    }
+                                    
+                                    parent = parent.parentElement.closest('.tree-item');
+                                }
+                            }
+                        });
+                    });
+                }
+                
+                // Show/hide no results message
+                if (hasResults) {
+                    noResultsMessage.classList.add('hidden');
+                } else {
+                    noResultsMessage.classList.remove('hidden');
+                }
+            }
+            
+            // Apply category filters
+            function applyFilters() {
+                const items = document.querySelectorAll('.tree-item');
+                
+                items.forEach(item => {
+                    const category = item.getAttribute('data-category');
+                    
+                    if (activeFilters.includes(category)) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+                
+                // Re-apply search filter if search is active
+                const searchTerm = searchInput.value;
+                if (searchTerm.trim()) {
+                    filterTree(searchTerm);
+                }
+            }
+            
+            // Toggle sidebar on mobile
+            function toggleSidebar() {
+                sidebar.classList.toggle('active');
+            }
+            
+            // Set up event listeners
+            function setupEventListeners() {
+                // Search input
+                searchInput.addEventListener('input', (e) => {
+                    filterTree(e.target.value);
+                });
+                
+                // Filter options
+                filterOptions.forEach(option => {
+                    option.addEventListener('click', () => {
+                        const category = option.getAttribute('data-category');
+                        
+                        if (option.classList.contains('active')) {
+                            option.classList.remove('active');
+                            activeFilters = activeFilters.filter(cat => cat !== category);
+                        } else {
+                            option.classList.add('active');
+                            activeFilters.push(category);
+                        }
+                        
+                        applyFilters();
+                    });
+                });
+                
+                // Toggle sidebar button
+                toggleSidebarButton.addEventListener('click', toggleSidebar);
+                
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => {
+                    if (!currentFocusedElement) return;
+                    
+                    switch (e.key) {
+                        case 'ArrowDown':
+                            e.preventDefault();
+                            navigateNextVisible(currentFocusedElement);
+                            break;
+                        case 'ArrowUp':
+                            e.preventDefault();
+                            navigatePreviousVisible(currentFocusedElement);
+                            break;
+                        case 'ArrowRight':
+                            e.preventDefault();
+                            if (currentFocusedElement.getAttribute('aria-expanded') === 'false') {
+                                toggleExpansion(currentFocusedElement);
+                            }
+                            break;
+                        case 'ArrowLeft':
+                            e.preventDefault();
+                            if (currentFocusedElement.getAttribute('aria-expanded') === 'true') {
+                                toggleExpansion(currentFocusedElement);
+                            } else {
+                                const parent = currentFocusedElement.parentElement.closest('.tree-item');
+                                if (parent) {
+                                    updateFocus(parent);
+                                }
+                            }
+                            break;
+                        case 'Enter':
+                            e.preventDefault();
+                            currentFocusedElement.querySelector('.item-content').click();
+                            break;
+                    }
+                });
+            }
+            
+            // Navigate to next visible item with keyboard
+            function navigateNextVisible(current) {
+                // Try to find the next visible item
+                let next = current.nextElementSibling;
+                while (next && (next.classList.contains('hidden') || !next.classList.contains('tree-item'))) {
+                    next = next.nextElementSibling;
+                }
+                
+                // If there's no next sibling, check if there are visible children
+                if (!next && current.getAttribute('aria-expanded') === 'true') {
+                    const children = current.querySelector('.tree-children');
+                    if (children) {
+                        next = children.querySelector('.tree-item:not(.hidden)');
+                    }
+                }
+                
+                // If still no next item, go up to parent's next sibling
+                if (!next) {
+                    let parent = current.parentElement.closest('.tree-item');
+                    while (parent && !parent.nextElementSibling) {
+                        parent = parent.parentElement.closest('.tree-item');
+                    }
+                    
+                    if (parent && parent.nextElementSibling) {
+                        next = parent.nextElementSibling;
+                    }
+                }
+                
+                if (next && next.classList.contains('tree-item')) {
+                    updateFocus(next);
+                }
+            }
+            
+            // Navigate to previous visible item with keyboard
+            function navigatePreviousVisible(current) {
+                // Try to find the previous visible item
+                let prev = current.previousElementSibling;
+                while (prev && (prev.classList.contains('hidden') || !prev.classList.contains('tree-item'))) {
+                    prev = prev.previousElementSibling;
+                }
+                
+                // If there's no previous sibling, go to parent
+                if (!prev) {
+                    const parent = current.parentElement.closest('.tree-item');
+                    if (parent) {
+                        prev = parent;
+                    }
+                } else {
+                    // If previous item is expanded, go to its last visible child
+                    while (prev.getAttribute('aria-expanded') === 'true') {
+                        const children = prev.querySelector('.tree-children');
+                        const lastChild = children.querySelector('.tree-item:not(.hidden):last-child');
+                        if (lastChild) {
+                            prev = lastChild;
+                        } else {
+                            break;
+                        }
+                    }
+                }
+                
+                if (prev && prev.classList.contains('tree-item')) {
+                    updateFocus(prev);
+                }
+            }
+            
+            // Initialize the tree menu
+            function initializeTreeMenu() {
+                // Load data
+                // In a real app, you'd fetch from an API or parse the Markdown
+                // For this example, we're using the sampleData object
+                buildTree(sampleData, treeContainer);
+                
+                // Set up event listeners
+                setupEventListeners();
+                
+                // Set initial focus to the first tree item
+                const firstItem = document.querySelector('.tree-item');
+                if (firstItem) {
+                    updateFocus(firstItem);
+                }
+            }
+            
+            // Function to parse Markdown content
+            // This is a placeholder - in a real app, you'd implement a full parser
+            async function parseMarkdownToTreeData(markdownPath) {
+                try {
+                    // Fetch the Markdown file
+                    const response = await fetch(markdownPath);
+                    const markdown = await response.text();
+                    
+                    // Split the content by lines
+                    const lines = markdown.split('\n');
+                    
+                    // Parse into a hierarchical structure
+                    const data = {
+                        name: "Modern Software Engineering",
+                        description: "A comprehensive guide to software engineering skills and technologies",
+                        children: []
+                    };
+                    
+                    let currentMainCategory = null;
+                    let currentSubcategory = null;
+                    let currentSubSubcategory = null;
+                    
+                    for (const line of lines) {
+                        // Main category (## 1. Core Development Skills)
+                        const mainCategoryMatch = line.match(/^## \d+\.\s(.+)/);
+                        if (mainCategoryMatch) {
+                            currentMainCategory = {
+                                name: mainCategoryMatch[1],
+                                description: "",
+                                children: []
+                            };
+                            data.children.push(currentMainCategory);
+                            currentSubcategory = null;
+                            currentSubSubcategory = null;
+                            continue;
+                        }
+                        
+                        // Subcategory (### Languages & Paradigms)
+                        const subcategoryMatch = line.match(/^### (.+)/);
+                        if (subcategoryMatch && currentMainCategory) {
+                            currentSubcategory = {
+                                name: subcategoryMatch[1],
+                                description: "",
+                                children: []
+                            };
+                            currentMainCategory.children.push(currentSubcategory);
+                            currentSubSubcategory = null;
+                            continue;
+                        }
+                        
+                        // Sub-subcategory (- **Programming Languages**)
+                        const subSubcategoryMatch = line.match(/^-\s+\*\*(.+)\*\*/);
+                        if (subSubcategoryMatch && currentSubcategory) {
+                            currentSubSubcategory = {
+                                name: subSubcategoryMatch[1],
+                                description: "",
+                                children: []
+                            };
+                            currentSubcategory.children.push(currentSubSubcategory);
+                            continue;
+                        }
+                        
+                        // Leaf item (  - JavaScript/TypeScript)
+                        const leafMatch = line.match(/^\s+-\s+(.+)/);
+                        if (leafMatch) {
+                            const leafItem = {
+                                name: leafMatch[1],
+                                isLeaf: true
+                            };
+                            
+                            if (currentSubSubcategory) {
+                                currentSubSubcategory.children.push(leafItem);
+                            } else if (currentSubcategory) {
+                                currentSubcategory.children.push(leafItem);
+                            }
+                        }
+                    }
+                    
+                    return data;
+                } catch (error) {
+                    console.error('Error parsing Markdown:', error);
+                    return null;
+                }
+            }
+            
+            // Start the initialization
+            initializeTreeMenu();
+            
+            // Example of how you would load data from Markdown
+            // This is commented out as it's just a demonstration
+            /*
+            parseMarkdownToTreeData('modern-swe-guide.md').then(data => {
+                if (data) {
+                    // Clear existing tree
+                    treeContainer.innerHTML = '';
+                    
+                    // Build tree with parsed data
+                    buildTree(data, treeContainer);
+                    
+                    // Set initial focus
+                    const firstItem = document.querySelector('.tree-item');
+                    if (firstItem) {
+                        updateFocus(firstItem);
+                    }
+                }
+            });
+            */
+        });
+    </script>
+</body>
+</html>

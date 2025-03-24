@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Engineering Skills Platform</title>
+    <!-- Cytoscape.js for graph visualization -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.25.0/cytoscape.min.js"></script>
+    <style>
+        :root {
+            --core-color: #e0f7fa;
+            --core-stroke: #006064;
+            --frontend-color: #e8f5e9;
+            --frontend-stroke: #1b5e20;
+            --backend-color: #fff3e0;
+            --backend-stroke: #e65100;
+            --data-color: #f3e5f5;
+            --data-stroke: #4a148c;
+            --infra-color: #fbe9e7;
+            --infra-stroke: #bf360c;
+            --security-color: #ffebee;
+            --security-stroke: #b71c1c;
+            --practices-color: #f1f8e9;
+            --practices-stroke: #33691e;
+            --text-color: #333;
+            --card-bg: #fff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --main-bg: #f9f9f9;
+            --header-bg-start: #0d47a1;
+            --header-bg-end: #2196f3;
+            --accent-color: #2196f3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--main-bg);
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--header-bg-start), var(--header-bg-end));
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 5px var(--shadow-color);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        nav {
+            display: flex;
+            background-color: #fff;
+            border-bottom: 1px solid #eee;
+            padding: 0.5rem 1rem;
+        }
+
+        .nav-item {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-item:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-item.active {
+            border-bottom-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .app-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .content-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .view-container {
+            flex: 1;
+            display: none;
+            overflow: hidden;
+        }
+
+        .view-container.active {
+            display: flex;
+        }
+
+        /* Tree View Styles */
+        #tree-view {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar {
+            width: 300px;
+            background-color: #fff;
+            box-shadow: 2px 0 5px var(--shadow-color);
+            display: flex;
+            flex-direction: column;
+            max-height: 100%;
+            transition: transform 0.3s ease;
+            z-index: 10;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                position: absolute;
+                height: 100%;
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .toggle-sidebar {
+                display: block !important;
+            }
+        }
+
+        .search-container {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .filter-container {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .filter-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .filter-option {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            user-select: none;
+            font-size: 0.85rem;
+            border: 1px solid #ddd;
+            transition: all 0.2s ease;
+        }
+
+        .filter-option.active {
+            color: white;
+            border-color: transparent;
+        }
+
+        .filter-option[data-category="core"].active {
+            background-color: var(--core-stroke);
+        }
+
+        .filter-option[data-category="frontend"].active {
+            background-color: var(--frontend-stroke);
+        }
+
+        .filter-option[data-category="backend"].active {
+            background-color: var(--backend-stroke);
+        }
+
+        .filter-option[data-category="data"].active {
+            background-color: var(--data-stroke);
+        }
+
+        .filter-option[data-category="infra"].active {
+            background-color: var(--infra-stroke);
+        }
+
+        .filter-option[data-category="security"].active {
+            background-color: var(--security-stroke);
+        }
+
+        .filter-option[data-category="practices"].active {
+            background-color: var(--practices-stroke);
+        }
+
+        .tree-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .tree {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .tree-item {
+            margin: 0.25rem 0;
+            position: relative;
+        }
+
+        .tree-item.hidden {
+            display: none;
+        }
+
+        .item-content {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0.25rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .item-content:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .item-content.selected {
+            background-color: rgba(33, 150, 243, 0.1);
+        }
+
+        .tree-item[data-level="1"] > .item-content {
+            font-weight: bold;
+        }
+
+        .tree-item[data-category="core"] > .item-content {
+            background-color: var(--core-color);
+            border-left: 4px solid var(--core-stroke);
+        }
+
+        .tree-item[data-category="frontend"] > .item-content {
+            background-color: var(--frontend-color);
+            border-left: 4px solid var(--frontend-stroke);
+        }
+
+        .tree-item[data-category="backend"] > .item-content {
+            background-color: var(--backend-color);
+            border-left: 4px solid var(--backend-stroke);
+        }
+
+        .tree-item[data-category="data"] > .item-content {
+            background-color: var(--data-color);
+            border-left: 4px solid var(--data-stroke);
+        }
+
+        .tree-item[data-category="infra"] > .item-content {
+            background-color: var(--infra-color);
+            border-left: 4px solid var(--infra-stroke);
+        }
+
+        .tree-item[data-category="security"] > .item-content {
+            background-color: var(--security-color);
+            border-left: 4px solid var(--security-stroke);
+        }
+
+        .tree-item[data-category="practices"] > .item-content {
+            background-color: var(--practices-color);
+            border-left: 4px solid var(--practices-stroke);
+        }
+
+        .toggle-icon {
+            margin-right: 0.5rem;
+            width: 16px;
+            height: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+            font-size: 0.8rem;
+        }
+
+        .toggle-icon.expanded {
+            transform: rotate(90deg);
+        }
+
+        .tree-children {
+            list-style-type: none;
+            margin-left: 1.5rem;
+            padding: 0;
+            display: none;
+        }
+
+        .tree-children.expanded {
+            display: block;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .note-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            padding: 1.5rem;
+            margin: 1rem auto;
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .note-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .note-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .note-card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .expertise-level {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: white;
+            background-color: #4caf50;
+        }
+
+        .note-card-section {
+            margin-bottom: 1rem;
+        }
+
+        .note-card-section-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .toggle-sidebar {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 11;
+        }
+
+        .leaf-marker {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 8px;
+            background-color: var(--core-stroke);
+        }
+
+        .tree-item[data-category="core"] .leaf-marker {
+            background-color: var(--core-stroke);
+        }
+
+        .tree-item[data-category="frontend"] .leaf-marker {
+            background-color: var(--frontend-stroke);
+        }
+
+        .tree-item[data-category="backend"] .leaf-marker {
+            background-color: var(--backend-stroke);
+        }
+
+        .tree-item[data-category="data"] .leaf-marker {
+            background-color: var(--data-stroke);
+        }
+
+        .tree-item[data-category="infra"] .leaf-marker {
+            background-color: var(--infra-stroke);
+        }
+
+        .tree-item[data-category="security"] .leaf-marker {
+            background-color: var(--security-stroke);
+        }
+
+        .tree-item[data-category="practices"] .leaf-marker {
+            background-color: var(--practices-stroke);
+        }
+
+        .breadcrumbs {
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            background-color: rgba(0, 0, 0, 0.03);
+            border-radius: 4px;
+        }
+
+        .breadcrumb-item {
+            display: inline-block;
+        }
+
+        .breadcrumb-item:not(:last-child)::after {
+            content: '>';
+            margin: 0 0.5rem;
+            color: #999;
+        }
+
+        .breadcrumb-link {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .breadcrumb-link:hover {
+            text-decoration: underline;
+        }
+
+        .no-results {
+            padding: 2rem;
+            text-align: center;
+            color: #777;
+        }
+
+        .external-link {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .external-link:hover {
+            text-decoration: underline;
+        }
+
+        .placeholder-text {
+            color: #999;
+            font-style: italic;
+        }
+
+        .category-title, .item-title {
+            margin-left: 0.5rem;
+        }
+
+        /* Graph View Styles */
+        #graph-view {
+            position: relative;
+        }
+
+        #graph-container {
+            width: 100%;
+            height: 100%;
+            background-color: #f5f5f5;
+        }
+
+        .graph-controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 100;
+            background-color: white;
+            padding: 0.5rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .graph-controls button {
+            margin: 0.25rem;
+            padding: 0.5rem;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .graph-controls button:hover {
+            background-color: #1976d2;
+        }
+
+        .graph-breadcrumbs {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 0.5rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .node-tooltip {
+            position: absolute;
+            background-color: white;
+            border-radius: 4px;
+            padding: 0.75rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            z-index: 200;
+            max-width: 300px;
+            pointer-events: none;
+            transition: opacity 0.2s;
+        }
+
+        .menu-tree {
+            padding: 1rem;
+            font-family: 'SF Mono', 'Consolas', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #e1e1e1;
+        }
+
+        .menu-item {
+            margin: 0.2rem 0;
+        }
+
+        .menu-item-header {
+            display: flex;
+            align-items: center;
+            padding: 0.3rem 0.5rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .menu-item-header:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-item-icon {
+            margin-right: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .menu-item-name {
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .menu-item-arrow {
+            margin-left: 0.5rem;
+            font-size: 0.8rem;
+            transition: transform 0.2s;
+        }
+
+        .menu-item-children {
+            margin-left: 1.5rem;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            padding-left: 0.5rem;
+        }
+
+        .menu-item.collapsed .menu-item-arrow {
+            transform: rotate(-90deg);
+        }
+
+        .menu-item.collapsed .menu-item-children {
+            display: none;
+        }
+    </style>
+    <!-- Load external JavaScript file -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+<header>
+    <h1>Software Engineering Skills Platform</h1>
+    <p>Interactive guide to modern software engineering skills and technologies</p>
+</header>
+
+<nav>
+    <div class="nav-item active" data-view="tree-view">Tree View</div>
+    <div class="nav-item" data-view="graph-view">Knowledge Graph</div>
+</nav>
+
+<div class="app-container">
+    <div class="content-container">
+        <!-- Tree View -->
+        <div id="tree-view" class="view-container active">
+            <div class="app-container">
+                <aside class="sidebar">
+                    <div class="search-container">
+                        <input type="text" class="search-input" placeholder="Search skills..." aria-label="Search skills">
+                    </div>
+                    <div class="filter-container">
+                        <div class="filter-title">Filter by Category</div>
+                        <div class="filter-options">
+                            <div class="filter-option active" data-category="core">Core</div>
+                            <div class="filter-option active" data-category="frontend">Frontend</div>
+                            <div class="filter-option active" data-category="backend">Backend</div>
+                            <div class="filter-option active" data-category="data">Data</div>
+                            <div class="filter-option active" data-category="infra">Infrastructure</div>
+                            <div class="filter-option active" data-category="security">Security</div>
+                            <div class="filter-option active" data-category="practices">Practices</div>
+                        </div>
+                    </div>
+                    <div class="tree-container">
+                        <div class="menu-tree">
+                            <div class="menu-item">
+                                <div class="menu-item-header">
+                                    <span class="menu-item-icon">📁</span>
+                                    <span class="menu-item-name">root</span>
+                                    <span class="menu-item-arrow">▼</span>
+                                </div>
+                                <div class="menu-item-children">
+                                    <div class="menu-item">
+                                        <div class="menu-item-header">
+                                            <span class="menu-item-icon">📁</span>
+                                            <span class="menu-item-name">src</span>
+                                            <span class="menu-item-arrow">▼</span>
+                                        </div>
+                                        <div class="menu-item-children">
+                                            <div class="menu-item">
+                                                <div class="menu-item-header">
+                                                    <span class="menu-item-icon">📄</span>
+                                                    <span class="menu-item-name">index.html</span>
+                                                </div>
+                                            </div>
+                                            <div class="menu-item">
+                                                <div class="menu-item-header">
+                                                    <span class="menu-item-icon">📄</span>
+                                                    <span class="menu-item-name">styles.css</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-item-header">
+                                            <span class="menu-item-icon">📄</span>
+                                            <span class="menu-item-name">README.md</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <main class="main-content">
+                    <ul class="breadcrumbs">
+                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Home</a></li>
+                    </ul>
+                    <div class="note-card visible">
+                        <div class="note-card-header">
+                            <h2 class="note-card-title">Welcome to the Software Engineering Skills Tree</h2>
+                            <div class="expertise-level">Explore</div>
+                        </div>
+                        <div class="note-card-section">
+                            <div class="note-card-section-title">Getting Started</div>
+                            <p>Click on any skill in the tree menu to view more information about it. Use the search bar to find specific skills, or filter by category.</p>
+                        </div>
+                        <div class="note-card-section">
+                            <div class="note-card-section-title">Navigation Tips</div>
+                            <p>You can navigate the tree using keyboard: Arrow keys to move between items, Enter to select, and Tab to move between sections.</p>
+                        </div>
+                        <div class="note-card-section">
+                            <div class="note-card-section-title">Views</div>
+                            <p>Switch between Tree View and Knowledge Graph view using the navigation tabs at the top of the page.</p>
+                        </div>
+                    </div>
+                </main>
+            </div>
+            <button class="toggle-sidebar" aria-label="Toggle sidebar menu">☰</button>
+        </div>
+
+        <!-- Graph View -->
+        <div id="graph-view" class="view-container">
+            <div class="graph-breadcrumbs">
+                <span>Home</span>
+            </div>
+            <div class="graph-controls">
+                <button id="reset-graph">Reset View</button>
+                <button id="toggle-labels">Toggle Labels</button>
+            </div>
+            <div id="graph-container"></div>
+            <div class="node-tooltip" style="display: none;"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Initialize menu tree interactions
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuItems = document.querySelectorAll('.menu-item-header');
+        
+        menuItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const menuItem = this.parentElement;
+                const hasChildren = menuItem.querySelector('.menu-item-children');
+                
+                if (hasChildren) {
+                    menuItem.classList.toggle('collapsed');
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

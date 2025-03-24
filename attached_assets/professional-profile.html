@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alejandro Chang - Professional Profile</title>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #8BA08F;         /* Dark Teal - Main Green */
+      --secondary-color: #233536;      /* Dark Gray-Green - Dark Accent */
+      --highlight-color: #B3C8B7;        /* Light Mint - Light Green Highlight */
+      --light-gray: #A9A396;           /* Light Gray-Green - Light Grayish Green */
+      --medium-gray: #59635D;          /* Mid Gray-Green - Medium Grayish Green */
+      --dark-gray: #888;               /* Default Dark Gray - General Text Gray (Keep as is for general text contrast) */
+      --text-color: #333;              /* Default Text Color - General Text Color (Keep as is for general text contrast) */
+      --text-light: #fff;             /* White - Light Text */
+      --shadow: 0 2px 10px rgba(41, 67, 71, 0.1); /* Shadow - Dark Gray Green Tint (Keep shadow subtle and grayish) */
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', Geneva, 'Roboto', 'Open Sans', Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--light-gray);
+    }
+
+    header {
+      background-color: var(--secondary-color);
+      color: var(--text-light);
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      margin-bottom: 0.5rem;
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+    }
+
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+
+    /* Profile view styles */
+    .profile-view {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 992px) {
+      .profile-view {
+        grid-template-columns: minmax(300px, 1fr) 3fr;
+      }
+    }
+
+    .search-container {
+      margin-bottom: 1rem;
+      width: 100%;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--medium-gray);
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+    }
+
+    .tree-container {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 1.2rem;
+      overflow: auto;
+      max-height: 80vh;
+    }
+
+    .tree {
+      list-style-type: none;
+    }
+
+    .tree-item {
+      margin: 0.25rem 0;
+      position: relative;
+    }
+
+    .tree-item.hidden {
+      display: none;
+    }
+
+    .tree-content {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      padding: 0.7rem;
+      border-radius: 6px;
+      transition: var(--transition);
+    }
+
+    .tree-content:hover, .tree-content.focused {
+      background-color: var(--light-gray);
+    }
+
+    .tree-content.selected {
+      background-color: rgba(52, 152, 219, 0.1);
+      border-left: 3px solid var(--primary-color);
+    }
+
+    .tree-toggle {
+      width: 24px;
+      height: 24px;
+      margin-right: 0.7rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      border-radius: 50%;
+      background-color: var(--light-gray);
+      color: var(--text-color);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .tree-toggle:hover {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    .tree-label {
+      flex-grow: 1;
+      font-size: 1.05rem;
+      font-weight: 500;
+    }
+
+    .tree-nested {
+      list-style-type: none;
+      margin-left: 1.8rem;
+      height: auto;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .collapsed > .tree-nested {
+      height: 0;
+    }
+
+    .tree-leaf {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 0.6rem 0.6rem 0.6rem 1.8rem;
+      border-radius: 6px;
+      transition: var(--transition);
+      font-size: 0.95rem;
+    }
+
+    .tree-leaf:before {
+      content: "•";
+      margin-right: 0.5rem;
+      color: var(--dark-gray);
+    }
+
+    .tree-leaf:hover, .tree-leaf.focused {
+      background-color: var(--light-gray);
+    }
+
+    .tree-leaf.selected {
+      background-color: rgba(52, 152, 219, 0.1);
+      border-left: 3px solid var(--primary-color);
+    }
+
+    .highlight {
+      background-color: rgba(26, 188, 156, 0.2);
+      padding: 0 2px;
+      border-radius: 2px;
+    }
+
+    /* Resume container */
+    .resume-container {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      overflow: auto;
+      height: 80vh;
+    }
+
+    .resume-embed {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .resume-content {
+      padding: 1.5rem;
+    }
+
+    .resume-section {
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--medium-gray);
+    }
+
+    .resume-section:last-child {
+      border-bottom: none;
+    }
+
+    .resume-section h2 {
+      color: var(--secondary-color);
+      margin-bottom: 1rem;
+      font-size: 1.6rem;
+    }
+
+    .resume-section h3 {
+      color: var(--text-color);
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+    }
+
+    .job-entry {
+      margin-bottom: 1.5rem;
+    }
+
+    .job-header {
+      margin-bottom: 0.5rem;
+    }
+
+    .job-title {
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .job-company {
+      font-weight: bold;
+      color: var(--secondary-color);
+    }
+
+    .job-duration {
+      color: var(--dark-gray);
+      font-style: italic;
+      font-size: 0.9rem;
+    }
+
+    .job-description {
+      margin-bottom: 0.5rem;
+    }
+
+    .job-bullets {
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .job-bullets li {
+      margin-bottom: 0.5rem;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    .skill-tag {
+      background-color: var(--light-gray);
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+
+    .skill-category {
+      margin-bottom: 1.2rem;
+    }
+
+    .skill-category h4 {
+      margin-bottom: 0.7rem;
+      color: var(--secondary-color);
+    }
+
+    .download-resume {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      background-color: var(--primary-color);
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .download-resume:hover {
+      background-color: #2980b9;
+    }
+
+
+    /* Footer */
+    footer {
+      background-color: var(--secondary-color);
+      color: var(--text-light);
+      text-align: center;
+      padding: 1.5rem 0;
+      margin-top: 2rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .social-link {
+      color: var(--text-light);
+      font-size: 1.3rem;
+      transition: var(--transition);
+    }
+
+    .social-link:hover {
+      color: var(--primary-color);
+    }
+
+    .copyright {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    /* Accessibility focus styles */
+    .tree-content:focus, .tree-leaf:focus, .search-input:focus {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 2px;
+    }
+
+    @media (max-width: 768px) {
+      .header-content {
+        padding: 0 10px;
+      }
+
+      .view-toggle {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .resume-container {
+        height: 60vh;
+      }
+
+      #knowledge-graph-container {
+        height: 60vh;
+      }
+
+      .legend {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="header-content">
+    <h1>Alejandro Chang</h1>
+    <p class="subtitle">Senior Software Engineer with 15+ years of experience</p>
+  </div>
+</header>
+
+<div class="container">
+  <!-- Profile View -->
+  <div id="profile-view" class="view profile-view active">
+    <div>
+      <div class="search-container">
+        <input type="text" id="profile-search" class="search-input" placeholder="Search profile sections..." aria-label="Search profile sections">
+      </div>
+      <div class="tree-container">
+        <ul id="profile-tree" class="tree" role="tree" aria-label="Profile Navigation Menu">
+          <!-- Tree will be populated by JavaScript -->
+        </ul>
+      </div>
+    </div>
+
+    <div class="resume-container">
+      <div id="resume-content" class="resume-content">
+        <div class="resume-section" id="experience-section">
+          <h2>Work Experience</h2>
+
+          <div class="job-entry" id="playdly-section">
+            <div class="job-header">
+              <h3><span class="job-title">Founder & Lead Software Architect</span> | <span class="job-company">Playdly</span></h3>
+              <p class="job-duration">December 2024 - Present | Burlington, Canada</p>
+            </div>
+            <ul class="job-bullets">
+              <li>Founded Playdly, a technology company dedicated to developing innovative AI-driven solutions that enhance productivity, trust, and efficiency in project management and automation.</li>
+              <li>Leading development on ATLAS, an advanced AI system that enhances Retrieval-Augmented Generation (RAG) through dynamic embedding model selection and intelligent orchestration.</li>
+              <li>Designed an AI system with dynamic LLM model selection, implementing a framework that adaptively chooses among various retrieval-augmented strategies based on the context and requirements of each task.</li>
+            </ul>
+            <p><strong>Tech & Tools:</strong> Python, FastAPI, TypeScript, React, Next.js, OpenAI API, LangChain, Pinecone, PostgreSQL, Redis, Kubernetes, Terraform, Docker, GitHub Actions, AWS SQS/SNS.</p>
+          </div>
+
+          <div class="job-entry" id="intuit-section">
+            <div class="job-header">
+              <h3><span class="job-title">Senior Software Engineer</span> | <span class="job-company">Intuit</span></h3>
+              <p class="job-duration">September 2020 - September 2024 | Toronto, Canada</p>
+            </div>
+            <ul class="job-bullets">
+              <li>Led development of a key service enhancement that cut onboarding time for new document types from one month to three days, enabling TurboTax to deliver real-time feedback on customer edits.</li>
+              <li>Led the team's DevOps responsibilities, ensuring 99.9% uptime for CI/CD and streamlining Git branching strategies to boost deployment speed and system stability.</li>
+              <li>Coordinated team responsibilities in company-wide effort to allow data imports for major crypto providers, securing +350K customers and increasing revenue by ~7%.</li>
+              <li>Mentored junior engineers and interns, providing leadership in troubleshooting, technical development, and best practices.</li>
+            </ul>
+            <p><strong>Tech & Tools:</strong> Java, Spring Boot, React, Gatling, CI/CD, Jenkins, AWS, Snyk, Kubernetes, Docker, macOS, IntelliJ, Git, npm, AWS, Splunk.</p>
+          </div>
+
+          <div class="job-entry" id="rbc-section">
+            <div class="job-header">
+              <h3><span class="job-title">Senior Full-Stack Software Developer</span> | <span class="job-company">RBC</span></h3>
+              <p class="job-duration">April 2019 - August 2020 | Toronto, Canada</p>
+            </div>
+            <ul class="job-bullets">
+              <li>Played a key role in modernizing RBC's cross-asset single-dealer platform, boosting performance by 30% and elevating code coverage from 25% to 85%.</li>
+              <li>Engineered and deployed responsive front-end interfaces for critical trading applications using React and Redux with real-time data streaming via Solace.</li>
+              <li>Streamlined CI/CD pipelines using Jenkins and GitHub, reducing deployment times by 30% and minimizing production errors.</li>
+            </ul>
+            <p><strong>Tech & Tools:</strong> React, Java, Redux, Solace, Sass, Windows 10, Idea WebStorm, GIT, npm, Jenkins, Github, Storybook.</p>
+          </div>
+
+          <div class="job-entry" id="previous-section">
+            <div class="job-header">
+              <h3>Previous Roles</h3>
+            </div>
+            <ul class="job-bullets">
+              <li><strong>Senior Full-Stack Software Developer</strong> | Resolver | September 2018 - April 2019</li>
+              <li><strong>Software Developer</strong> | Rangle.io | September 2016 - September 2018</li>
+              <li><strong>Software Developer</strong> | InMoment, Inc. | August 2014 - August 2016</li>
+              <li><strong>Software Developer</strong> | Rethink Solutions Inc. | April 2012 - August 2014</li>
+              <li><strong>Java Developer</strong> | GlocalSpace Inc. | September 2011 - April 2012</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-content">
+    <div class="social-links">
+      <a href="https://linkedin.com/in/alejandrochang/" class="social-link" target="_blank" aria-label="LinkedIn">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="https://github.com/" class="social-link" target="_blank" aria-label="GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="mailto:alejandro.chang@gmail.com" class="social-link" aria-label="Email">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </div>
+    <p class="copyright">© 2025 Alejandro Chang. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Profile tree data structure
+    const profileTreeData = [
+      {
+        id: 'about',
+        label: 'About Me',
+        description: 'Professional overview and personal background'
+      },
+      {
+        id: 'experience',
+        label: 'Work Experience',
+        description: 'Professional history and accomplishments',
+        children: [
+          { id: 'playdly', label: 'Playdly', type: 'leaf' },
+          { id: 'intuit', label: 'Intuit', type: 'leaf' },
+          { id: 'rbc', label: 'RBC', type: 'leaf' },
+          { id: 'previous', label: 'Previous Roles', type: 'leaf' }
+        ]
+      },
+      {
+        id: 'skills',
+        label: 'Key Skills',
+        description: 'Technical expertise and competencies',
+        children: [
+          { id: 'languages', label: 'Programming Languages', type: 'leaf' },
+          { id: 'frameworks', label: 'Frameworks & Libraries', type: 'leaf' },
+          { id: 'devops', label: 'DevOps & Infrastructure', type: 'leaf' },
+          { id: 'databases', label: 'Databases', type: 'leaf' }
+        ]
+      },
+      {
+        id: 'education',
+        label: 'Education',
+        description: 'Academic background and certifications',
+        children: [
+          { id: 'formal', label: 'Formal Education', type: 'leaf' },
+          { id: 'certifications', label: 'Certifications', type: 'leaf' }
+        ]
+      },
+      {
+        id: 'contact',
+        label: 'Contact',
+        description: 'Ways to get in touch',
+        type: 'leaf'
+      }
+    ];
+
+    // Resume content sections
+    const resumeSections = {
+      about: `
+          <div class="resume-section" id="about-section">
+            <h2>About Me</h2>
+            <p>Senior Full-Stack Software Engineer with over 15 years of experience building end-to-end solutions using Java, Spring, JavaScript, TypeScript and React. Skilled in designing cloud-native systems, distributed architectures, and optimizing performance following DevOps best practices.</p>
+            <p>Experienced at driving cross-functional collaboration, mentoring engineers and aligning technical initiatives with business goals. Committed to delivering impactful solutions at scale and fostering innovation through hands-on leadership.</p>
+            <p>Located in Burlington, Ontario, I am passionate about building software that makes a meaningful difference in people's lives.</p>
+            <a href="#" class="download-resume">Download Full Resume</a>
+          </div>
+        `,
+      experience: `
+          <div class="resume-section" id="experience-section">
+            <h2>Work Experience</h2>
+
+            <div class="job-entry" id="playdly-section">
+              <div class="job-header">
+                <h3><span class="job-title">Founder & Lead Software Architect</span> | <span class="job-company">Playdly</span></h3>
+                <p class="job-duration">December 2024 - Present | Burlington, Canada</p>
+              </div>
+              <ul class="job-bullets">
+                <li>Founded Playdly, a technology company dedicated to developing innovative AI-driven solutions that enhance productivity, trust, and efficiency in project management and automation.</li>
+                <li>Leading development on ATLAS, an advanced AI system that enhances Retrieval-Augmented Generation (RAG) through dynamic embedding model selection and intelligent orchestration.</li>
+                <li>Designed an AI system with dynamic LLM model selection, implementing a framework that adaptively chooses among various retrieval-augmented strategies based on the context and requirements of each task.</li>
+              </ul>
+              <p><strong>Tech & Tools:</strong> Python, FastAPI, TypeScript, React, Next.js, OpenAI API, LangChain, Pinecone, PostgreSQL, Redis, Kubernetes, Terraform, Docker, GitHub Actions, AWS SQS/SNS.</p>
+            </div>
+
+            <div class="job-entry" id="intuit-section">
+              <div class="job-header">
+                <h3><span class="job-title">Senior Software Engineer</span> | <span class="job-company">Intuit</span></h3>
+                <p class="job-duration">September 2020 - September 2024 | Toronto, Canada</p>
+              </div>
+              <ul class="job-bullets">
+                <li>Led development of a key service enhancement that cut onboarding time for new document types from one month to three days, enabling TurboTax to deliver real-time feedback on customer edits.</li>
+                <li>Led the team's DevOps responsibilities, ensuring 99.9% uptime for CI/CD and streamlining Git branching strategies to boost deployment speed and system stability.</li>
+                <li>Coordinated team responsibilities in company-wide effort to allow data imports for major crypto providers, securing +350K customers and increasing revenue by ~7%.</li>
+                <li>Mentored junior engineers and interns, providing leadership in troubleshooting, technical development, and best practices.</li>
+              </ul>
+              <p><strong>Tech & Tools:</strong> Java, Spring Boot, React, Gatling, CI/CD, Jenkins, AWS, Snyk, Kubernetes, Docker, macOS, IntelliJ, Git, npm, AWS, Splunk.</p>
+            </div>
+
+            <div class="job-entry" id="rbc-section">
+              <div class="job-header">
+                <h3><span class="job-title">Senior Full-Stack Software Developer</span> | <span class="job-company">RBC</span></h3>
+                <p class="job-duration">April 2019 - August 2020 | Toronto, Canada</p>
+              </div>
+              <ul class="job-bullets">
+                <li>Played a key role in modernizing RBC's cross-asset single-dealer platform, boosting performance by 30% and elevating code coverage from 25% to 85%.</li>
+                <li>Engineered and deployed responsive front-end interfaces for critical trading applications using React and Redux with real-time data streaming via Solace.</li>
+                <li>Streamlined CI/CD pipelines using Jenkins and GitHub, reducing deployment times by 30% and minimizing production errors.</li>
+              </ul>
+              <p><strong>Tech & Tools:</strong> React, Java, Redux, Solace, Sass, Windows 10, Idea WebStorm, GIT, npm, Jenkins, Github, Storybook.</p>
+            </div>
+
+            <div class="job-entry" id="previous-section">
+              <div class="job-header">
+                <h3>Previous Roles</h3>
+              </div>
+              <ul class="job-bullets">
+                <li><strong>Senior Full-Stack Software Developer</strong> | Resolver | September 2018 - April 2019</li>
+                <li><strong>Software Developer</strong> | Rangle.io | September 2016 - September 2018</li>
+                <li><strong>Software Developer</strong> | InMoment, Inc. | August 2014 - August 2016</li>
+                <li><strong>Software Developer</strong> | Rethink Solutions Inc. | April 2012 - August 2014</li>
+                <li><strong>Java Developer</strong> | GlocalSpace Inc. | September 2011 - April 2012</li>
+              </ul>
+            </div>
+          </div>
+        `,
+      skills: `
+          <div class="resume-section" id="skills-section">
+            <h2>Key Skills</h2>
+
+            <div class="skill-category" id="languages-section">
+              <h4>Programming Languages</h4>
+              <div class="skill-list">
+                <span class="skill-tag">Java</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">TypeScript</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Shell Scripting</span>
+                <span class="skill-tag">Scala</span>
+                <span class="skill-tag">Kotlin</span>
+              </div>
+            </div>
+
+            <div class="skill-category" id="frameworks-section">
+              <h4>Frameworks & Libraries</h4>
+              <div class="skill-list">
+                <span class="skill-tag">Spring</span>
+                <span class="skill-tag">Spring Boot</span>
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">Angular</span>
+                <span class="skill-tag">Next.js</span>
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">Redux</span>
+                <span class="skill-tag">FastAPI</span>
+              </div>
+            </div>
+
+            <div class="skill-category" id="devops-section">
+              <h4>DevOps & Infrastructure</h4>
+              <div class="skill-list">
+                <span class="skill-tag">Docker</span>
+                <span class="skill-tag">Kubernetes</span>
+                <span class="skill-tag">Jenkins</span>
+                <span class="skill-tag">GitHub Actions</span>
+                <span class="skill-tag">Terraform</span>
+                <span class="skill-tag">AWS</span>
+                <span class="skill-tag">CI/CD</span>
+                <span class="skill-tag">ArgoCD</span>
+              </div>
+            </div>
+
+            <div class="skill-category" id="databases-section">
+              <h4>Databases</h4>
+              <div class="skill-list">
+                <span class="skill-tag">PostgreSQL</span>
+                <span class="skill-tag">MySQL</span>
+                <span class="skill-tag">Oracle DB</span>
+                <span class="skill-tag">MongoDB</span>
+                <span class="skill-tag">Redis</span>
+                <span class="skill-tag">Cassandra</span>
+              </div>
+            </div>
+
+            <p>For a more detailed view of my technical skills and their relationships, please see the <a href="#" id="switch-to-graph">Skills Graph view</a>.</p>
+          </div>
+        `,
+      education: `
+          <div class="resume-section" id="education-section">
+            <h2>Education</h2>
+
+            <div class="job-entry" id="formal-section">
+              <div class="job-header">
+                <h3>Engineering Technologist Diploma in Systems Analysis and Design (Honours)</h3>
+                <p class="job-duration">UNEFA, Caracas, Venezuela</p>
+              </div>
+              <p>Assessed by ICAS (International Credential Assessment Service of Canada)</p>
+            </div>
+
+            <div class="job-entry" id="certifications-section">
+              <div class="job-header">
+                <h3>Professional Certifications</h3>
+              </div>
+              <ul class="job-bullets">
+                <li>AWS Certified Solutions Architect</li>
+                <li>Certified Kubernetes Administrator (CKA)</li>
+                <li>Oracle Certified Professional, Java SE Programmer</li>
+              </ul>
+            </div>
+          </div>
+        `,
+      contact: `
+          <div class="resume-section" id="contact-section">
+            <h2>Contact Information</h2>
+            <p><strong>Location:</strong> Burlington, ON, Canada</p>
+            <p><strong>Email:</strong> <a href="mailto:alejandro.chang@gmail.com">alejandro.chang@gmail.com</a></p>
+            <p><strong>Phone:</strong> +1(416) 985-3519</p>
+            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/alejandrochang/" target="_blank">linkedin.com/in/alejandrochang</a></p>
+
+            <div style="margin-top: 2rem;">
+              <h3>Languages</h3>
+              <p>English (Fluent) / Spanish (Native)</p>
+            </div>
+          </div>
+        `
+    };
+
+    // References
+    let selectedNode = null;
+    const treeElement = document.getElementById('profile-tree');
+    const searchInput = document.getElementById('profile-search');
+    const resumeContent = document.getElementById('resume-content');
+    let focusedElement = null;
+
+    // Build the profile tree
+    function buildProfileTree(nodes, parent) {
+      nodes.forEach(node => {
+        const item = document.createElement('li');
+        item.className = 'tree-item';
+        item.setAttribute('role', 'treeitem');
+        item.setAttribute('aria-expanded', 'false');
+        item.id = node.id;
+
+        if (node.type === 'leaf') {
+          // Leaf node
+          item.className = 'tree-item tree-leaf-item';
+          const leafContent = document.createElement('div');
+          leafContent.className = 'tree-leaf';
+          leafContent.setAttribute('tabindex', '0');
+          leafContent.setAttribute('data-id', node.id);
+          leafContent.textContent = node.label;
+
+          leafContent.addEventListener('click', (e) => {
+            e.stopPropagation();
+            selectProfileNode(node);
+          });
+
+          leafContent.addEventListener('keydown', (e) => {
+            handleKeyNavigation(e, item);
+          });
+
+          item.appendChild(leafContent);
+        } else {
+          // Branch node with children
+          const content = document.createElement('div');
+          content.className = 'tree-content';
+          content.setAttribute('tabindex', '0');
+
+          const toggle = document.createElement('span');
+          toggle.className = 'tree-toggle';
+          toggle.textContent = '+';
+          toggle.setAttribute('aria-hidden', 'true');
+
+          const label = document.createElement('span');
+          label.className = 'tree-label';
+          label.textContent = node.label;
+
+          content.appendChild(toggle);
+          content.appendChild(label);
+          item.appendChild(content);
+
+          // Set collapsed state initially
+          item.classList.add('collapsed');
+
+          content.addEventListener('click', () => {
+            toggleProfileNode(item);
+            selectProfileNode(node);
+          });
+
+          content.addEventListener('keydown', (e) => {
+            handleKeyNavigation(e, item);
+          });
+
+          if (node.children && node.children.length > 0) {
+            const nestedList = document.createElement('ul');
+            nestedList.className = 'tree-nested';
+            nestedList.setAttribute('role', 'group');
+            item.appendChild(nestedList);
+
+            // Recursively build children
+            buildProfileTree(node.children, nestedList);
+          }
+        }
+
+        parent.appendChild(item);
+      });
+    }
+
+    // Toggle expand/collapse
+    function toggleProfileNode(item) {
+      item.classList.toggle('collapsed');
+      const isExpanded = !item.classList.contains('collapsed');
+      item.setAttribute('aria-expanded', isExpanded);
+
+      const toggle = item.querySelector('.tree-toggle');
+      if (toggle) {
+        toggle.textContent = isExpanded ? '-' : '+';
+      }
+    }
+
+    // Select a profile node and show its content
+    function selectProfileNode(node) {
+      // Clear previous selection
+      const prevSelected = document.querySelector('.tree-content.selected, .tree-leaf.selected');
+      if (prevSelected) {
+        prevSelected.classList.remove('selected');
+      }
+
+      // Set new selection
+      selectedNode = node;
+
+      // Select the node in the UI
+      let nodeElement;
+      if (node.type === 'leaf') {
+        nodeElement = document.querySelector(`[data-id="${node.id}"]`);
+      } else {
+        nodeElement = document.querySelector(`#${node.id} > .tree-content`);
+      }
+
+      if (nodeElement) {
+        nodeElement.classList.add('selected');
+      }
+
+      // Update resume content based on selection
+      updateResumeContent(node.id);
+    }
+
+    // Update resume content based on selected node
+    function updateResumeContent(nodeId) {
+      // First, try exact match
+      let content = resumeSections[nodeId];
+
+      // If no exact match, show parent section
+      if (!content) {
+        // Find parent section based on ID
+        if (nodeId.includes('playdly') || nodeId.includes('intuit') || nodeId.includes('rbc') || nodeId.includes('previous')) {
+          content = resumeSections['experience'];
+        } else if (nodeId.includes('languages') || nodeId.includes('frameworks') || nodeId.includes('devops') || nodeId.includes('databases')) {
+          content = resumeSections['skills'];
+        } else if (nodeId.includes('formal') || nodeId.includes('certifications')) {
+          content = resumeSections['education'];
+        }
+      }
+
+      // If still no content, show about
+      content = content || resumeSections['about'];
+
+      // Update content
+      resumeContent.innerHTML = content;
+
+      // Scroll to specific section if needed
+      if (nodeId !== 'about' && nodeId !== 'experience' && nodeId !== 'skills' && nodeId !== 'education' && nodeId !== 'contact') {
+        setTimeout(() => {
+          const sectionElement = document.getElementById(nodeId + '-section');
+          if (sectionElement) {
+            sectionElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 100);
+      }
+
+      // Add event listener to "switch to graph" link if present
+      const switchLink = document.getElementById('switch-to-graph');
+      if (switchLink) {
+        switchLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          skillsToggle.click();
+        });
+      }
+    }
+
+    // Filter tree based on search input
+    function filterProfileTree(searchText) {
+      if (!searchText.trim()) {
+        // Show all nodes if search is empty
+        document.querySelectorAll('.tree-item').forEach(item => {
+          item.classList.remove('hidden');
+        });
+        return;
+      }
+
+      // Split search text by space or comma to search for multiple terms
+      const searchTerms = searchText.toLowerCase().split(/[\s,]+/).filter(term => term.length > 0);
+
+      // Hide all items initially
+      document.querySelectorAll('.tree-item').forEach(item => {
+        item.classList.add('hidden');
+      });
+
+      // Find matching nodes
+      function searchNode(nodeData) {
+        const nodeText = nodeData.label.toLowerCase();
+
+        // Check if node matches any search term
+        const matches = searchTerms.some(term => nodeText.includes(term));
+
+        if (matches) {
+          return true;
+        }
+
+        // If it has children, search them
+        if (nodeData.children && nodeData.children.length > 0) {
+          const childMatches = nodeData.children.some(child => searchNode(child));
+          if (childMatches) {
+            return true;
+          }
+        }
+
+        return false;
+      }
+
+      // Search through tree data and show matching items
+      profileTreeData.forEach(node => {
+        if (searchNode(node)) {
+          const nodeElement = document.getElementById(node.id);
+          if (nodeElement) {
+            nodeElement.classList.remove('hidden');
+
+            // If it has children, expand it
+            if (!node.type && node.children && node.children.length > 0) {
+              nodeElement.classList.remove('collapsed');
+              nodeElement.setAttribute('aria-expanded', 'true');
+
+              const toggle = nodeElement.querySelector('.tree-toggle');
+              if (toggle) {
+                toggle.textContent = '-';
+              }
+            }
+
+            // Show children that match
+            if (node.children) {
+              node.children.forEach(child => {
+                if (searchNode(child)) {
+                  const childElement = document.getElementById(child.id);
+                  if (childElement) {
+                    childElement.classList.remove('hidden');
+                  }
+                }
+              });
+            }
+          }
+        }
+      });
+
+      // Highlight matching text in visible items
+      document.querySelectorAll('.tree-leaf, .tree-label').forEach(element => {
+        const originalText = element.textContent;
+
+        // Only highlight if not hidden
+        if (!element.closest('.tree-item.hidden')) {
+          let highlightedText = originalText;
+
+          searchTerms.forEach(term => {
+            if (term.trim() !== '') {
+              const regex = new RegExp(`(${term})`, 'gi');
+              highlightedText = highlightedText.replace(regex, '<span class="highlight">$1</span>');
+            }
+          });
+
+          if (highlightedText !== originalText) {
+            element.innerHTML = highlightedText;
+          }
+        }
+      });
+    }
+
+    // Handle keyboard navigation
+    function handleKeyNavigation(event, item) {
+      const key = event.key;
+      const target = event.target;
+
+      // Update focused element reference
+      focusedElement = target;
+
+      // Remove previous focus highlight
+      document.querySelectorAll('.focused').forEach(el => {
+        el.classList.remove('focused');
+      });
+
+      // Add focus highlight
+      target.classList.add('focused');
+
+      switch (key) {
+        case 'ArrowDown':
+          event.preventDefault();
+          moveFocusDown();
+          break;
+        case 'ArrowUp':
+          event.preventDefault();
+          moveFocusUp();
+          break;
+        case 'ArrowRight':
+          event.preventDefault();
+          // If it's a branch node, expand it
+          if (!target.classList.contains('tree-leaf') && item.classList.contains('collapsed')) {
+            toggleProfileNode(item);
+          }
+          break;
+        case 'ArrowLeft':
+          event.preventDefault();
+          // If it's a branch node, collapse it
+          if (!target.classList.contains('tree-leaf') && !item.classList.contains('collapsed')) {
+            toggleProfileNode(item);
+          } else {
+            // Otherwise, move to parent
+            const parentItem = item.parentElement.closest('.tree-item');
+            if (parentItem) {
+              const parentContent = parentItem.querySelector('.tree-content');
+              if (parentContent) {
+                parentContent.focus();
+              }
+            }
+          }
+          break;
+        case 'Enter':
+        case ' ':
+          event.preventDefault();
+          if (target.classList.contains('tree-leaf')) {
+            // For leaf nodes, show content
+            const nodeId = target.getAttribute('data-id');
+            const node = findProfileNodeById(nodeId);
+            if (node) {
+              selectProfileNode(node);
+            }
+          } else {
+            // For branch nodes, toggle expand/collapse
+            toggleProfileNode(item);
+          }
+          break;
+      }
+    }
+
+    // Move focus to the next visible item
+    function moveFocusDown() {
+      if (!focusedElement) return;
+
+      const allFocusable = Array.from(document.querySelectorAll('.tree-content:not(.hidden), .tree-leaf:not(.hidden)'))
+              .filter(el => !el.closest('.tree-item.hidden') && !el.closest('.collapsed .tree-nested'));
+
+      const currentIndex = allFocusable.indexOf(focusedElement);
+      if (currentIndex < allFocusable.length - 1) {
+        allFocusable[currentIndex + 1].focus();
+      }
+    }
+
+    // Move focus to the previous visible item
+    function moveFocusUp() {
+      if (!focusedElement) return;
+
+      const allFocusable = Array.from(document.querySelectorAll('.tree-content:not(.hidden), .tree-leaf:not(.hidden)'))
+              .filter(el => !el.closest('.tree-item.hidden') && !el.closest('.collapsed .tree-nested'));
+
+      const currentIndex = allFocusable.indexOf(focusedElement);
+      if (currentIndex > 0) {
+        allFocusable[currentIndex - 1].focus();
+      }
+    }
+
+    // Find a node by ID in the tree data
+    function findProfileNodeById(id, nodes) {
+      for (const node of nodes) {
+        if (node.id === id) return node;
+        if (node.children && node.children.length > 0) { const found = findProfileNodeById(id, node.children); if (found) return found; }
+      }
+      return null;
+    }
+
+    // Initialize the profile tree
+    buildProfileTree(profileTreeData, treeElement);
+
+    // Add search event listener
+    searchInput.addEventListener('input', (e) => {
+      filterProfileTree(e.target.value);
+    });
+
+    // Expand first level initially
+    document.querySelectorAll('#profile-tree > .tree-item').forEach(item => {
+      toggleProfileNode(item);
+    });
+
+    // Show about section initially
+    updateResumeContent('experience');
+  });
+</script>
+</body>
+</html>

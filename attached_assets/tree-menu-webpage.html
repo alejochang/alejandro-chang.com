@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Software Engineering Knowledge Tree</title>
+  <style>
+    :root {
+      --primary-color: #3498db;
+      --secondary-color: #2c3e50;
+      --highlight-color: #1abc9c;
+      --light-gray: #f5f5f5;
+      --medium-gray: #e0e0e0;
+      --dark-gray: #888;
+      --text-color: #333;
+      --text-light: #fff;
+      --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--light-gray);
+    }
+
+    header {
+      background-color: var(--secondary-color);
+      color: var(--text-light);
+      padding: 1rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    h1 {
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      opacity: 0.8;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        grid-template-columns: minmax(300px, 1fr) 2fr;
+      }
+    }
+
+    .search-container {
+      margin-bottom: 1rem;
+      width: 100%;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--medium-gray);
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+    }
+
+    .tree-container {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 1rem;
+      overflow: auto;
+      max-height: 80vh;
+    }
+
+    .tree {
+      list-style-type: none;
+    }
+
+    .tree-item {
+      margin: 0.25rem 0;
+      position: relative;
+    }
+
+    .tree-item.hidden {
+      display: none;
+    }
+
+    .tree-content {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 4px;
+      transition: var(--transition);
+    }
+
+    .tree-content:hover, .tree-content.focused {
+      background-color: var(--light-gray);
+    }
+
+    .tree-content.selected {
+      background-color: rgba(52, 152, 219, 0.1);
+      border-left: 3px solid var(--primary-color);
+    }
+
+    .tree-toggle {
+      width: 20px;
+      height: 20px;
+      margin-right: 0.5rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      border-radius: 50%;
+      background-color: var(--medium-gray);
+      color: var(--text-color);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .tree-toggle:hover {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    .tree-label {
+      flex-grow: 1;
+    }
+
+    .tree-nested {
+      list-style-type: none;
+      margin-left: 1.5rem;
+      height: auto;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .collapsed > .tree-nested {
+      height: 0;
+    }
+
+    .tree-leaf {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+      border-radius: 4px;
+    }
+
+    .tree-leaf:before {
+      content: "•";
+      margin-right: 0.5rem;
+      color: var(--dark-gray);
+    }
+
+    .tree-leaf:hover, .tree-leaf.focused {
+      background-color: var(--light-gray);
+    }
+
+    .tree-leaf.selected {
+      background-color: rgba(52, 152, 219, 0.1);
+      border-left: 3px solid var(--primary-color);
+    }
+
+    .highlight {
+      background-color: rgba(26, 188, 156, 0.2);
+      padding: 0 2px;
+      border-radius: 2px;
+    }
+
+    .note-card-container {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+      height: auto;
+      transition: var(--transition);
+    }
+
+    .note-card {
+      padding: 1.5rem;
+    }
+
+    .note-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--medium-gray);
+    }
+
+    .note-card-title {
+      font-size: 1.5rem;
+      color: var(--secondary-color);
+    }
+
+    .expertise-level {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    .experience-section, .resources-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: var(--secondary-color);
+    }
+
+    .experience-item {
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      background-color: var(--light-gray);
+      border-radius: 4px;
+    }
+
+    .resource-link {
+      display: inline-block;
+      margin-top: 0.5rem;
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .resource-link:hover {
+      color: var(--highlight-color);
+      text-decoration: underline;
+    }
+
+    .note-placeholder {
+      display: flex;
+      height: 200px;
+      justify-content: center;
+      align-items: center;
+      color: var(--dark-gray);
+      font-style: italic;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+
+      .note-card-container {
+        margin-top: 1rem;
+      }
+
+      .tree-container {
+        max-height: 50vh;
+      }
+    }
+    
+    /* Accessibility focus styles */
+    .tree-content:focus, .tree-leaf:focus, .search-input:focus {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 2px;
+    }
+    
+    /* Loading spinner */
+    .loader {
+      display: inline-block;
+      position: relative;
+      width: 80px;
+      height: 80px;
+    }
+    .loader:after {
+      content: " ";
+      display: block;
+      border-radius: 50%;
+      width: 0;
+      height: 0;
+      margin: 8px;
+      box-sizing: border-box;
+      border: 32px solid var(--primary-color);
+      border-color: var(--primary-color) transparent var(--primary-color) transparent;
+      animation: loader 1.2s infinite;
+    }
+    @keyframes loader {
+      0% {
+        transform: rotate(0);
+        animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+      }
+      50% {
+        transform: rotate(180deg);
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Software Engineering Knowledge Tree</h1>
+    <p class="subtitle">Interactive exploration of software engineering concepts based on Alejandro Chang's experience</p>
+  </header>
+
+  <div class="container">
+    <div>
+      <div class="search-container">
+        <input type="text" id="search" class="search-input" placeholder="Search technologies, frameworks, concepts..." aria-label="Search the knowledge tree">
+      </div>
+      <div class="tree-container">
+        <ul id="tree" class="tree" role="tree" aria-label="Software Engineering Knowledge Tree">
+          <!-- Tree will be populated by JavaScript -->
+        </ul>
+      </div>
+    </div>
+
+    <div class="note-card-container">
+      <div id="noteCard" class="note-card">
+        <div class="note-placeholder">
+          Select a technology or concept from the tree to view details
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Tree data structure based on the modern-swe-guide.md file
+      const treeData = [
+        {
+          id: 'core-dev',
+          label: '1. Core Development Skills',
+          description: 'Fundamental programming skills and principles',
+          children: [
+            {
+              id: 'languages-paradigms',
+              label: 'Languages & Paradigms',
+              description: 'Programming languages and coding approaches',
+              children: [
+                {
+                  id: 'programming-languages',
+                  label: 'Programming Languages',
+                  description: 'Modern programming languages used in software development',
+                  children: [
+                    { id: 'javascript', label: 'JavaScript/TypeScript', type: 'leaf', expertise: 'Expert', experience: ['15+ years experience', 'Used at Intuit for frontend development', 'Built React applications at RBC', 'Provided JS consultation at Rangle.io'] },
+                    { id: 'python', label: 'Python', type: 'leaf', expertise: 'Intermediate', experience: ['Used at Playdly for AI-driven solutions', 'Implemented FastAPI services'] },
+                    { id: 'java', label: 'Java', type: 'leaf', expertise: 'Expert', experience: ['15+ years experience', 'Built Spring Boot microservices at Intuit', 'Developed J2EE applications at InMoment', 'Implemented backend systems at Rethink Solutions'] },
+                    { id: 'go', label: 'Go', type: 'leaf', expertise: 'Beginner', experience: ['Learning for cloud-native development'] },
+                    { id: 'rust', label: 'Rust', type: 'leaf', expertise: 'Beginner', experience: ['Exploring for system-level programming'] },
+                    { id: 'csharp', label: 'C++/C#', type: 'leaf', expertise: 'Beginner', experience: ['Academic experience only'] }
+                  ]
+                },
+                {
+                  id: 'programming-paradigms',
+                  label: 'Programming Paradigms',
+                  description: 'Different approaches to program structure and organization',
+                  children: [
+                    {
+                      id: 'oop',
+                      label: 'Object-Oriented Programming (OOP)',
+                      type: 'leaf',
+                      expertise: 'Expert',
+                      experience: ['Extensively used in Java development', 'Applied OOP principles in large-scale applications at Intuit', 'Designed class hierarchies for enterprise systems']
+                    },
+                    {
+                      id: 'functional',
+                      label: 'Functional Programming',
+                      type: 'leaf',
+                      expertise: 'Advanced',
+                      experience: ['Used with React and Redux', 'Implemented pure component architecture', 'Applied immutable data patterns']
+                    },
+                    { id: 'event-driven', label: 'Event-Driven Programming', type: 'leaf', expertise: 'Advanced', experience: ['Implemented in React applications', 'Used with message queues in distributed systems'] },
+                    { id: 'declarative', label: 'Declarative Programming', type: 'leaf', expertise: 'Advanced', experience: ['React UI development', 'SQL database queries'] },
+                    { id: 'procedural', label: 'Procedural Programming', type: 'leaf', expertise: 'Expert', experience: ['Used in utility functions and algorithms'] }
+                  ]
+                }
+              ]
+            },
+            {
+              id: 'software-principles',
+              label: 'Software Principles',
+              description: 'Best practices and design principles for software development',
+              children: [
+                {
+                  id: 'solid',
+                  label: 'SOLID Principles',
+                  description: 'Five design principles for OOP',
+                  children: [
+                    { id: 'single-responsibility', label: 'Single Responsibility', type: 'leaf', expertise: 'Expert', experience: ['Applied in microservice architecture', 'Component design in frontend applications'] },
+                    { id: 'open-closed', label: 'Open/Closed', type: 'leaf', expertise: 'Advanced', experience: ['Used in plugin systems', 'API design at Intuit'] },
+                    { id: 'liskov', label: 'Liskov Substitution', type: 'leaf', expertise: 'Advanced', experience: ['Applied in Java inheritance hierarchies'] },
+                    { id: 'interface-segregation', label: 'Interface Segregation', type: 'leaf', expertise: 'Advanced', experience: ['Used in Java service interfaces', 'React component props design'] },
+                    { id: 'dependency-inversion', label: 'Dependency Inversion', type: 'leaf', expertise: 'Expert', experience: ['Implemented with Spring dependency injection', 'Used in Angular services'] }
+                  ]
+                },
+                {
+                  id: 'clean-code',
+                  label: 'Clean Code Practices',
+                  type: 'leaf',
+                  expertise: 'Expert',
+                  experience: ['Code reviewer at Intuit', 'Mentored junior developers', 'Led code quality initiatives']
+                }
+              ]
+            }
+          ]
+        },
+        {
+          id: 'frontend',
+          label: '2. Frontend Development',
+          description: 'Skills and technologies for building user interfaces',
+          children: [
+            {
+              id: 'ui-tech',
+              label: 'UI Technologies',
+              description: 'Core web technologies',
+              children: [
+                {
+                  id: 'html5',
+                  label: 'HTML5',
+                  type: 'leaf', 
+                  expertise: 'Expert',
+                  experience: ['15+ years of experience', 'Built semantic, accessible interfaces', 'Implemented HTML5 APIs']
+                },
+                {
+                  id: 'css3',
+                  label: 'CSS3',
+                  description: 'Styling web interfaces',
+                  children: [
+                    { id: 'flexbox', label: 'Flexbox', type: 'leaf', expertise: 'Expert', experience: ['Used for responsive layouts', 'Built complex UI components'] },
+                    { id: 'grid', label: 'Grid', type: 'leaf', expertise: 'Advanced', experience: ['Implemented dashboard layouts', 'Created responsive design systems'] },
+                    { id: 'animations', label: 'Animations', type: 'leaf', expertise: 'Intermediate', experience: ['Created micro-interactions', 'Implemented UI transitions'] }
+                  ]
+                },
+                {
+                  id: 'js',
+                  label: 'JavaScript/TypeScript',
+                  type: 'leaf',
+                  expertise: 'Expert',
+                  experience: ['15+ years of experience', 'Used TypeScript at Intuit and RBC', 'Implemented complex frontend applications']
+                }
+              ]
+            },
+            {
+              id: 'frontend-frameworks',
+              label: 'Frontend Frameworks',
+              description: 'Modern JavaScript frameworks',
+              children: [
+                {
+                  id: 'react',
+                  label: 'React Ecosystem',
+                  description: 'React and related libraries',
+                  children: [
+                    { id: 'react-core', label: 'Core React', type: 'leaf', expertise: 'Expert', experience: ['Built complex UIs at Intuit', 'Developed trading applications at RBC', 'Created performant components'] },
+                    { id: 'react-hooks', label: 'React Hooks', type: 'leaf', expertise: 'Expert', experience: ['Migrated class components to hooks', 'Built custom hooks for reusable logic'] },
+                    { id: 'react-router', label: 'React Router', type: 'leaf', expertise: 'Expert', experience: ['Implemented complex routing', 'Built authenticated routes'] },
+                    { id: 'nextjs', label: 'Next.js', type: 'leaf', expertise: 'Advanced', experience: ['Built at Playdly', 'Server-side rendering'] },
+                    { id: 'redux', label: 'Redux/Redux Toolkit', type: 'leaf', expertise: 'Expert', experience: ['State management at RBC', 'Used with complex data flows'] }
+                  ]
+                },
+                {
+                  id: 'vue',
+                  label: 'Vue Ecosystem',
+                  type: 'leaf',
+                  expertise: 'Beginner',
+                  experience: ['Basic understanding', 'Learning in progress']
+                },
+                {
+                  id: 'angular',
+                  label: 'Angular Ecosystem',
+                  type: 'leaf',
+                  expertise: 'Advanced',
+                  experience: ['Used at Rangle.io', 'Built enterprise applications']
+                }
+              ]
+            }
+          ]
+        },
+        {
+          id: 'backend',
+          label: '3. Backend Development',
+          description: 'Server-side application development',
+          children: [
+            {
+              id: 'service-dev',
+              label: 'Service Development',
+              description: 'Creating APIs and services',
+              children: [
+                {
+                  id: 'api-arch',
+                  label: 'API Architectures',
+                  description: 'Different API design approaches',
+                  children: [
+                    { id: 'rest', label: 'REST', type: 'leaf', expertise: 'Expert', experience: ['Built RESTful services at Intuit', 'Designed resource-oriented APIs'] },
+                    { id: 'graphql', label: 'GraphQL', type: 'leaf', expertise: 'Intermediate', experience: ['Query optimization', 'Schema design'] },
+                    { id: 'grpc', label: 'gRPC', type: 'leaf', expertise: 'Intermediate', experience: ['Used at Resolver', 'Implemented service contracts'] },
+                    { id: 'websockets', label: 'WebSockets', type: 'leaf', expertise: 'Advanced', experience: ['Real-time data at RBC', 'Trading platform updates'] }
+                  ]
+                }
+              ]
+            },
+            {
+              id: 'backend-frameworks',
+              label: 'Backend Frameworks',
+              description: 'Server-side application frameworks',
+              children: [
+                {
+                  id: 'nodejs',
+                  label: 'Node.js',
+                  description: 'JavaScript runtime',
+                  children: [
+                    { id: 'express', label: 'Express', type: 'leaf', expertise: 'Expert', experience: ['Built APIs at Resolver', 'RESTful service development'] },
+                    { id: 'nestjs', label: 'NestJS', type: 'leaf', expertise: 'Intermediate', experience: ['Learning for TypeScript services'] },
+                    { id: 'fastify', label: 'Fastify', type: 'leaf', expertise: 'Beginner', experience: ['Exploring for performance'] }
+                  ]
+                },
+                {
+                  id: 'java-frameworks',
+                  label: 'Java',
+                  description: 'Java frameworks',
+                  children: [
+                    { id: 'spring-boot', label: 'Spring Boot', type: 'leaf', expertise: 'Expert', experience: ['Microservices at Intuit', 'API development'] },
+                    { id: 'micronaut', label: 'Micronaut', type: 'leaf', expertise: 'Beginner', experience: ['Exploring for microservices'] },
+                    { id: 'quarkus', label: 'Quarkus', type: 'leaf', expertise: 'Beginner', experience: ['Learning for cloud-native Java'] }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          id: 'data',
+          label: '4. Data Management',
+          description: 'Database and data processing technologies',
+          children: [
+            {
+              id: 'sql-db',
+              label: 'SQL Databases',
+              description: 'Relational database systems',
+              children: [
+                { id: 'postgresql', label: 'PostgreSQL', type: 'leaf', expertise: 'Expert', experience: ['Used at Playdly and Resolver', 'Complex queries and performance tuning'] },
+                { id: 'mysql', label: 'MySQL/MariaDB', type: 'leaf', expertise: 'Advanced', experience: ['Used at Rethink Solutions', 'Database schema design'] },
+                { id: 'oracle', label: 'Oracle', type: 'leaf', expertise: 'Intermediate', experience: ['Enterprise applications'] },
+                { id: 'sqlserver', label: 'SQL Server', type: 'leaf', expertise: 'Advanced', experience: ['Used at InMoment', 'Stored procedures'] }
+              ]
+            },
+            {
+              id: 'nosql',
+              label: 'NoSQL Solutions',
+              description: 'Non-relational databases',
+              children: [
+                { id: 'mongodb', label: 'MongoDB', type: 'leaf', expertise: 'Advanced', experience: ['Document storage', 'Used with Node.js applications'] },
+                { id: 'redis', label: 'Redis', type: 'leaf', expertise: 'Advanced', experience: ['Used at Playdly', 'Caching and session storage'] },
+                { id: 'dynamodb', label: 'DynamoDB', type: 'leaf', expertise: 'Intermediate', experience: ['AWS projects', 'NoSQL data modeling'] }
+              ]
+            }
+          ]
+        },
+        {
+          id: 'infrastructure',
+          label: '5. Infrastructure & DevOps',
+          description: 'Cloud, containers, and deployment technologies',
+          children: [
+            {
+              id: 'cloud',
+              label: 'Cloud Platforms',
+              description: 'Cloud service providers',
+              children: [
+                {
+                  id: 'aws',
+                  label: 'AWS',
+                  description: 'Amazon Web Services',
+                  children: [
+                    { id: 'ec2', label: 'EC2', type: 'leaf', expertise: 'Advanced', experience: ['Virtual servers for applications', 'Auto-scaling groups'] },
+                    { id: 'lambda', label: 'Lambda', type: 'leaf', expertise: 'Advanced', experience: ['Serverless functions', 'Event processing'] },
+                    { id: 's3', label: 'S3', type: 'leaf', expertise: 'Expert', experience: ['Object storage', 'Static website hosting'] }
+                  ]
+                },
+                { id: 'azure', label: 'Azure', type: 'leaf', expertise: 'Beginner', experience: ['Basic knowledge', 'Learning path'] },
+                { id: 'gcp', label: 'Google Cloud', type: 'leaf', expertise: 'Beginner', experience: ['Exploring cloud solutions'] }
+              ]
+            },
+            {
+              id: 'containerization',
+              label: 'Containerization',
+              description: 'Container technologies',
+              children: [
+                { id: 'docker', label: 'Docker', type: 'leaf', expertise: 'Expert', experience: ['Used at Intuit and Playdly', 'Container orchestration', 'Multi-stage builds'] },
+                { id: 'kubernetes', label: 'Kubernetes', type: 'leaf', expertise: 'Advanced', experience: ['Deployment at Playdly', 'Service orchestration', 'Cluster management'] }
+              ]
+            },
+            {
+              id: 'cicd',
+              label: 'CI/CD',
+              description: 'Continuous integration and deployment',
+              children: [
+                { id: 'jenkins', label: 'Jenkins', type: 'leaf', expertise: 'Expert', experience: ['Pipeline creation at Intuit', 'Build automation'] },
+                { id: 'github-actions', label: 'GitHub Actions', type: 'leaf', expertise: 'Advanced', experience: ['Workflow automation at Playdly', 'Continuous deployment'] },
+                { id: 'gitlab-ci', label: 'GitLab CI', type: 'leaf', expertise: 'Intermediate', experience: ['Pipeline configuration', 'Automated testing'] }
+              ]
+            }
+          ]
+        }
+      ];
+
+      // References
+      let selectedNode = null;
+      const treeElement = document.getElementById('tree');
+      const searchInput = document.getElementById('search');
+      const noteCardContainer = document.querySelector('.note-card-container');
+      const noteCard = document.getElementById('noteCard');
+      let focusedElement = null;
+
+      // Build the tree
+      function buildTree(nodes, parent) {
+        nodes.forEach(node => {
+          const item = document.createElement('li');
+          item.className = 'tree-item';
+          item.setAttribute('role', 'treeitem');
+          item.setAttribute('aria-expanded', 'false');
+          item.id = node.id;
+          
+          if (node.type === 'leaf') {
+            // Leaf node
+            item.className = 'tree-item tree-leaf-item';
+            const leafContent = document.createElement('div');
+            leafContent.className = 'tree-leaf';
+            leafContent.setAttribute('tabindex', '0');
+            leafContent.setAttribute('data-id', node.id);
+            leafContent.textContent = node.label;
+            
+            leafContent.addEventListener('click', (e) => {
+              e.stopPropagation();
+              selectNode(node);
+            });
+            
+            leafContent.addEventListener('keydown', (e) => {
+              handleKeyNavigation(e, item);
+            });
+
+            item.appendChild(leafContent);
+          } else {
+            // Branch node with children
+            const content = document.createElement('div');
+            content.className = 'tree-content';
+            content.setAttribute('tabindex', '0');
+            
+            const toggle = document.createElement('span');
+            toggle.className = 'tree-toggle';
+            toggle.textContent = '+';
+            toggle.setAttribute('aria-hidden', 'true');
+            
+            const label = document.createElement('span');
+            label.className = 'tree-label';
+            label.textContent = node.label;
+            
+            content.appendChild(toggle);
+            content.appendChild(label);
+            item.appendChild(content);
+            
+            // Set collapsed state initially
+            item.classList.add('collapsed');
+            
+            content.addEventListener('click', () => {
+              toggleNode(item);
+            });
+            
+            content.addEventListener('keydown', (e) => {
+              handleKeyNavigation(e, item);
+            });
+            
+            if (node.children && node.children.length > 0) {
+              const nestedList = document.createElement('ul');
+              nestedList.className = 'tree-nested';
+              nestedList.setAttribute('role', 'group');
+              item.appendChild(nestedList);
+              
+              // Recursively build children
+              buildTree(node.children, nestedList);
+            }
+          }
+          
+          parent.appendChild(item);
+        });
+      }
+
+      // Toggle expand/collapse
+      function toggleNode(item) {
+        item.classList.toggle('collapsed');
+        const isExpanded = !item.classList.contains('collapsed');
+        item.setAttribute('aria-expanded', isExpanded);
+        
+        const toggle = item.querySelector('.tree-toggle');
+        if (toggle) {
+          toggle.textContent = isExpanded ? '-' : '+';
+        }
+      }
+
+      // Select a node and show its details
+      function selectNode(node) {
+        // Clear previous selection
+        const prevSelected = document.querySelector('.tree-content.selected, .tree-leaf.selected');
+        if (prevSelected) {
+          prevSelected.classList.remove('selected');
+        }
+        
+        // Set new selection
+        selectedNode = node;
+        const nodeElement = document.querySelector(`[data-id="${node.id}"]`);
+        if (nodeElement) {
+          nodeElement.classList.add('selected');
+        }
+        
+        // Update note card
+        updateNoteCard(node);
+      }
+
+      // Update note card content
+      function updateNoteCard(node) {
+        let cardContent = '';
+        
+        if (node) {
+          cardContent = `
+            <div class="note-card-header">
+              <h2 class="note-card-title">${node.label}</h2>
+              <span class="expertise-level">${node.expertise || 'Unknown'}</span>
+            </div>
+            
+            <div class="experience-section">
+              <h3 class="section-title">Experience</h3>
+              ${node.experience && node.experience.length > 0 ? 
+                node.experience.map(exp => `<div class="experience-item">${exp}</div>`).join('') :
+                '<div class="experience-item">No specific experience recorded yet</div>'
+              }
+            </div>
+            
+            <div class="resources-section">
+              <h3 class="section-title">Resources</h3>
+              <p>Documentation and learning resources will be added in future updates.</p>
+              <a href="#" class="resource-link" target="_blank">Placeholder resource link</a>
+            </div>
+          `;
+        } else {
+          cardContent = `
+            <div class="note-placeholder">
+              Select a technology or concept from the tree to view details
+            </div>
+          `;
+        }
+        
+        noteCard.innerHTML = cardContent;
+      }
+
+      // Filter tree based on search input
+      function filterTree(searchText) {
+        if (!searchText.trim()) {
+          // Show all nodes if search is empty
+          document.querySelectorAll('.tree-item').forEach(item => {
+            item.classList.remove('hidden');
+          });
+          return;
+        }
+        
+        // Split search text by space or comma to search for multiple terms
+        const searchTerms = searchText.toLowerCase().split(/[\s,]+/).filter(term => term.length > 0);
+        
+        // Hide all items initially
+        document.querySelectorAll('.tree-item').forEach(item => {
+          item.classList.add('hidden');
+        });
+        
+        // Find matching leaf nodes
+        let matchedLeafs = [];
+        
+        function searchNode(nodeData) {
+          const nodeText = nodeData.label.toLowerCase();
+          
+          // Check if node matches any search term
+          const matches = searchTerms.some(term => nodeText.includes(term));
+          
+          if (matches && nodeData.type === 'leaf') {
+            matchedLeafs.push(nodeData.id);
+            return true;
+          }
+          
+          // If it has children, search them
+          if (nodeData.children && nodeData.children.length > 0) {
+            const childMatches = nodeData.children.some(child => searchNode(child));
+            if (childMatches) {
+              return true;
+            }
+          }
+          
+          return false;
+        }
+        
+        // Search through tree data
+        treeData.forEach(node => searchNode(node));
+        
+        // Show matched items and their parent branches
+        matchedLeafs.forEach(id => {
+          const leafElement = document.getElementById(id);
+          if (leafElement) {
+            // Show this leaf
+            leafElement.classList.remove('hidden');
+            
+            // Show all parent nodes
+            let parent = leafElement.parentElement;
+            while (parent && parent !== treeElement) {
+              if (parent.classList.contains('tree-item')) {
+                parent.classList.remove('hidden');
+                parent.classList.remove('collapsed');
+                parent.setAttribute('aria-expanded', 'true');
+                
+                const toggle = parent.querySelector('.tree-toggle');
+                if (toggle) {
+                  toggle.textContent = '-';
+                }
+              }
+              parent = parent.parentElement;
+            }
+          }
+        });
+        
+        // Highlight matching text in visible items
+        document.querySelectorAll('.tree-leaf, .tree-label').forEach(element => {
+          const originalText = element.textContent;
+          
+          // Only highlight if not hidden
+          if (!element.closest('.tree-item.hidden')) {
+            let highlightedText = originalText;
+            
+            searchTerms.forEach(term => {
+              if (term.trim() !== '') {
+                const regex = new RegExp(`(${term})`, 'gi');
+                highlightedText = highlightedText.replace(regex, '<span class="highlight">$1</span>');
+              }
+            });
+            
+            if (highlightedText !== originalText) {
+              element.innerHTML = highlightedText;
+            }
+          }
+        });
+      }
+
+      // Handle keyboard navigation
+      function handleKeyNavigation(event, item) {
+        const key = event.key;
+        const target = event.target;
+        
+        // Update focused element reference
+        focusedElement = target;
+        
+        // Remove previous focus highlight
+        document.querySelectorAll('.focused').forEach(el => {
+          el.classList.remove('focused');
+        });
+        
+        // Add focus highlight
+        target.classList.add('focused');
+        
+        switch (key) {
+          case 'ArrowDown':
+            event.preventDefault();
+            moveFocusDown();
+            break;
+          case 'ArrowUp':
+            event.preventDefault();
+            moveFocusUp();
+            break;
+          case 'ArrowRight':
+            event.preventDefault();
+            // If it's a branch node, expand it
+            if (!target.classList.contains('tree-leaf') && item.classList.contains('collapsed')) {
+              toggleNode(item);
+            }
+            break;
+          case 'ArrowLeft':
+            event.preventDefault();
+            // If it's a branch node, collapse it
+            if (!target.classList.contains('tree-leaf') && !item.classList.contains('collapsed')) {
+              toggleNode(item);
+            } else {
+              // Otherwise, move to parent
+              const parentItem = item.parentElement.closest('.tree-item');
+              if (parentItem) {
+                const parentContent = parentItem.querySelector('.tree-content');
+                if (parentContent) {
+                  parentContent.focus();
+                }
+              }
+            }
+            break;
+          case 'Enter':
+          case ' ':
+            event.preventDefault();
+            if (target.classList.contains('tree-leaf')) {
+              // For leaf nodes, show note card
+              const nodeId = target.getAttribute('data-id');
+              const node = findNodeById(nodeId);
+              if (node) {
+                selectNode(node);
+              }
+            } else {
+              // For branch nodes, toggle expand/collapse
+              toggleNode(item);
+            }
+            break;
+          case 'Tab':
+            // This is handled by the browser
+            break;
+        }
+      }
+
+      // Move focus to the next visible item
+      function moveFocusDown() {
+        if (!focusedElement) return;
+        
+        const allFocusable = Array.from(document.querySelectorAll('.tree-content:not(.hidden), .tree-leaf:not(.hidden)'))
+          .filter(el => !el.closest('.tree-item.hidden') && !el.closest('.collapsed .tree-nested'));
+        
+        const currentIndex = allFocusable.indexOf(focusedElement);
+        if (currentIndex < allFocusable.length - 1) {
+          allFocusable[currentIndex + 1].focus();
+        }
+      }
+
+      // Move focus to the previous visible item
+      function moveFocusUp() {
+        if (!focusedElement) return;
+        
+        const allFocusable = Array.from(document.querySelectorAll('.tree-content:not(.hidden), .tree-leaf:not(.hidden)'))
+          .filter(el => !el.closest('.tree-item.hidden') && !el.closest('.collapsed .tree-nested'));
+        
+        const currentIndex = allFocusable.indexOf(focusedElement);
+        if (currentIndex > 0) {
+          allFocusable[currentIndex - 1].focus();
+        }
+      }
+
+      // Find a node by ID in the tree data
+      function findNodeById(id) {
+        let result = null;
+        
+        function search(nodes) {
+          for (const node of nodes) {
+            if (node.id === id) {
+              return node;
+            }
+            
+            if (node.children && node.children.length > 0) {
+              const found = search(node.children);
+              if (found) {
+                return found;
+              }
+            }
+          }
+          return null;
+        }
+        
+        return search(treeData);
+      }
+
+      // Initialize the tree
+      buildTree(treeData, treeElement);
+      
+      // Add search event listener
+      searchInput.addEventListener('input', (e) => {
+        filterTree(e.target.value);
+      });
+      
+      // Add keyboard event for search input
+      searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          
+          // Find first visible node and focus it
+          const firstVisible = document.querySelector('.tree-content:not(.hidden), .tree-leaf:not(.hidden)');
+          if (firstVisible) {
+            firstVisible.focus();
+          }
+        }
+      });
+      
+      // Expand first level initially
+      document.querySelectorAll('#tree > .tree-item').forEach(item => {
+        toggleNode(item);
+      });
+    });
+  </script>
+</body>
+</html>
