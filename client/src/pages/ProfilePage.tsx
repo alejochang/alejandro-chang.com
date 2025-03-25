@@ -2,7 +2,33 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Briefcase, Code, GraduationCap, Award, FolderOpen, Search, ChevronRight, ChevronDown, User, Menu } from "lucide-react";
+import {
+  Briefcase,
+  Code,
+  GraduationCap,
+  Award,
+  FolderOpen,
+  Search,
+  ChevronRight,
+  ChevronDown,
+  User,
+  Menu,
+  Globe,
+  Database,
+  Cpu,
+  Layers,
+  GitBranch,
+  ShieldCheck,
+  BarChart,
+  Terminal,
+  Server,
+  Cloud,
+  Brain,
+  Palette,
+  Monitor,
+  Network,
+  Wrench
+} from "lucide-react";
 import Header from "@/components/Header";
 import profileData from "@/data/profileData.json";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -24,6 +50,50 @@ const getIconComponent = (iconName: string) => {
       return <FolderOpen className="h-5 w-5 text-[var(--medium-gray)] mr-3" />;
     default:
       return <ChevronRight className="h-5 w-5 text-[var(--medium-gray)] mr-3" />;
+  }
+};
+
+// Helper function to get skill category icon
+const getSkillCategoryIcon = (category: string) => {
+  switch (category.toLowerCase()) {
+    case "programming languages":
+      return <Code className="h-5 w-5 text-white" />;
+    case "databases":
+      return <Database className="h-5 w-5 text-white" />;
+    case "frontend":
+    case "frontend development":
+      return <Palette className="h-5 w-5 text-white" />;
+    case "backend":
+    case "backend development":
+      return <Server className="h-5 w-5 text-white" />;
+    case "devops":
+    case "devops & cloud":
+    case "cloud platforms":
+      return <Cloud className="h-5 w-5 text-white" />;
+    case "ai":
+    case "ai & machine learning":
+    case "machine learning":
+      return <Brain className="h-5 w-5 text-white" />;
+    case "web development":
+      return <Globe className="h-5 w-5 text-white" />;
+    case "development tools":
+      return <Terminal className="h-5 w-5 text-white" />;
+    case "tools":
+    case "tools & methodologies":
+    case "methodologies":
+      return <Wrench className="h-5 w-5 text-white" />;
+    case "version control":
+      return <GitBranch className="h-5 w-5 text-white" />;
+    case "security":
+      return <ShieldCheck className="h-5 w-5 text-white" />;
+    case "analytics":
+      return <BarChart className="h-5 w-5 text-white" />;
+    case "hardware & systems":
+      return <Cpu className="h-5 w-5 text-white" />;
+    case "networking":
+      return <Network className="h-5 w-5 text-white" />;
+    default:
+      return <Code className="h-5 w-5 text-white" />;
   }
 };
 
@@ -85,14 +155,9 @@ export default function ProfilePage() {
   const selectSection = (sectionId: string) => {
     setActiveSection(sectionId);
 
-    // If selecting the About section, hide all other sections
-    if (sectionId === "about") {
-      setExpandedSections(["about"]);
-    } else {
-      // Make sure the selected section is expanded
-      if (!expandedSections.includes(sectionId)) {
-        setExpandedSections([...expandedSections, sectionId]);
-      }
+    // Make sure the selected section is expanded
+    if (!expandedSections.includes(sectionId)) {
+      setExpandedSections([...expandedSections, sectionId]);
     }
 
     // Auto-scroll to the section in the resume content
@@ -239,7 +304,7 @@ export default function ProfilePage() {
                   className="bg-white rounded-lg shadow-md overflow-auto h-[80vh] p-6"
               >
                 {/* About Me Section */}
-                <div id="about-section" className="resume-section">
+                <div id="about-section" className={`resume-section ${activeSection !== 'about' ? 'hidden' : ''}`}>
                   <h2 className="text-2xl font-bold text-[var(--secondary-color)] mb-6">{about.title}</h2>
 
                   <div className="rounded-lg p-6 mb-8 border-l-4 border-[var(--primary-color)]">
@@ -289,7 +354,7 @@ export default function ProfilePage() {
                 </div>
 
                 {/* Experience Section */}
-                <div id="experience-section" className={`resume-section ${activeSection === 'about' ? 'hidden' : ''}`}>
+                <div id="experience-section" className={`resume-section ${activeSection !== 'experience' ? 'hidden' : ''}`}>
                   <h2 className="text-2xl font-bold text-[var(--secondary-color)] mb-6">
                     {profileSections.find(section => section.id === 'experience')?.title}
                   </h2>
@@ -324,42 +389,55 @@ export default function ProfilePage() {
                 </div>
 
                 {/* Skills Section */}
-                <div id="skills-section" className={`resume-section mt-10 ${activeSection === 'about' ? 'hidden' : ''}`}>
-                  <h2 className="text-2xl font-bold text-[var(--secondary-color)] mb-6">
+                <div id="skills-section" className={`resume-section mt-10 ${activeSection !== 'skills' ? 'hidden' : ''}`}>
+                  <h2 className="text-2xl font-bold text-[var(--secondary-color)] mb-8">
                     {profileSections.find(section => section.id === 'skills')?.title}
                   </h2>
 
-                  <div className="space-y-6">
-                    {skills.technical.map((skillCategory) => (
-                        <div key={skillCategory.category} className="skill-category">
-                          <h4 className="text-lg font-semibold text-[var(--secondary-color)] mb-3">
+                  <div className="space-y-10">
+                    {/* Technical Skills */}
+                    {skills.technical.map((skillCategory, categoryIndex) => (
+                        <div key={skillCategory.category} className="skill-category bg-white rounded-lg shadow-sm p-6 border-l-4 border-[var(--primary-color)]">
+                          <h4 className="text-xl font-semibold text-[var(--secondary-color)] mb-4 flex items-center">
+                            <div className="h-10 w-10 rounded-full bg-gradient-to-r from-[var(--primary-color)] to-[var(--highlight-color)] flex items-center justify-center mr-3 text-white">
+                              {getSkillCategoryIcon(skillCategory.category)}
+                            </div>
                             {skillCategory.category}
                           </h4>
-                          <div className="flex flex-wrap gap-2">
+
+                          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-4">
                             {skillCategory.items.map((skill, skillIndex) => (
-                                <span
+                                <div
                                     key={skillIndex}
-                                    className="px-3 py-1.5 bg-[var(--light-gray)] bg-opacity-30 text-[var(--text-color)] rounded-md text-sm"
+                                    className="flex items-center"
                                 >
-                            {skill}
-                          </span>
+                                  <div className="h-2 w-2 rounded-full bg-[var(--primary-color)] mr-2"></div>
+                                  <span className="text-[var(--text-color)]">{skill}</span>
+                                </div>
                             ))}
                           </div>
                         </div>
                     ))}
 
-                    <div className="skill-category">
-                      <h4 className="text-lg font-semibold text-[var(--secondary-color)] mb-3">
+                    {/* Soft Skills */}
+                    <div className="skill-category bg-gradient-to-r from-[var(--highlight-color)] to-[var(--backgroundLight)] bg-opacity-20 rounded-lg p-6 border-r-4 border-[var(--secondary-color)]">
+                      <h4 className="text-xl font-semibold text-[var(--secondary-color)] mb-4">
                         {skills.softSkillsTitle}
                       </h4>
-                      <div className="flex flex-wrap gap-2">
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 mt-4">
                         {skills.soft.map((skill, index) => (
-                            <span
+                            <div
                                 key={index}
-                                className="px-3 py-1.5 bg-[var(--highlight-color)] bg-opacity-30 text-[var(--text-color)] rounded-md text-sm"
+                                className="flex items-center"
                             >
-                          {skill}
-                        </span>
+                              <div className="flex-shrink-0 h-6 w-6 rounded-full bg-[var(--secondary-color)] flex items-center justify-center mr-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 text-white" viewBox="0 0 20 20" fill="currentColor">
+                                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                </svg>
+                              </div>
+                              <span className="text-[var(--text-color)] font-medium">{skill}</span>
+                            </div>
                         ))}
                       </div>
                     </div>
@@ -367,7 +445,7 @@ export default function ProfilePage() {
                 </div>
 
                 {/* Education Section */}
-                <div id="education-section" className={`resume-section mt-10 ${activeSection === 'about' ? 'hidden' : ''}`}>
+                <div id="education-section" className={`resume-section mt-10 ${activeSection !== 'education' ? 'hidden' : ''}`}>
                   <h2 className="text-2xl font-bold text-[var(--secondary-color)] mb-6">
                     {profileSections.find(section => section.id === 'education')?.title}
                   </h2>
@@ -388,7 +466,7 @@ export default function ProfilePage() {
                 </div>
 
                 {/* Certifications Section */}
-                <div id="certifications-section" className={`resume-section mt-10 ${activeSection === 'about' ? 'hidden' : ''}`}>
+                <div id="certifications-section" className={`resume-section mt-10 ${activeSection !== 'certifications' ? 'hidden' : ''}`}>
                   <h2 className="text-2xl font-bold text-[var(--secondary-color)] mb-6">
                     {profileSections.find(section => section.id === 'certifications')?.title}
                   </h2>
@@ -404,7 +482,7 @@ export default function ProfilePage() {
                 </div>
 
                 {/* Projects Section */}
-                <div id="projects-section" className={`resume-section mt-10 ${activeSection === 'about' ? 'hidden' : ''}`}>
+                <div id="projects-section" className={`resume-section mt-10 ${activeSection !== 'projects' ? 'hidden' : ''}`}>
                   <h2 className="text-2xl font-bold text-[var(--secondary-color)] mb-6">
                     {profileSections.find(section => section.id === 'projects')?.title}
                   </h2>
