@@ -5,13 +5,15 @@
     "subtitle": "Senior Software Engineer with 15+ years of experience",
     "profilePicture": "/ac_profile.jpeg",
     "location": "Burlington, Canada",
-    "email": "contact@alejandro-chang.com",
+    "email": "alejandro.chang@gmail.com",
     "linkedin": "https://linkedin.com/in/alejandro-chang",
-    "github": "https://github.com/alejandro-chang"
+    "github": "https://github.com/alejochang"
   },
   "about": {
+    "title": "About Me",
     "headline": "Senior Software Engineer with 15+ years of experience building scalable applications",
-    "description": "I specialize in developing high-performance, user-friendly applications using modern web technologies. With expertise in both frontend and backend development, I create comprehensive solutions that deliver exceptional user experiences while maintaining clean, maintainable code.",
+    "description": "Senior Full-Stack Software Engineer with over 15 years of experience building end-to-end solutions using Java, Spring, JavaScript, TypeScript and React. Skilled in designing cloud-native systems, distributed architectures, and optimizing performance following DevOps best practices.\n\nExperienced at driving cross-functional collaboration, mentoring engineers and aligning technical initiatives with business goals. Committed to delivering impactful solutions at scale and fostering innovation through hands-on leadership.\n\nLocated in Burlington, Ontario, I am passionate about building software that makes a meaningful difference in people's lives.",
+    "strengthsTitle": "Key Strengths",
     "highlights": [
       "Full-stack development with React, TypeScript, and Java",
       "Expertise in cloud architecture and deployment on AWS",
@@ -21,29 +23,40 @@
   },
   "profileSections": [
     {
+      "id": "about",
+      "name": "About Me",
+      "icon": "user",
+      "title": "About Me"
+    },
+    {
       "id": "experience",
       "name": "Work Experience",
-      "icon": "briefcase"
+      "icon": "briefcase",
+      "title": "Work Experience"
     },
     {
       "id": "skills",
       "name": "Technical Skills",
-      "icon": "code"
+      "icon": "code",
+      "title": "Technical Skills"
     },
     {
       "id": "education",
       "name": "Education",
-      "icon": "graduation-cap"
+      "icon": "graduation-cap",
+      "title": "Education"
     },
     {
       "id": "certifications",
       "name": "Certifications",
-      "icon": "certificate"
+      "icon": "certificate",
+      "title": "Certifications"
     },
     {
       "id": "projects",
       "name": "Projects",
-      "icon": "project-diagram"
+      "icon": "project-diagram",
+      "title": "Projects"
     }
   ],
   "experience": [
@@ -119,17 +132,23 @@
         "items": ["LangChain", "Pinecone", "OpenAI API", "Retrieval-Augmented Generation", "Vector Embeddings", "Prompt Engineering"]
       }
     ],
+    "softSkillsTitle": "Soft Skills",
     "soft": [
-      "Technical Leadership", 
-      "Project Management", 
-      "Mentoring", 
-      "Clear Communication", 
-      "Problem Solving", 
+      "Technical Leadership",
+      "Project Management",
+      "Mentoring",
+      "Clear Communication",
+      "Problem Solving",
       "Agile Methodologies",
       "Team Collaboration",
       "Critical Thinking",
       "Client Relationship Management"
-    ]
+    ],
+    "techAndToolsLabel": "Tech & Tools:"
+  },
+  "projectsSection": {
+    "title": "Projects",
+    "keyFeaturesLabel": "Key Features:"
   },
   "projects": [
     {
@@ -222,7 +241,7 @@
     },
     {
       "name": "GitHub",
-      "url": "https://github.com/alejandro-chang",
+      "url": "https://github.com/alejochang",
       "icon": "github"
     },
     {
@@ -232,7 +251,7 @@
     },
     {
       "name": "Email",
-      "url": "mailto:contact@alejandro-chang.com",
+      "url": "mailto:alejandro.chang@gmail.com",
       "icon": "envelope"
     }
   ]
