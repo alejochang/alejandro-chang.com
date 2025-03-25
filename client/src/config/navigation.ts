@@ -20,7 +20,7 @@ const navigationConfig: NavigationConfig = {
   buttons: {
     profile: true,
     skillsTree: true,
-    knowledgeGraph: true,
+    knowledgeGraph: false,
   },
 };
 
