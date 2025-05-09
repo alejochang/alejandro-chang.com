@@ -265,6 +265,72 @@
   ],
   "certifications": [
     {
+      "name": "Python for Data Science, AI & Development",
+      "issuer": "IBM (Coursera)",
+      "year": "2025",
+      "details": "Completed January 31, 2025"
+    },
+    {
+      "name": "Introduction to Artificial Intelligence (AI)",
+      "issuer": "IBM (Coursera)",
+      "year": "2025",
+      "details": "Completed January 11, 2025"
+    },
+    {
+      "name": "Generative AI: Introduction and Applications",
+      "issuer": "IBM (Coursera)",
+      "year": "2025",
+      "details": "Completed January 11, 2025"
+    },
+    {
+      "name": "Generative AI and LLMs: Architecture and Data Preparation",
+      "issuer": "IBM (Coursera)",
+      "year": "2025",
+      "details": "Completed January 10, 2025"
+    },
+    {
+      "name": "Developing AI Applications with Python and Flask",
+      "issuer": "IBM (Coursera)",
+      "year": "2025",
+      "details": "Completed February 13, 2025"
+    },
+    {
+      "name": "Machine Learning with Python",
+      "issuer": "IBM (Coursera)",
+      "year": "2025",
+      "details": "Completed March 27, 2025"
+    },
+    {
+      "name": "Data Analysis with Python",
+      "issuer": "IBM (Coursera)",
+      "year": "2025",
+      "details": "Completed March 12, 2025 (Also verified via Credly)"
+    },
+    {
+      "name": "Building Generative AI-Powered Applications with Python",
+      "issuer": "IBM (Coursera)",
+      "year": "2025",
+      "details": "Completed March 11, 2025"
+    },
+    {
+      "name": "Gen AI Foundational Models for NLP & Language Understanding",
+      "issuer": "IBM (Coursera)",
+      "year": "2025",
+      "details": "Completed April 29, 2025"
+    },
+    {
+      "name": "Generative AI Language Modelling with Transformers",
+      "issuer": "IBM (Coursera)",
+      "year": "2025",
+      "details": "Completed May 1, 2025"
+    },
+    {
+      "name": "Generative AI Engineering and Fine-Tuning Transformers",
+      "issuer": "IBM (Coursera)",
+      "year": "2025",
+      "details": "Completed May 8, 2025"
+    },
+    {
       "name": "AWS Certified Solutions Architect - Professional",
       "issuer": "Amazon Web Services",
       "year": "2023"
@@ -283,6 +349,18 @@
       "name": "Oracle Certified Professional, Java SE Programmer (OCPJP)",
       "issuer": "Oracle",
       "year": "Previously Attained"
+    },
+    {
+      "name": "IBM AI Engineering Professional Certificate (Specialization)",
+      "issuer": "IBM (Coursera - NUAMUVA4NTPF)",
+      "year": "Pending full verification - details not scraped",
+      "details": "Specialization certificate; requires manual detail input if available."
+    },
+    {
+      "name": "Certificate GSZN7BTOYM45",
+      "issuer": "IBM (Coursera)",
+      "year": "Pending full verification - details not scraped",
+      "details": "Course certificate; page showed 'Loading...' in static view."
     }
   ],
   "colors": {
