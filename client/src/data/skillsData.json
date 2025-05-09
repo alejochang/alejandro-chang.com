@@ -66,6 +66,19 @@
       }
     },
     {
+      "id": "ai",
+      "label": "AI/ML",
+      "color": {
+        "active": "bg-[#8BA08F] hover:bg-[#59635D]",
+        "inactive": "bg-[#B3C8B7] bg-opacity-60 text-[#233536] border-[#8BA08F] hover:bg-[#D1CBC0]"
+      },
+      "styling": {
+        "background": "bg-[#B3C8B7] bg-opacity-60",
+        "border": "border-l-4 border-[#8BA08F]",
+        "indicator": "bg-[#8BA08F]"
+      }
+    },
+    {
       "id": "security",
       "label": "Security",
       "color": {
@@ -94,15 +107,15 @@
   ],
   "emptyStateContent": {
     "title": "Select a skill from the tree to view details",
-    "description": "Browse through the categories in the sidebar and click on any skill to see detailed information.",
+    "description": "Browse through the categories in the sidebar and click on any skill to see detailed information about my experience and related resources.",
     "help": {
       "title": "How to use the Skills Tree",
       "items": [
-        "Use the <b>left sidebar</b> to browse through skill categories",
-        "Click on any skill to view detailed information",
-        "Filter skills by category using the checkboxes",
-        "Use the search box to find specific skills",
-        "Follow breadcrumbs to navigate back up the tree hierarchy"
+        "Use the <b>left sidebar</b> to browse through skill categories.",
+        "Click on any skill to view detailed information including experience and resources.",
+        "Filter skills by category using the checkboxes.",
+        "Use the search box to find specific skills.",
+        "Follow breadcrumbs to navigate back up the tree hierarchy."
       ]
     }
   },
@@ -110,44 +123,52 @@
     "id": 0,
     "name": "Software Engineering",
     "category": "core",
-    "description": "The complete hierarchy of software engineering skills and technologies",
+    "description": "The complete hierarchy of software engineering skills and technologies, reflecting Alejandro Chang's expertise and experience.",
+    "level": "Expert",
     "children": [
       {
         "id": 1,
         "name": "Core Development Skills",
         "category": "core",
-        "description": "Fundamental programming skills and principles that are essential for software engineers",
-        "level": "advanced",
+        "description": "Fundamental programming skills and principles that are essential for software engineers.",
+        "level": "Expert",
         "children": [
           {
             "id": 2,
             "name": "Languages & Paradigms",
             "category": "core",
-            "description": "Programming languages and coding approaches that form the foundation of software development",
-            "level": "advanced",
+            "description": "Programming languages and coding approaches that form the foundation of software development.",
+            "level": "Expert",
             "children": [
               {
                 "id": 3,
                 "name": "JavaScript/TypeScript",
                 "category": "core",
-                "description": "High-level programming languages used primarily for web development, with TypeScript adding static typing to JavaScript",
-                "level": "expert",
+                "description": "High-level programming languages used primarily for web development, with TypeScript adding static typing to JavaScript.",
+                "level": "Expert",
                 "experience": [
-                  "Developed multiple full-stack applications using TypeScript and modern JavaScript features",
-                  "Built custom state management solutions for complex front-end applications",
-                  "Created reusable utility libraries and type definitions"
+                  "15+ years experience with JavaScript, extensive experience with TypeScript.",
+                  "Led frontend development using TypeScript & React at Intuit.",
+                  "Developed complex React applications with TypeScript at RBC.",
+                  "Provided JavaScript/TypeScript consultation at Rangle.io.",
+                  "Utilized TypeScript for full-stack development (Next.js, Node.js) at Playdly."
                 ],
-                "relatedSkills": ["React", "Node.js", "Express", "Web Development"],
+                "relatedSkills": ["React", "Next.js", "Node.js", "Angular", "Web Development", "Frontend Architecture"],
                 "resources": [
                   {
-                    "title": "TypeScript Documentation",
-                    "url": "https://www.typescriptlang.org/docs/",
+                    "title": "TypeScript Handbook",
+                    "url": "https://www.typescriptlang.org/docs/handbook/intro.html",
                     "type": "documentation"
                   },
                   {
-                    "title": "JavaScript MDN Web Docs",
+                    "title": "MDN Web Docs - JavaScript",
                     "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
                     "type": "documentation"
+                  },
+                  {
+                    "title": "Effective TypeScript by Dan Vanderkam",
+                    "url": "https://www.oreilly.com/library/view/effective-typescript/9781492053736/",
+                    "type": "book"
                   }
                 ],
                 "children": []
@@ -156,14 +177,14 @@
                 "id": 4,
                 "name": "Python",
                 "category": "core",
-                "description": "A versatile programming language known for its readability and extensive libraries, widely used in data science, web development, and automation",
-                "level": "advanced",
+                "description": "A versatile programming language known for its readability and extensive libraries, widely used in data science, web development, and automation.",
+                "level": "Advanced",
                 "experience": [
-                  "Built data processing pipelines using pandas and numpy",
-                  "Developed RESTful APIs using Flask and FastAPI",
-                  "Created automation scripts for deployment and testing"
+                  "Primary language for AI/ML development and backend services (FastAPI) at Playdly.",
+                  "Used for scripting and automation tasks in DevOps at Intuit.",
+                  "Developed data processing pipelines and RESTful APIs."
                 ],
-                "relatedSkills": ["Django", "FastAPI", "Data Science", "Automation"],
+                "relatedSkills": ["FastAPI", "LangChain", "Django", "Data Science", "Automation", "AI/ML"],
                 "resources": [
                   {
                     "title": "Python Official Documentation",
@@ -171,9 +192,9 @@
                     "type": "documentation"
                   },
                   {
-                    "title": "Real Python Tutorials",
-                    "url": "https://realpython.com/",
-                    "type": "tutorial"
+                    "title": "Fluent Python by Luciano Ramalho",
+                    "url": "https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/",
+                    "type": "book"
                   }
                 ],
                 "children": []
@@ -182,24 +203,86 @@
                 "id": 5,
                 "name": "Java",
                 "category": "core",
-                "description": "A class-based, object-oriented programming language designed for reliability and platform independence",
-                "level": "intermediate",
+                "description": "A class-based, object-oriented programming language designed for reliability and platform independence, widely used for enterprise applications.",
+                "level": "Expert",
                 "experience": [
-                  "Developed enterprise applications using Spring Framework",
-                  "Built microservices with Spring Boot",
-                  "Created RESTful APIs and integrated with databases"
+                  "15+ years of experience in Java development.",
+                  "Led development of Spring Boot microservices at Intuit.",
+                  "Developed J2EE applications at InMoment.",
+                  "Implemented backend systems at Rethink Solutions.",
+                  "Core language for backend development at GlocalSpace Inc."
                 ],
-                "relatedSkills": ["Spring", "Hibernate", "Enterprise Development"],
+                "relatedSkills": ["Spring Boot", "Spring Framework", "J2EE", "Microservices", "Enterprise Development", "OOP"],
                 "resources": [
                   {
-                    "title": "Java Documentation",
+                    "title": "Oracle Java Documentation",
                     "url": "https://docs.oracle.com/en/java/",
                     "type": "documentation"
                   },
                   {
-                    "title": "Spring Framework Guides",
-                    "url": "https://spring.io/guides",
-                    "type": "tutorial"
+                    "title": "Effective Java by Joshua Bloch",
+                    "url": "https://www.oreilly.com/library/view/effective-java-3rd/9780134686097/",
+                    "type": "book"
+                  }
+                ],
+                "children": []
+              },
+              {
+                "id": 100,
+                "name": "Shell Scripting",
+                "category": "core",
+                "description": "Scripting for automating tasks in Unix-like operating systems (Bash, Zsh).",
+                "level": "Intermediate",
+                "experience": [
+                  "Wrote scripts for CI/CD pipelines and deployment automation at Intuit.",
+                  "Automated system administration tasks."
+                ],
+                "relatedSkills": ["DevOps", "Linux/Unix", "Automation"],
+                "resources": [
+                  {
+                    "title": "Bash Guide for Beginners",
+                    "url": "https://tldp.org/LDP/Bash-Beginners-Guide/html/",
+                    "type": "guide"
+                  }
+                ],
+                "children": []
+              },
+              {
+                "id": 101,
+                "name": "Scala",
+                "category": "core",
+                "description": "A general-purpose programming language providing support for functional programming and a strong static type system.",
+                "level": "Beginner",
+                "experience": [
+                  "Explored for data processing and concurrent programming.",
+                  "Familiar with basic syntax and functional concepts."
+                ],
+                "relatedSkills": ["Functional Programming", "Java Virtual Machine (JVM)", "Akka"],
+                "resources": [
+                  {
+                    "title": "Scala Documentation",
+                    "url": "https://docs.scala-lang.org/",
+                    "type": "documentation"
+                  }
+                ],
+                "children": []
+              },
+              {
+                "id": 102,
+                "name": "Kotlin",
+                "category": "core",
+                "description": "A cross-platform, statically typed, general-purpose programming language with type inference. It is designed to interoperate fully with Java.",
+                "level": "Beginner",
+                "experience": [
+                  "Used for Android development experiments.",
+                  "Familiar with coroutines and null safety features."
+                ],
+                "relatedSkills": ["Java", "Android Development", "Spring Boot (Kotlin support)"],
+                "resources": [
+                  {
+                    "title": "Kotlin Official Documentation",
+                    "url": "https://kotlinlang.org/docs/home.html",
+                    "type": "documentation"
                   }
                 ],
                 "children": []
@@ -208,27 +291,27 @@
           },
           {
             "id": 6,
-            "name": "Software Principles",
+            "name": "Software Principles & Paradigms",
             "category": "core",
-            "description": "Fundamental principles and best practices in software design and development",
-            "level": "advanced",
+            "description": "Fundamental principles and best practices in software design and development, including various programming paradigms.",
+            "level": "Expert",
             "children": [
               {
                 "id": 7,
                 "name": "SOLID Principles",
                 "category": "core",
-                "description": "A set of object-oriented design principles aimed at making software designs more understandable, flexible, and maintainable",
-                "level": "advanced",
+                "description": "A set of object-oriented design principles aimed at making software designs more understandable, flexible, and maintainable.",
+                "level": "Expert",
                 "experience": [
-                  "Applied SOLID principles to refactor legacy codebases",
-                  "Mentored junior developers on clean code practices",
-                  "Conducted code reviews focusing on design principles"
+                  "Applied SOLID principles extensively in Java and TypeScript projects at Intuit and RBC.",
+                  "Mentored junior developers on applying these principles in daily coding.",
+                  "Conducted code reviews focusing on adherence to SOLID for maintainability and scalability."
                 ],
-                "relatedSkills": ["Object-Oriented Design", "Clean Code", "Design Patterns"],
+                "relatedSkills": ["Object-Oriented Design", "Clean Code", "Design Patterns", "Refactoring"],
                 "resources": [
                   {
-                    "title": "SOLID Principles Explained",
-                    "url": "https://www.digitalocean.com/community/conceptual-articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design",
+                    "title": "SOLID Principles Explained (Robert C. Martin)",
+                    "url": "http://butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod",
                     "type": "article"
                   }
                 ],
@@ -238,21 +321,61 @@
                 "id": 8,
                 "name": "Clean Code",
                 "category": "core",
-                "description": "A philosophy of writing code that is readable, maintainable, and refactorable",
-                "level": "advanced",
+                "description": "A philosophy of writing code that is readable, maintainable, and refactorable.",
+                "level": "Expert",
                 "experience": [
-                  "Established code quality standards for team projects",
-                  "Created style guides and linting configurations",
-                  "Refactored complex codebases to improve maintainability"
+                  "Championed and enforced clean code practices across teams at Intuit.",
+                  "Established code quality standards and style guides.",
+                  "Regularly refactored complex codebases to improve readability and maintainability."
                 ],
-                "relatedSkills": ["Code Review", "Refactoring", "Technical Debt Management"],
+                "relatedSkills": ["Code Review", "Refactoring", "Technical Debt Management", "SOLID Principles"],
                 "resources": [
                   {
                     "title": "Clean Code by Robert C. Martin",
-                    "url": "https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882",
+                    "url": "https://www.oreilly.com/library/view/clean-code-a/9780136083238/",
                     "type": "book"
                   }
                 ],
+                "children": []
+              },
+              {
+                "id": 103,
+                "name": "Object-Oriented Programming (OOP)",
+                "category": "core",
+                "description": "Paradigm based on the concept of 'objects', which can contain data and code: data in the form of fields (often known as attributes or properties), and code, in the form of procedures (often known as methods).",
+                "level": "Expert",
+                "experience": [
+                  "Extensively used in Java (Intuit, RBC, InMoment, Rethink Solutions, GlocalSpace) and TypeScript projects.",
+                  "Designed and implemented complex class hierarchies and object models."
+                ],
+                "relatedSkills": ["Java", "TypeScript", "SOLID Principles", "Design Patterns"],
+                "children": []
+              },
+              {
+                "id": 104,
+                "name": "Functional Programming",
+                "category": "core",
+                "description": "Paradigm that treats computation as the evaluation of mathematical functions and avoids changing-state and mutable data.",
+                "level": "Advanced",
+                "experience": [
+                  "Applied functional programming concepts in JavaScript/TypeScript with React and Redux (RBC, Intuit).",
+                  "Utilized immutable data structures and pure functions for predictable state management."
+                ],
+                "relatedSkills": ["JavaScript", "TypeScript", "React", "Redux", "Scala", "Python (functional aspects)"],
+                "children": []
+              },
+              {
+                "id": 105,
+                "name": "Event-Driven Programming",
+                "category": "core",
+                "description": "Paradigm in which the flow of the program is determined by events such as user actions, sensor outputs, or messages from other programs/threads.",
+                "level": "Advanced",
+                "experience": [
+                  "Implemented event-driven architectures in microservices using AWS SQS/SNS at Playdly.",
+                  "Worked with real-time data streaming using Solace/Kafka at RBC.",
+                  "Developed responsive UIs in React based on user events."
+                ],
+                "relatedSkills": ["Microservices", "Message Queues (SQS, Kafka)", "AWS Lambda", "React"],
                 "children": []
               }
             ]
@@ -263,28 +386,29 @@
         "id": 9,
         "name": "Frontend Development",
         "category": "frontend",
-        "description": "Skills and technologies related to creating user interfaces and client-side applications",
-        "level": "expert",
+        "description": "Skills and technologies related to creating user interfaces and client-side applications.",
+        "level": "Expert",
         "children": [
           {
             "id": 10,
             "name": "UI Technologies",
             "category": "frontend",
-            "description": "Core technologies for building user interfaces on the web",
-            "level": "expert",
+            "description": "Core technologies for building user interfaces on the web.",
+            "level": "Expert",
             "children": [
               {
                 "id": 11,
-                "name": "HTML5/CSS3",
+                "name": "HTML5/CSS3/Sass",
                 "category": "frontend",
-                "description": "Modern markup and styling technologies for creating web pages and applications",
-                "level": "expert",
+                "description": "Modern markup and styling technologies, including CSS preprocessors like Sass, for creating responsive and accessible web pages and applications.",
+                "level": "Expert",
                 "experience": [
-                  "Created responsive layouts for multiple device sizes",
-                  "Implemented complex animations using CSS transitions and keyframes",
-                  "Built accessible web components following WCAG guidelines"
+                  "15+ years of experience building semantic and accessible web interfaces.",
+                  "Created responsive layouts using Flexbox and Grid for various devices at Intuit and RBC.",
+                  "Implemented complex animations and transitions using CSS3.",
+                  "Utilized Sass for modular and maintainable stylesheets at RBC."
                 ],
-                "relatedSkills": ["Responsive Design", "Web Accessibility", "CSS Frameworks"],
+                "relatedSkills": ["Responsive Web Design", "Web Accessibility (WCAG)", "CSS Frameworks (Bootstrap, Tailwind)", "Sass/SCSS"],
                 "resources": [
                   {
                     "title": "MDN Web Docs - HTML",
@@ -295,6 +419,11 @@
                     "title": "MDN Web Docs - CSS",
                     "url": "https://developer.mozilla.org/en-US/docs/Web/CSS",
                     "type": "documentation"
+                  },
+                  {
+                    "title": "Sass Documentation",
+                    "url": "https://sass-lang.com/documentation",
+                    "type": "documentation"
                   }
                 ],
                 "children": []
@@ -303,32 +432,34 @@
           },
           {
             "id": 12,
-            "name": "Frontend Frameworks",
+            "name": "Frontend Frameworks & Libraries",
             "category": "frontend",
-            "description": "Libraries and frameworks for building modern user interfaces",
-            "level": "expert",
+            "description": "Libraries and frameworks for building modern, interactive user interfaces.",
+            "level": "Expert",
             "children": [
               {
                 "id": 13,
                 "name": "React Ecosystem",
                 "category": "frontend",
-                "description": "React library and its surrounding ecosystem of tools and libraries",
-                "level": "expert",
+                "description": "React library and its surrounding ecosystem including state management, routing, and component libraries.",
+                "level": "Expert",
                 "experience": [
-                  "Built complex single-page applications with React",
-                  "Implemented state management using Redux, Context API, and Recoil",
-                  "Created reusable component libraries with Storybook"
+                  "Led React development for key features at Intuit.",
+                  "Engineered responsive trading UIs with React and Redux at RBC.",
+                  "Developed full-stack applications with React and Next.js at Playdly.",
+                  "Consulted on React best practices at Rangle.io.",
+                  "Utilized Storybook for component development and documentation at RBC."
                 ],
-                "relatedSkills": ["Redux", "React Router", "Hooks API", "Next.js"],
+                "relatedSkills": ["Redux/Redux Toolkit", "React Router", "Next.js", "Hooks API", "Context API", "Storybook", "JavaScript/TypeScript"],
                 "resources": [
                   {
-                    "title": "React Documentation",
-                    "url": "https://reactjs.org/docs/getting-started.html",
+                    "title": "React Official Documentation",
+                    "url": "https://react.dev/",
                     "type": "documentation"
                   },
                   {
-                    "title": "Redux Documentation",
-                    "url": "https://redux.js.org/introduction/getting-started",
+                    "title": "Next.js Documentation",
+                    "url": "https://nextjs.org/docs",
                     "type": "documentation"
                   }
                 ],
@@ -336,20 +467,44 @@
               },
               {
                 "id": 14,
-                "name": "Vue Ecosystem",
+                "name": "Angular Ecosystem",
                 "category": "frontend",
-                "description": "Vue.js framework and related tools for building user interfaces",
-                "level": "intermediate",
+                "description": "Angular framework and its ecosystem for building enterprise-grade web applications.",
+                "level": "Advanced",
                 "experience": [
-                  "Developed interactive dashboards with Vue and Vuex",
-                  "Created custom directives and mixins",
-                  "Implemented component-based architecture for large applications"
+                  "Developed enterprise applications using Angular at Rangle.io, providing consultation to clients.",
+                  "Worked with RxJS for reactive programming in Angular projects."
                 ],
-                "relatedSkills": ["Vuex", "Vue Router", "Nuxt.js"],
+                "relatedSkills": ["TypeScript", "RxJS", "NgRx (or similar state management)"],
                 "resources": [
                   {
-                    "title": "Vue.js Documentation",
-                    "url": "https://vuejs.org/guide/introduction.html",
+                    "title": "Angular Official Documentation",
+                    "url": "https://angular.io/docs",
+                    "type": "documentation"
+                  }
+                ],
+                "children": []
+              },
+              {
+                "id": 106,
+                "name": "Bootstrap/Tailwind CSS",
+                "category": "frontend",
+                "description": "Popular CSS frameworks for rapid UI development and responsive design.",
+                "level": "Advanced",
+                "experience": [
+                  "Utilized Bootstrap for quick prototyping and building responsive UIs in various projects.",
+                  "Adopted Tailwind CSS for utility-first styling in newer projects at Playdly."
+                ],
+                "relatedSkills": ["CSS3", "Responsive Web Design", "UI/UX Design Principles"],
+                "resources": [
+                  {
+                    "title": "Bootstrap Documentation",
+                    "url": "https://getbootstrap.com/docs/",
+                    "type": "documentation"
+                  },
+                  {
+                    "title": "Tailwind CSS Documentation",
+                    "url": "https://tailwindcss.com/docs",
                     "type": "documentation"
                   }
                 ],
@@ -363,54 +518,521 @@
         "id": 15,
         "name": "Backend Development",
         "category": "backend",
-        "description": "Server-side technologies and approaches for building application backends",
-        "level": "advanced",
+        "description": "Server-side technologies, frameworks, and architectural approaches for building robust application backends.",
+        "level": "Expert",
         "children": [
           {
             "id": 16,
-            "name": "REST APIs",
+            "name": "API Design & Development",
             "category": "backend",
-            "description": "Design and implementation of RESTful application programming interfaces",
-            "level": "expert",
+            "description": "Designing, building, and maintaining Application Programming Interfaces (APIs).",
+            "level": "Expert",
+            "children": [
+              {
+                "id": 107,
+                "name": "REST APIs",
+                "category": "backend",
+                "description": "Designing and implementing RESTful APIs adhering to HTTP standards and best practices.",
+                "level": "Expert",
+                "experience": [
+                  "Designed and built scalable RESTful APIs using Spring Boot at Intuit.",
+                  "Developed REST APIs with Node.js/Express at Resolver.",
+                  "Created Python-based REST APIs with FastAPI at Playdly."
+                ],
+                "relatedSkills": ["Spring Boot", "FastAPI", "Express.js", "HTTP Protocol", "API Security", "OpenAPI/Swagger"],
+                "children": []
+              },
+              {
+                "id": 108,
+                "name": "GraphQL",
+                "category": "backend",
+                "description": "Query language for APIs and a server-side runtime for executing queries by using a type system you define for your data.",
+                "level": "Intermediate",
+                "experience": [
+                  "Explored GraphQL for flexible data fetching in specific projects.",
+                  "Familiar with schema design and resolvers."
+                ],
+                "relatedSkills": ["API Design", "Apollo Server (or similar)", "Schema Definition Language (SDL)"],
+                "children": []
+              },
+              {
+                "id": 109,
+                "name": "gRPC",
+                "category": "backend",
+                "description": "A high-performance, open-source universal RPC framework.",
+                "level": "Intermediate",
+                "experience": [
+                  "Implemented gRPC for inter-service communication at Resolver Inc."
+                ],
+                "relatedSkills": ["Microservices", "Protocol Buffers", "Service Discovery"],
+                "children": []
+              },
+              {
+                "id": 110,
+                "name": "WebSockets / Real-time Communication",
+                "category": "backend",
+                "description": "Technologies for enabling real-time, bidirectional communication between clients and servers.",
+                "level": "Advanced",
+                "experience": [
+                  "Engineered real-time data streaming for trading applications using Solace at RBC."
+                ],
+                "relatedSkills": ["Solace", "Kafka (for backend eventing)", "Socket.IO (if applicable)"],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 17,
+            "name": "Backend Frameworks",
+            "category": "backend",
+            "description": "Frameworks and runtimes for building server-side applications.",
+            "level": "Expert",
+            "children": [
+              {
+                "id": 111,
+                "name": "Spring / Spring Boot (Java)",
+                "category": "backend",
+                "description": "Comprehensive framework for building robust Java-based enterprise applications and microservices.",
+                "level": "Expert",
+                "experience": [
+                  "Primary backend framework for microservices at Intuit.",
+                  "Developed numerous backend systems and APIs using Spring Boot at RBC and previous roles."
+                ],
+                "relatedSkills": ["Java", "Microservices", "REST APIs", "Dependency Injection", "Spring Security"],
+                "children": []
+              },
+              {
+                "id": 112,
+                "name": "Node.js (Express.js)",
+                "category": "backend",
+                "description": "JavaScript runtime and framework for building scalable network applications.",
+                "level": "Advanced",
+                "experience": [
+                  "Built RESTful APIs using Express.js at Resolver Inc.",
+                  "Developed backend services for full-stack JavaScript applications."
+                ],
+                "relatedSkills": ["JavaScript", "TypeScript", "REST APIs", "Asynchronous Programming"],
+                "children": []
+              },
+              {
+                "id": 113,
+                "name": "FastAPI (Python)",
+                "category": "backend",
+                "description": "Modern, fast (high-performance) web framework for building APIs with Python 3.7+ based on standard Python type hints.",
+                "level": "Advanced",
+                "experience": [
+                  "Primary framework for building AI backend services and APIs at Playdly.",
+                  "Leveraged for its asynchronous capabilities and automatic data validation/serialization."
+                ],
+                "relatedSkills": ["Python", "AsyncIO", "Pydantic", "REST APIs", "OpenAPI"],
+                "children": []
+              },
+              {
+                "id": 114,
+                "name": "Django (Python)",
+                "category": "backend",
+                "description": "High-level Python web framework that encourages rapid development and clean, pragmatic design.",
+                "level": "Intermediate",
+                "experience": [
+                  "Familiar with Django ORM and admin interface for specific projects."
+                ],
+                "relatedSkills": ["Python", "ORM", "Web Development"],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 115,
+            "name": "Messaging & Event Streaming",
+            "category": "backend",
+            "description": "Technologies for asynchronous communication and processing of event streams.",
+            "level": "Advanced",
+            "children": [
+              {
+                "id": 116,
+                "name": "Kafka",
+                "category": "backend",
+                "description": "Distributed event streaming platform.",
+                "level": "Intermediate",
+                "experience": [
+                  "Used Kafka for event-driven architectures at RBC."
+                ],
+                "relatedSkills": ["Event-Driven Architecture", "Microservices", "Distributed Systems"],
+                "children": []
+              },
+              {
+                "id": 117,
+                "name": "AWS SQS/SNS",
+                "category": "backend",
+                "description": "Managed message queuing (SQS) and notification (SNS) services on AWS.",
+                "level": "Advanced",
+                "experience": [
+                  "Utilized SQS and SNS for decoupling microservices and asynchronous task processing at Playdly."
+                ],
+                "relatedSkills": ["AWS", "Microservices", "Serverless", "Event-Driven Architecture"],
+                "children": []
+              },
+              {
+                "id": 118,
+                "name": "Solace",
+                "category": "backend",
+                "description": "Event streaming and management platform.",
+                "level": "Advanced",
+                "experience": [
+                  "Engineered real-time data streaming for trading applications using Solace at RBC."
+                ],
+                "relatedSkills": ["Real-time Systems", "Financial Systems", "Message Oriented Middleware"],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 18,
+        "name": "Data Management",
+        "category": "data",
+        "description": "Skills related to database design, management, and data processing.",
+        "level": "Advanced",
+        "children": [
+          {
+            "id": 19,
+            "name": "SQL Databases",
+            "category": "data",
+            "description": "Relational database management systems and SQL proficiency.",
+            "level": "Expert",
+            "children": [
+              {
+                "id": 119,
+                "name": "PostgreSQL",
+                "category": "data",
+                "description": "Advanced open-source relational database.",
+                "level": "Expert",
+                "experience": [
+                  "Primary relational database for projects at Playdly and Resolver Inc.",
+                  "Designed complex schemas, wrote advanced queries, and performed performance tuning."
+                ],
+                "relatedSkills": ["SQL", "Database Design", "Performance Tuning", "Data Modeling"],
+                "children": []
+              },
+              {
+                "id": 120,
+                "name": "MySQL",
+                "category": "data",
+                "description": "Popular open-source relational database.",
+                "level": "Advanced",
+                "experience": [
+                  "Used MySQL for backend systems at Rethink Solutions Inc.",
+                  "Database schema design and query optimization."
+                ],
+                "relatedSkills": ["SQL", "Database Design", "Data Modeling"],
+                "children": []
+              },
+              {
+                "id": 121,
+                "name": "Oracle DB / SQL Server",
+                "category": "data",
+                "description": "Enterprise-grade relational database systems.",
+                "level": "Intermediate",
+                "experience": [
+                  "Worked with Oracle DB in enterprise application contexts.",
+                  "Utilized SQL Server at InMoment, Inc., including writing stored procedures."
+                ],
+                "relatedSkills": ["SQL", "PL/SQL (Oracle)", "T-SQL (SQL Server)", "Enterprise Systems"],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 20,
+            "name": "NoSQL Databases",
+            "category": "data",
+            "description": "Non-relational database technologies for various data models.",
+            "level": "Advanced",
+            "children": [
+              {
+                "id": 122,
+                "name": "MongoDB",
+                "category": "data",
+                "description": "Popular NoSQL document database.",
+                "level": "Advanced",
+                "experience": [
+                  "Utilized MongoDB for flexible schema requirements in Node.js applications.",
+                  "Document data modeling and aggregation framework."
+                ],
+                "relatedSkills": ["Document Databases", "JSON/BSON", "Data Modeling (NoSQL)"],
+                "children": []
+              },
+              {
+                "id": 123,
+                "name": "Redis",
+                "category": "data",
+                "description": "In-memory data structure store, used as a database, cache, and message broker.",
+                "level": "Advanced",
+                "experience": [
+                  "Implemented Redis for caching and session management at Playdly to improve performance.",
+                  "Used for real-time data scenarios."
+                ],
+                "relatedSkills": ["Caching Strategies", "Key-Value Stores", "Performance Optimization"],
+                "children": []
+              },
+              {
+                "id": 124,
+                "name": "Cassandra",
+                "category": "data",
+                "description": "Distributed NoSQL database designed for high availability and scalability.",
+                "level": "Beginner",
+                "experience": [
+                  "Explored Cassandra for large-scale data storage requirements."
+                ],
+                "relatedSkills": ["Distributed Databases", "Big Data", "Scalability"],
+                "children": []
+              },
+              {
+                "id": 125,
+                "name": "DynamoDB (AWS)",
+                "category": "data",
+                "description": "Managed NoSQL key-value and document database on AWS.",
+                "level": "Intermediate",
+                "experience": [
+                  "Used DynamoDB in AWS-based projects for serverless applications.",
+                  "NoSQL data modeling for DynamoDB."
+                ],
+                "relatedSkills": ["AWS", "Serverless", "NoSQL Data Modeling"],
+                "children": []
+              },
+              {
+                "id": 126,
+                "name": "Elasticsearch",
+                "category": "data",
+                "description": "Distributed search and analytics engine.",
+                "level": "Intermediate",
+                "experience": [
+                  "Integrated Elasticsearch for advanced search capabilities in applications.",
+                  "Familiar with indexing and querying."
+                ],
+                "relatedSkills": ["Search Engines", "Log Analytics", "Data Visualization (Kibana)"],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": 127,
+            "name": "Vector Databases (Pinecone)",
+            "category": "data",
+            "description": "Databases optimized for storing and querying vector embeddings, crucial for AI/ML applications.",
+            "level": "Advanced",
             "experience": [
-              "Designed and built scalable RESTful APIs for high-traffic applications",
-              "Implemented authentication and authorization systems",
-              "Created comprehensive API documentation with Swagger/OpenAPI"
+              "Utilized Pinecone for storing and retrieving vector embeddings for the ATLAS RAG system at Playdly."
             ],
-            "relatedSkills": ["API Design", "HTTP Protocol", "Authentication"],
+            "relatedSkills": ["AI/ML", "Retrieval-Augmented Generation (RAG)", "Vector Embeddings", "Similarity Search"],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 21,
+        "name": "DevOps & Infrastructure",
+        "category": "infra",
+        "description": "Skills related to cloud platforms, containerization, CI/CD, and infrastructure automation.",
+        "level": "Expert",
+        "children": [
+          {
+            "id": 22,
+            "name": "Cloud Platforms (AWS)",
+            "category": "infra",
+            "description": "Expertise in Amazon Web Services for deploying and managing scalable applications.",
+            "level": "Expert",
+            "experience": [
+              "Extensive experience designing, deploying, and managing applications on AWS at Intuit, RBC, and Playdly.",
+              "Utilized services like EC2, S3, Lambda, SQS, SNS, DynamoDB, RDS, EKS.",
+              "AWS Certified Solutions Architect - Professional."
+            ],
+            "relatedSkills": ["AWS CLI", "AWS SDK", "CloudFormation/Terraform", "Serverless Architecture", "Cloud Security"],
             "resources": [
               {
-                "title": "RESTful API Design Best Practices",
-                "url": "https://restfulapi.net/",
-                "type": "article"
+                "title": "AWS Documentation",
+                "url": "https://aws.amazon.com/documentation/",
+                "type": "documentation"
               }
             ],
             "children": []
           },
           {
-            "id": 17,
-            "name": "GraphQL",
-            "category": "backend",
-            "description": "Query language and runtime for APIs that allows clients to request exactly what they need",
-            "level": "advanced",
+            "id": 128,
+            "name": "Cloud Platforms (GCP, Azure - Basic)",
+            "category": "infra",
+            "description": "Basic familiarity with Google Cloud Platform and Microsoft Azure.",
+            "level": "Beginner",
             "experience": [
-              "Built GraphQL APIs with Apollo Server",
-              "Implemented data loaders for efficient database queries",
-              "Designed complex schemas with nested resolvers"
+              "Explored GCP and Azure for specific use cases and comparative analysis.",
+              "Google Cloud Professional Cloud Architect certified (foundational knowledge)."
             ],
-            "relatedSkills": ["Apollo", "Schema Design", "API Optimization"],
+            "relatedSkills": ["Cloud Computing Concepts"],
+            "children": []
+          },
+          {
+            "id": 23,
+            "name": "Containerization (Docker, Kubernetes)",
+            "category": "infra",
+            "description": "Using Docker for containerizing applications and Kubernetes for orchestration.",
+            "level": "Expert",
+            "experience": [
+              "Led Kubernetes adoption and management for CI/CD pipelines at Intuit.",
+              "Deployed and managed containerized applications using Docker and Kubernetes at Playdly.",
+              "Certified Kubernetes Administrator (CKA)."
+            ],
+            "relatedSkills": ["Dockerfiles", "Kubernetes Manifests", "Helm", "Microservices Architecture", "Service Mesh (e.g., Istio - basic)"],
             "resources": [
               {
-                "title": "GraphQL Documentation",
-                "url": "https://graphql.org/learn/",
+                "title": "Docker Documentation",
+                "url": "https://docs.docker.com/",
                 "type": "documentation"
               },
               {
-                "title": "Apollo Server Documentation",
-                "url": "https://www.apollographql.com/docs/apollo-server/",
+                "title": "Kubernetes Documentation",
+                "url": "https://kubernetes.io/docs/",
                 "type": "documentation"
               }
             ],
+            "children": []
+          },
+          {
+            "id": 24,
+            "name": "CI/CD & Automation",
+            "category": "infra",
+            "description": "Implementing Continuous Integration and Continuous Deployment pipelines and automation scripts.",
+            "level": "Expert",
+            "experience": [
+              "Managed and streamlined CI/CD pipelines using Jenkins at Intuit and RBC.",
+              "Implemented GitHub Actions for automated workflows at Playdly.",
+              "Utilized ArgoCD for GitOps-based continuous delivery."
+            ],
+            "relatedSkills": ["Jenkins", "GitHub Actions", "ArgoCD", "Git", "Shell Scripting", "Python (for automation)"],
+            "children": []
+          },
+          {
+            "id": 129,
+            "name": "Infrastructure as Code (Terraform)",
+            "category": "infra",
+            "description": "Managing and provisioning infrastructure through code using tools like Terraform.",
+            "level": "Advanced",
+            "experience": [
+              "Used Terraform for provisioning and managing cloud infrastructure (AWS) at Playdly."
+            ],
+            "relatedSkills": ["AWS", "CloudFormation (concepts)", "Declarative Configuration"],
+            "resources": [
+              {
+                "title": "Terraform Documentation",
+                "url": "https://www.terraform.io/docs",
+                "type": "documentation"
+              }
+            ],
+            "children": []
+          },
+          {
+            "id": 130,
+            "name": "Monitoring & Observability (Splunk, Gatling)",
+            "category": "infra",
+            "description": "Tools and practices for monitoring application performance and health, and ensuring system observability.",
+            "level": "Advanced",
+            "experience": [
+              "Utilized Splunk for log analysis and monitoring at Intuit.",
+              "Conducted performance testing using Gatling at Intuit."
+            ],
+            "relatedSkills": ["Logging", "Metrics", "Tracing", "Performance Testing"],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 25,
+        "name": "AI & Machine Learning",
+        "category": "ai",
+        "description": "Skills in developing and deploying Artificial Intelligence and Machine Learning solutions.",
+        "level": "Advanced",
+        "children": [
+          {
+            "id": 131,
+            "name": "Retrieval-Augmented Generation (RAG)",
+            "category": "ai",
+            "description": "Techniques for enhancing Large Language Models (LLMs) with external knowledge.",
+            "level": "Advanced",
+            "experience": [
+              "Leading development of ATLAS, an advanced AI system enhancing RAG at Playdly.",
+              "Designed systems for dynamic embedding model selection and intelligent orchestration for RAG."
+            ],
+            "relatedSkills": ["LLMs", "Vector Databases (Pinecone)", "LangChain", "Prompt Engineering"],
+            "children": []
+          },
+          {
+            "id": 132,
+            "name": "Large Language Models (LLMs) & OpenAI API",
+            "category": "ai",
+            "description": "Working with Large Language Models, particularly via the OpenAI API.",
+            "level": "Advanced",
+            "experience": [
+              "Integrated OpenAI API for various AI-driven features at Playdly.",
+              "Developed frameworks for dynamic LLM model selection based on task context."
+            ],
+            "relatedSkills": ["Prompt Engineering", "NLP (Natural Language Processing)", "API Integration"],
+            "children": []
+          },
+          {
+            "id": 133,
+            "name": "LangChain",
+            "category": "ai",
+            "description": "Framework for developing applications powered by language models.",
+            "level": "Advanced",
+            "experience": [
+              "Utilized LangChain for building complex LLM workflows and agentic systems at Playdly."
+            ],
+            "relatedSkills": ["Python", "LLMs", "RAG", "Agent-based systems"],
+            "children": []
+          },
+          {
+            "id": 134,
+            "name": "Vector Embeddings & Databases (Pinecone)",
+            "category": "ai",
+            "description": "Creating, managing, and querying vector embeddings for similarity search and knowledge retrieval.",
+            "level": "Advanced",
+            "experience": [
+              "Implemented vector storage and retrieval using Pinecone for the ATLAS system at Playdly."
+            ],
+            "relatedSkills": ["Pinecone", "Similarity Search", "NLP", "Data Preprocessing"],
+            "children": []
+          },
+          {
+            "id": 135,
+            "name": "Prompt Engineering",
+            "category": "ai",
+            "description": "Designing and optimizing prompts to elicit desired outputs from LLMs.",
+            "level": "Advanced",
+            "experience": [
+              "Developed sophisticated prompting strategies for various AI tasks at Playdly."
+            ],
+            "relatedSkills": ["LLMs", "NLP", "Creative Problem Solving"],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": 26,
+        "name": "Security & Compliance",
+        "category": "security",
+        "description": "Practices and tools for ensuring application and infrastructure security and compliance.",
+        "level": "Intermediate",
+        "children": [
+          {
+            "id": 136,
+            "name": "Application Security (Snyk)",
+            "category": "security",
+            "description": "Identifying and mitigating security vulnerabilities in application code and dependencies.",
+            "level": "Intermediate",
+            "experience": [
+              "Utilized Snyk for vulnerability scanning and management at Intuit."
+            ],
+            "relatedSkills": ["DevSecOps", "Secure Coding Practices", "Vulnerability Management"],
             "children": []
           }
         ]

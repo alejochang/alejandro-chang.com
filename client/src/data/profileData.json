@@ -1,8 +1,8 @@
 {
   "personalInfo": {
     "name": "Alejandro Chang",
-    "title": "Senior Software Engineer",
-    "subtitle": "Senior Software Engineer with 15+ years of experience",
+    "title": "Senior Software Engineer & AI Architect",
+    "subtitle": "Senior Software Engineer with 15+ years of experience, specializing in AI-driven solutions.",
     "profilePicture": "/ac_profile.jpeg",
     "location": "Burlington, Canada",
     "email": "alejandro.chang@gmail.com",
@@ -11,14 +11,15 @@
   },
   "about": {
     "title": "About Me",
-    "headline": "Senior Software Engineer with 15+ years of experience building scalable applications",
-    "description": "Senior Full-Stack Software Engineer with over 15 years of experience building end-to-end solutions using Java, Spring, JavaScript, TypeScript and React. Skilled in designing cloud-native systems, distributed architectures, and optimizing performance following DevOps best practices.\n\nExperienced at driving cross-functional collaboration, mentoring engineers and aligning technical initiatives with business goals. Committed to delivering impactful solutions at scale and fostering innovation through hands-on leadership.\n\nLocated in Burlington, Ontario, I am passionate about building software that makes a meaningful difference in people's lives.",
+    "headline": "Senior Software Engineer & AI Architect with 15+ years of experience building scalable applications and innovative AI solutions.",
+    "description": "Senior Full-Stack Software Engineer and AI Architect with over 15 years of experience building end-to-end solutions using Java, Spring, JavaScript, TypeScript, Python, and React. Skilled in designing cloud-native systems, distributed architectures, and optimizing performance following DevOps best practices. Founder of Playdly, developing ATLAS, an advanced AI system for enhancing Retrieval-Augmented Generation (RAG).\n\nExperienced at driving cross-functional collaboration, mentoring engineers and aligning technical initiatives with business goals. Committed to delivering impactful solutions at scale and fostering innovation through hands-on leadership.\n\nLocated in Burlington, Ontario, I am passionate about building software that makes a meaningful difference in people's lives.",
     "strengthsTitle": "Key Strengths",
     "highlights": [
-      "Full-stack development with React, TypeScript, and Java",
-      "Expertise in cloud architecture and deployment on AWS",
-      "Strong background in data structures and algorithms",
-      "Advocate for clean code and software craftsmanship"
+      "Full-stack development with React, TypeScript, Python, and Java",
+      "Expertise in AI-driven solutions, RAG, and LLM orchestration",
+      "Cloud architecture and deployment on AWS (EC2, Lambda, S3, SQS/SNS)",
+      "Strong background in data structures, algorithms, and system design",
+      "Advocate for clean code, DevOps, and software craftsmanship"
     ]
   },
   "profileSections": [
@@ -71,7 +72,7 @@
         "Leading development on ATLAS, an advanced AI system that enhances Retrieval-Augmented Generation (RAG) through dynamic embedding model selection and intelligent orchestration.",
         "Designed an AI system with dynamic LLM model selection, implementing a framework that adaptively chooses among various retrieval-augmented strategies based on the context and requirements of each task."
       ],
-      "technologies": ["Python", "FastAPI", "TypeScript", "React", "Next.js", "OpenAI API", "LangChain", "Pinecone", "PostgreSQL", "Redis", "Kubernetes", "Terraform", "Docker", "GitHub Actions", "AWS SQS/SNS"]
+      "technologies": ["Python", "FastAPI", "TypeScript", "React", "Next.js", "OpenAI API", "LangChain", "Pinecone", "PostgreSQL", "Redis", "Kubernetes", "Terraform", "Docker", "GitHub Actions", "AWS SQS/SNS", "Vector Embeddings", "Prompt Engineering"]
     },
     {
       "id": "intuit",
@@ -85,7 +86,7 @@
         "Coordinated team responsibilities in company-wide effort to allow data imports for major crypto providers, securing +350K customers and increasing revenue by ~7%.",
         "Mentored junior engineers and interns, providing leadership in troubleshooting, technical development, and best practices."
       ],
-      "technologies": ["Java", "Spring Boot", "React", "Gatling", "CI/CD", "Jenkins", "AWS", "Snyk", "Kubernetes", "Docker", "macOS", "IntelliJ", "Git", "npm", "AWS", "Splunk"]
+      "technologies": ["Java", "Spring Boot", "React", "Gatling", "CI/CD", "Jenkins", "AWS", "Snyk", "Kubernetes", "Docker", "macOS", "IntelliJ", "Git", "npm", "Splunk"]
     },
     {
       "id": "rbc",
@@ -98,51 +99,116 @@
         "Engineered and deployed responsive front-end interfaces for critical trading applications using React and Redux with real-time data streaming via Solace.",
         "Streamlined CI/CD pipelines using Jenkins and GitHub, reducing deployment times by 30% and minimizing production errors."
       ],
-      "technologies": ["JavaScript", "TypeScript", "React", "Redux", "Java", "Spring Boot", "Jenkins", "Git", "Solace", "Kafka", "AWS"]
+      "technologies": ["JavaScript", "TypeScript", "React", "Redux", "Java", "Spring Boot", "Jenkins", "Git", "Solace", "Kafka", "AWS", "Sass", "Storybook"]
+    },
+    {
+      "id": "resolver",
+      "title": "Senior Full-Stack Software Developer",
+      "company": "Resolver Inc.",
+      "location": "Toronto, Canada",
+      "period": "September 2018 - April 2019",
+      "achievements": [
+        "Developed and maintained full-stack features for a risk management software platform.",
+        "Worked with Angular, Node.js (Express), and PostgreSQL.",
+        "Contributed to API design and implementation (REST, gRPC)."
+      ],
+      "technologies": ["Angular", "Node.js", "Express", "PostgreSQL", "gRPC", "JavaScript", "TypeScript"]
+    },
+    {
+      "id": "rangle",
+      "title": "Software Developer",
+      "company": "Rangle.io",
+      "location": "Toronto, Canada",
+      "period": "September 2016 - September 2018",
+      "achievements": [
+        "Provided JavaScript consultation and development services to various clients.",
+        "Specialized in modern frontend frameworks like Angular and React.",
+        "Contributed to building responsive and performant web applications."
+      ],
+      "technologies": ["Angular", "React", "JavaScript", "TypeScript", "Node.js", "Redux"]
+    },
+    {
+      "id": "inmoment",
+      "title": "Software Developer",
+      "company": "InMoment, Inc.",
+      "location": "Mississauga, Canada",
+      "period": "August 2014 - August 2016",
+      "achievements": [
+        "Developed features for a customer experience management platform.",
+        "Worked with J2EE technologies and SQL Server.",
+        "Contributed to backend systems and database interactions."
+      ],
+      "technologies": ["Java", "J2EE", "SQL Server", "JavaScript"]
+    },
+    {
+      "id": "rethink",
+      "title": "Software Developer",
+      "company": "Rethink Solutions Inc.",
+      "location": "Toronto, Canada",
+      "period": "April 2012 - August 2014",
+      "achievements": [
+        "Developed and maintained property tax management software.",
+        "Worked with Java backend systems and MySQL databases.",
+        "Focused on database schema design and backend logic."
+      ],
+      "technologies": ["Java", "MySQL", "JavaScript"]
+    },
+    {
+      "id": "glocalspace",
+      "title": "Java Developer",
+      "company": "GlocalSpace Inc.",
+      "location": "Toronto, Canada",
+      "period": "September 2011 - April 2012",
+      "achievements": [
+        "Contributed to the development of Java-based enterprise applications.",
+        "Focused on backend development and system integration."
+      ],
+      "technologies": ["Java", "J2EE"]
     }
   ],
   "skills": {
     "technical": [
       {
         "category": "Programming Languages",
-        "items": ["Java", "JavaScript", "TypeScript", "Python", "SQL", "HTML", "CSS"]
+        "items": ["Java", "JavaScript", "TypeScript", "Python", "Shell Scripting", "Scala", "Kotlin", "SQL", "HTML", "CSS"]
       },
       {
-        "category": "Frontend",
-        "items": ["React", "Next.js", "Redux", "Angular", "HTML5", "CSS3", "Bootstrap", "Tailwind CSS"]
+        "category": "Frontend Development",
+        "items": ["React", "Next.js", "Redux", "Angular", "HTML5", "CSS3", "Bootstrap", "Tailwind CSS", "Sass", "Storybook"]
       },
       {
-        "category": "Backend",
-        "items": ["Spring Boot", "Node.js", "Express", "FastAPI", "Django", "GraphQL", "REST API Design"]
+        "category": "Backend Development",
+        "items": ["Spring Boot", "Node.js", "Express", "FastAPI", "Django", "GraphQL", "REST API Design", "gRPC", "WebSockets", "Solace", "Kafka"]
       },
       {
         "category": "Databases",
-        "items": ["PostgreSQL", "MySQL", "Oracle", "MongoDB", "DynamoDB", "Redis", "Elasticsearch"]
+        "items": ["PostgreSQL", "MySQL", "Oracle DB", "SQL Server", "MongoDB", "DynamoDB", "Redis", "Elasticsearch", "Cassandra", "Pinecone"]
       },
       {
         "category": "DevOps & Cloud",
-        "items": ["AWS", "GCP", "Docker", "Kubernetes", "Terraform", "Jenkins", "GitHub Actions", "CI/CD"]
-      },
-      {
-        "category": "Tools & Methodologies",
-        "items": ["Git", "Jira", "Confluence", "Agile", "Scrum", "TDD", "BDD", "Microservices"]
+        "items": ["AWS (EC2, Lambda, S3, SQS/SNS, etc.)", "GCP (Basic)", "Azure (Basic)", "Docker", "Kubernetes", "Terraform", "Jenkins", "GitHub Actions", "ArgoCD", "CI/CD", "Snyk", "Splunk"]
       },
       {
         "category": "AI & Machine Learning",
-        "items": ["LangChain", "Pinecone", "OpenAI API", "Retrieval-Augmented Generation", "Vector Embeddings", "Prompt Engineering"]
+        "items": ["LangChain", "OpenAI API", "Retrieval-Augmented Generation (RAG)", "Vector Embeddings", "Prompt Engineering"]
+      },
+      {
+        "category": "Tools & Methodologies",
+        "items": ["Git", "Jira", "Confluence", "Agile", "Scrum", "TDD", "BDD", "Microservices", "IntelliJ", "Gatling"]
       }
     ],
     "softSkillsTitle": "Soft Skills",
     "soft": [
       "Technical Leadership",
       "Project Management",
-      "Mentoring",
-      "Clear Communication",
-      "Problem Solving",
-      "Agile Methodologies",
-      "Team Collaboration",
-      "Critical Thinking",
-      "Client Relationship Management"
+      "Mentoring & Coaching",
+      "Clear Communication (Technical & Non-technical)",
+      "Problem Solving & Analytical Thinking",
+      "Agile Methodologies & Scrum",
+      "Team Collaboration & Cross-functional Work",
+      "Critical Thinking & Decision Making",
+      "Client Relationship Management",
+      "Innovation & Adaptability"
     ],
     "techAndToolsLabel": "Tech & Tools:"
   },
@@ -152,53 +218,49 @@
   },
   "projects": [
     {
-      "title": "ATLAS AI System",
-      "description": "An advanced AI system that enhances Retrieval-Augmented Generation (RAG) through dynamic embedding model selection and intelligent orchestration.",
-      "technologies": ["Python", "FastAPI", "LangChain", "OpenAI API", "Pinecone", "React", "TypeScript"],
+      "title": "ATLAS AI System (Playdly)",
+      "description": "An advanced AI system that enhances Retrieval-Augmented Generation (RAG) through dynamic embedding model selection and intelligent orchestration for project management and automation.",
+      "technologies": ["Python", "FastAPI", "LangChain", "OpenAI API", "Pinecone", "React", "TypeScript", "Next.js", "PostgreSQL", "Redis", "Kubernetes", "Terraform"],
       "highlights": [
-        "Implemented a novel architecture for dynamic model selection",
-        "Created an adaptive orchestration layer for context-aware retrieval strategies",
-        "Built a performance analytics dashboard to optimize token usage and relevance"
+        "Implemented a novel architecture for dynamic LLM and embedding model selection.",
+        "Created an adaptive orchestration layer for context-aware retrieval strategies.",
+        "Built a performance analytics dashboard to optimize token usage and relevance.",
+        "Designed for scalability and efficiency in AI-driven workflows."
       ],
       "link": "#"
     },
     {
-      "title": "TurboTax Document Processing System",
-      "description": "A system for automated document verification and data extraction that significantly reduced processing time for tax documents.",
-      "technologies": ["Java", "Spring Boot", "OCR", "Machine Learning", "AWS", "S3", "Lambda"],
+      "title": "TurboTax Document Processing System (Intuit)",
+      "description": "A system for automated document verification and data extraction that significantly reduced processing time for tax documents, enabling real-time feedback.",
+      "technologies": ["Java", "Spring Boot", "OCR", "Machine Learning", "AWS", "S3", "Lambda", "Kubernetes", "Jenkins"],
       "highlights": [
-        "Reduced onboarding time for new document types from one month to three days",
-        "Implemented real-time validation feedback for customer document uploads",
-        "Created a flexible template system for easy addition of new document types"
+        "Reduced onboarding time for new document types from one month to three days.",
+        "Implemented real-time validation feedback for customer document uploads.",
+        "Created a flexible template system for easy addition of new document types.",
+        "Ensured high availability and scalability for critical tax season periods."
       ],
       "link": "#"
     },
     {
-      "title": "RBC Cross-Asset Trading Platform",
-      "description": "A modernized single-dealer platform for financial trading across multiple asset classes with real-time data streaming.",
-      "technologies": ["React", "Redux", "Java", "Spring Boot", "Solace", "Kafka"],
+      "title": "RBC Cross-Asset Trading Platform Modernization (RBC)",
+      "description": "Modernized a single-dealer platform for financial trading across multiple asset classes with real-time data streaming, improving performance and code quality.",
+      "technologies": ["React", "Redux", "Java", "Spring Boot", "Solace", "Kafka", "JavaScript", "TypeScript", "Jenkins", "GitHub"],
       "highlights": [
-        "Improved platform performance by 30%",
-        "Increased code coverage from 25% to 85%",
-        "Implemented responsive design for mobile and tablet access"
+        "Improved platform performance by 30%.",
+        "Increased code coverage from 25% to 85%.",
+        "Implemented responsive design for mobile and tablet access.",
+        "Developed critical trading application UIs with real-time data."
       ],
       "link": "#"
     }
   ],
   "education": [
     {
-      "degree": "Master of Science in Computer Science",
-      "institution": "University of Toronto",
-      "location": "Toronto, Canada",
-      "year": "2016",
-      "highlights": ["Specialization in Software Engineering", "GPA: 3.9/4.0"]
-    },
-    {
-      "degree": "Bachelor of Science in Computer Engineering",
-      "institution": "McGill University",
-      "location": "Montreal, Canada",
-      "year": "2014",
-      "highlights": ["Minor in Mathematics", "Graduated with Honors"]
+      "degree": "Engineering Technologist Diploma in Systems Analysis and Design (Honours)",
+      "institution": "UNEFA (Universidad Nacional Experimental Politécnica de la Fuerza Armada Nacional Bolivariana)",
+      "location": "Caracas, Venezuela",
+      "year": "Completed",
+      "highlights": ["Assessed by ICAS (International Credential Assessment Service of Canada) as equivalent to a Canadian Bachelor's degree in Computer Science."]
     }
   ],
   "certifications": [
@@ -218,9 +280,9 @@
       "year": "2021"
     },
     {
-      "name": "Professional Scrum Master I (PSM I)",
-      "issuer": "Scrum.org",
-      "year": "2020"
+      "name": "Oracle Certified Professional, Java SE Programmer (OCPJP)",
+      "issuer": "Oracle",
+      "year": "Previously Attained"
     }
   ],
   "colors": {
