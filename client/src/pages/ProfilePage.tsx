@@ -27,7 +27,8 @@ import {
   Palette,
   Monitor,
   Network,
-  Wrench
+  Wrench,
+  ExternalLink
 } from "lucide-react";
 import Header from "@/components/Header";
 import profileData from "@/data/profileData.json";
@@ -471,30 +472,30 @@ export default function ProfilePage() {
                     {profileSections.find(section => section.id === 'certifications')?.title}
                   </h2>
 
-                  <div className="flex flex-wrap gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {certifications.map((cert) => (
-                        <div key={cert.name} className="bg-[var(--highlight-color)] bg-opacity-20 px-4 py-3 rounded-md">
+                        <div key={cert.name} className="bg-[var(--highlight-color)] bg-opacity-20 px-4 py-3 rounded-md flex flex-col h-full">
                           <p className="font-medium text-[var(--secondary-color)]">{cert.name}</p>
-                          <p className="text-sm text-[var(--medium-gray)]">{cert.issuer}, {cert.year}</p>
-                          <a
-                              className="inline-flex items-center justify-center mt-2 px-3 py-1 text-xs bg-[var(--secondary-color)] bg-opacity-10 text-[var(--secondary-color)] rounded border border-[var(--secondary-color)] border-opacity-30 hover:bg-opacity-20 transition-colors"
-                              target="_self"
-                              aria-label={`Show credential for ${cert.name}`}
-                              href={cert.link}
-                          >
-                            <span className="mr-1">Show credential</span>
-                            <svg
-                                role="none"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="12"
-                                height="12"
-                                viewBox="0 0 16 16"
-                                className="fill-current"
+                          <p className="text-sm text-[var(--medium-gray)] mb-auto">{cert.issuer}, {cert.year}</p>
+                          <div className="mt-auto">
+                            <a
+                                href={cert.link}
+                                target="_self"
+                                aria-label={`Show credential for ${cert.name}`}
+                                className="
+      inline-flex items-center justify-center
+      px-3 py-1.5 text-xs font-medium
+      rounded-md
+      bg-[var(--primary-color)] text-white
+      hover:bg-[var(--secondary-color)]
+      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--primary-color)]
+      transition-colors
+    "
                             >
-                              <use href="#link-external-small" width="12" height="12"></use>
-                            </svg>
-                          </a>
+                              <span className="mr-1">Show credential</span>
+                              <ExternalLink size={12} className="text-current" />
+                            </a>
+                          </div>
                         </div>
                     ))}
                   </div>
