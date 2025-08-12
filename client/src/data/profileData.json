@@ -265,102 +265,123 @@
   ],
   "certifications": [
     {
-      "name": "Python for Data Science, AI & Development",
+      "name": "Fundamentals of AI Agents Using RAG and LangChain",
       "issuer": "IBM (Coursera)",
-      "year": "2025",
-      "details": "Completed January 31, 2025"
+      "year": "June 2025",
+      "details": "Understanding RAG concepts with Hugging Face, PyTorch, and LangChain. Skills in encoders, FAISS library, in-context learning, prompt engineering, and building applications with LangChain chains and agents.",
+      "link": "https://www.coursera.org/account/accomplishments/verify/CK0TY6SLS110"
     },
     {
-      "name": "Introduction to Artificial Intelligence (AI)",
+      "name": "IBM Generative AI Engineering",
       "issuer": "IBM (Coursera)",
-      "year": "2025",
-      "details": "Completed January 11, 2025"
+      "year": "June 2025",
+      "details": "Specialization in generative AI engineering, covering training, developing, fine-tuning, and deploying large language models and AI agents for NLP applications.",
+      "link": "https://www.coursera.org/account/accomplishments/specialization/RVXKKTZS596O"
     },
     {
-      "name": "Generative AI: Introduction and Applications",
-      "issuer": "IBM (Coursera)",
-      "year": "2025",
-      "details": "Completed January 11, 2025"
+      "name": "IBM Generative AI Engineering Professional Certificate",
+      "issuer": "IBM (Credly)",
+      "year": "June 2025",
+      "details": "Professional certification demonstrating job-ready gen AI engineering skills including building and deploying AI applications, agents and chatbots using Python, Flask, PyTorch, and frameworks like RAG and LangChain.",
+      "link": "https://www.credly.com/badges/52469600-8690-44e8-8f6e-39400a048a02/linked_in_profile"
     },
     {
-      "name": "Generative AI and LLMs: Architecture and Data Preparation",
+      "name": "Generative AI Advance Fine-Tuning for LLMs",
       "issuer": "IBM (Coursera)",
-      "year": "2025",
-      "details": "Completed January 10, 2025"
-    },
-    {
-      "name": "Developing AI Applications with Python and Flask",
-      "issuer": "IBM (Coursera)",
-      "year": "2025",
-      "details": "Completed February 13, 2025"
-    },
-    {
-      "name": "Machine Learning with Python",
-      "issuer": "IBM (Coursera)",
-      "year": "2025",
-      "details": "Completed March 27, 2025"
-    },
-    {
-      "name": "Data Analysis with Python",
-      "issuer": "IBM (Coursera)",
-      "year": "2025",
-      "details": "Completed March 12, 2025 (Also verified via Credly)"
-    },
-    {
-      "name": "Building Generative AI-Powered Applications with Python",
-      "issuer": "IBM (Coursera)",
-      "year": "2025",
-      "details": "Completed March 11, 2025"
-    },
-    {
-      "name": "Gen AI Foundational Models for NLP & Language Understanding",
-      "issuer": "IBM (Coursera)",
-      "year": "2025",
-      "details": "Completed April 29, 2025"
-    },
-    {
-      "name": "Generative AI Language Modelling with Transformers",
-      "issuer": "IBM (Coursera)",
-      "year": "2025",
-      "details": "Completed May 1, 2025"
+      "year": "May 2025",
+      "details": "Advanced techniques for fine-tuning large language models including parameter-efficient fine-tuning (PEFT), LoRA, QLoRA, and optimization methods for model training.",
+      "link": "https://www.coursera.org/account/accomplishments/verify/B0GAEADNVWYV"
     },
     {
       "name": "Generative AI Engineering and Fine-Tuning Transformers",
       "issuer": "IBM (Coursera)",
-      "year": "2025",
-      "details": "Completed May 8, 2025"
+      "year": "May 2025",
+      "details": "Skills in transformer architectures, Hugging Face, PyTorch, parameter-efficient fine-tuning (PEFT), LoRA, QLoRA, and advanced prompting techniques for optimizing LLMs.",
+      "link": "https://www.coursera.org/account/accomplishments/verify/18QKQY0V25MC"
     },
     {
-      "name": "AWS Certified Solutions Architect - Professional",
-      "issuer": "Amazon Web Services",
-      "year": "2023"
-    },
-    {
-      "name": "Google Cloud Professional Cloud Architect",
-      "issuer": "Google Cloud",
-      "year": "2022"
-    },
-    {
-      "name": "Certified Kubernetes Administrator (CKA)",
-      "issuer": "Cloud Native Computing Foundation",
-      "year": "2021"
-    },
-    {
-      "name": "Oracle Certified Professional, Java SE Programmer (OCPJP)",
-      "issuer": "Oracle",
-      "year": "Previously Attained"
-    },
-    {
-      "name": "IBM AI Engineering Professional Certificate (Specialization)",
-      "issuer": "IBM (Coursera - NUAMUVA4NTPF)",
-      "year": "Pending full verification - details not scraped",
-      "details": "Specialization certificate; requires manual detail input if available."
-    },
-    {
-      "name": "Certificate GSZN7BTOYM45",
+      "name": "Generative AI Language Modeling with Transformers",
       "issuer": "IBM (Coursera)",
-      "year": "Pending full verification - details not scraped",
-      "details": "Course certificate; page showed 'Loading...' in static view."
+      "year": "May 2025",
+      "details": "Expertise in transformer-based language modeling, working with generative AI models, and implementing natural language processing solutions using modern transformer architectures.",
+      "link": "https://www.coursera.org/account/accomplishments/verify/A10AZ2SHKVT3"
+    },
+    {
+      "name": "Gen AI Foundational Models for NLP & Language Understanding",
+      "issuer": "IBM (Coursera)",
+      "year": "April 2025",
+      "details": "Foundational knowledge of generative AI models for natural language processing, including language understanding techniques and applications of foundation models.",
+      "link": "https://www.coursera.org/account/accomplishments/verify/NCX6HN3PI5ZG"
+    },
+    {
+      "name": "Building Generative AI-Powered Applications with Python",
+      "issuer": "IBM (Coursera)",
+      "year": "March 2025",
+      "details": "Hands-on experience building real-world generative AI applications including chatbots, voice assistants, meeting summarizers, and language translators using Python, Flask, Gradio, LangChain, GPT-3, Llama 2, and RAG technology.",
+      "link": "https://www.coursera.org/account/accomplishments/verify/74YOIHT4QJ9O"
+    },
+    {
+      "name": "Data Analysis with Python",
+      "issuer": "IBM (Credly)",
+      "year": "March 2025",
+      "details": "Professional badge demonstrating proficiency in data analysis using Python, including data manipulation, statistical analysis, and visualization techniques.",
+      "link": "https://www.credly.com/badges/125c2881-0f92-440f-ba30-b8bf1e9d77db/linked_in_profile"
+    },
+    {
+      "name": "Machine Learning with Python",
+      "issuer": "IBM (Coursera)",
+      "year": "March 2025",
+      "details": "Comprehensive skills in machine learning using Python, including supervised and unsupervised learning algorithms, model evaluation, and implementation of ML solutions.",
+      "link": "https://www.coursera.org/account/accomplishments/verify/19C95DE6M5X3"
+    },
+    {
+      "name": "Developing AI Applications with Python and Flask",
+      "issuer": "IBM (Coursera)",
+      "year": "February 2025",
+      "details": "Skills in developing AI-enabled web applications using Python and Flask framework, including Watson AI libraries integration, unit testing, and application deployment.",
+      "link": "https://www.coursera.org/account/accomplishments/verify/FI62YS0I9FIK"
+    },
+    {
+      "name": "Generative AI for Software Developers",
+      "issuer": "IBM (Coursera)",
+      "year": "February 2025",
+      "details": "Specialization focused on applying generative AI technologies in software development, including prompt engineering, code generation, and integration of AI tools in development workflows.",
+      "link": "https://www.coursera.org/account/accomplishments/specialization/NUAMUVA4NTPF"
+    },
+    {
+      "name": "Generative AI and LLMs: Architecture and Data Preparation",
+      "issuer": "IBM (Coursera)",
+      "year": "January 2025",
+      "details": "Understanding of generative AI architectures including RNNs, transformers, GANs, VAEs, and diffusion models. Skills in tokenization with NLTK, spaCy, Hugging Face, and building data pipelines with PyTorch.",
+      "link": "https://www.coursera.org/account/accomplishments/records/4JHI04C5X39P"
+    },
+    {
+      "name": "Generative AI: Introduction and Applications",
+      "issuer": "IBM (Coursera)",
+      "year": "January 2025",
+      "details": "Foundational understanding of generative AI capabilities across text, image, audio, video, and code generation. Familiarity with tools like GPT, DALL-E, Stable Diffusion, and hands-on experience with ChatGPT.",
+      "link": "https://www.coursera.org/account/accomplishments/records/W0XAJ46W52NZ"
+    },
+    {
+      "name": "Generative AI: Prompt Engineering Basics",
+      "issuer": "IBM (Coursera)",
+      "year": "January 2025",
+      "details": "Essential skills in prompt engineering techniques for optimizing generative AI model responses, including prompt design, refinement strategies, and best practices for AI interaction.",
+      "link": "https://www.coursera.org/account/accomplishments/records/GSZN7BTOYM45"
+    },
+    {
+      "name": "Introduction to Artificial Intelligence (AI)",
+      "issuer": "IBM (Coursera)",
+      "year": "January 2025",
+      "details": "Comprehensive introduction to AI concepts, machine learning fundamentals, neural networks, and practical applications of artificial intelligence across various industries.",
+      "link": "https://www.coursera.org/account/accomplishments/verify/WT6ZR5OW59AH"
+    },
+    {
+      "name": "Python for Data Science, AI & Development",
+      "issuer": "IBM (Coursera)",
+      "year": "January 2025",
+      "details": "Foundational Python programming skills for data science and AI development, including data structures, libraries, and practical application development using Python.",
+      "link": "https://www.coursera.org/account/accomplishments/records/QFR5X6AGO8IE"
     }
   ],
   "colors": {

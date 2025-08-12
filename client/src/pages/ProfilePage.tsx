@@ -476,6 +476,25 @@ export default function ProfilePage() {
                         <div key={cert.name} className="bg-[var(--highlight-color)] bg-opacity-20 px-4 py-3 rounded-md">
                           <p className="font-medium text-[var(--secondary-color)]">{cert.name}</p>
                           <p className="text-sm text-[var(--medium-gray)]">{cert.issuer}, {cert.year}</p>
+                          <a
+                              className="inline-flex items-center justify-center mt-2 px-3 py-1 text-xs bg-[var(--secondary-color)] bg-opacity-10 text-[var(--secondary-color)] rounded border border-[var(--secondary-color)] border-opacity-30 hover:bg-opacity-20 transition-colors"
+                              target="_self"
+                              aria-label={`Show credential for ${cert.name}`}
+                              href={cert.link}
+                          >
+                            <span className="mr-1">Show credential</span>
+                            <svg
+                                role="none"
+                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="12"
+                                height="12"
+                                viewBox="0 0 16 16"
+                                className="fill-current"
+                            >
+                              <use href="#link-external-small" width="12" height="12"></use>
+                            </svg>
+                          </a>
                         </div>
                     ))}
                   </div>
